@@ -14,7 +14,7 @@
 
 ## About This Book
 
-**Yushu Liu** · [yushuliu@outlook.com](mailto:yushuliu@outlook.com) · [GitHub](https://github.com/liuyushugreat)
+**Yushu Liu** · [yushuliu@outlook.com](mailto:yushuliu@outlook.com) · [GitHub](https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems)
 
 Modern AI excels at perception and generation but still struggles with **explicit reasoning, rule compliance, uncertainty calibration, and certifiable deployment** in safety-critical settings.
 
