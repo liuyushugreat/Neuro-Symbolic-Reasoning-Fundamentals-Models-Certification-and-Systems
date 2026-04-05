@@ -1,0 +1,87 @@
+<mxfile>
+  <diagram name="Conformal prediction flow">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 15-1 Conformal prediction workflow" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Training Phase -->
+        <mxCell id="10" value="Training set" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Train model f̂" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="10" target="11" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Calibration Phase -->
+        <mxCell id="15" value="Calibration set&lt;br&gt;{(X_i, Y_i)}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="230" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="Nonconformity score&lt;br&gt;s_i = s(X_i, Y_i)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="230" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="15" target="16" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#d6b656;strokeWidth=2;dashed=1;" edge="1" source="11" target="16" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Sort and Quantile -->
+        <mxCell id="20" value="Sort scores&lt;br&gt;s_(1) ≤ s_(2) ≤ ... ≤ s_(n)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="230" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="16" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="Quantile threshold&lt;br&gt;q̂ = s_(⌈(1-α)(n+1)⌉)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="230" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="20" target="22" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Test Phase -->
+        <mxCell id="30" value="Test point&lt;br&gt;X_test" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="380" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="Model output f̂(X_test)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="380" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="30" target="31" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Prediction Set Construction -->
+        <mxCell id="35" value="Build prediction set&lt;br&gt;C(X_test) = {y : s(X,y) ≤ q̂}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="500" y="370" width="250" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="31" target="35" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;" edge="1" source="22" target="35" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Coverage Guarantee -->
+        <mxCell id="40" value="Coverage guarantee&lt;br&gt;&lt;br&gt;P(Y ∈ C(X)) ≥ 1 - α&lt;br&gt;&lt;br&gt;Distribution-free;&lt;br&gt;finite-sample valid" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="810" y="350" width="240" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#82b366;strokeWidth=2;" edge="1" source="35" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Phase labels -->
+        <mxCell id="50" value="Training" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#6c8ebf;fontStyle=3;" vertex="1" parent="1">
+          <mxGeometry x="60" y="70" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="51" value="Calibration" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#82b366;fontStyle=3;" vertex="1" parent="1">
+          <mxGeometry x="60" y="205" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="52" value="Inference" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#d6b656;fontStyle=3;" vertex="1" parent="1">
+          <mxGeometry x="60" y="355" width="100" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

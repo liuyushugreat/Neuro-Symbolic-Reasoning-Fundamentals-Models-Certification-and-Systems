@@ -1,0 +1,114 @@
+<mxfile>
+  <diagram name="Trustworthiness vulnerability map">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 14-1 Trustworthiness vulnerability overview" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="370" y="20" width="320" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Pipeline Background -->
+        <mxCell id="3" value="Neuro-symbolic system pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;dashed=1;verticalAlign=top;fontSize=14;fontStyle=1;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1080" height="200" as="geometry"/>
+        </mxCell>
+        <!-- Pipeline Stages -->
+        <mxCell id="10" value="Data acquisition&lt;br&gt;&amp; preprocessing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="130" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Knowledge graph&lt;br&gt;construction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="130" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="Graph embedding&lt;br&gt;encoding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="130" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="Reasoning&lt;br&gt;engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="130" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="Explanation&lt;br&gt;generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="130" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="Decision&lt;br&gt;output" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="130" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Pipeline Arrows -->
+        <mxCell id="20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="10" target="11" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="11" target="12" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="12" target="13" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="13" target="14" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="14" target="15" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Vulnerability Markers (Warning triangles) -->
+        <mxCell id="30" value="⚠" style="shape=triangle;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#CC0000;fontSize=16;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="100" y="200" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="⚠" style="shape=triangle;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#CC0000;fontSize=16;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="⚠" style="shape=triangle;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#CC0000;fontSize=16;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="460" y="200" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="⚠" style="shape=triangle;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#CC0000;fontSize=16;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="640" y="200" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="34" value="⚠" style="shape=triangle;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#CC0000;fontSize=16;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="820" y="200" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="35" value="⚠" style="shape=triangle;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#CC0000;fontSize=16;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="200" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <!-- Vulnerability Descriptions -->
+        <mxCell id="40" value="Data bias&lt;br&gt;&lt;br&gt;• Class imbalance&lt;br&gt;• Label noise&lt;br&gt;• Distribution shift" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="50" y="320" width="140" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="Incomplete knowledge&lt;br&gt;&lt;br&gt;• Missing entities&lt;br&gt;• Missing relations&lt;br&gt;• Stale facts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="230" y="320" width="140" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="42" value="Embedding distortion&lt;br&gt;&lt;br&gt;• Information loss&lt;br&gt;• Curse of dimensionality&lt;br&gt;• Semantic skew" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="410" y="320" width="140" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="43" value="Reasoning error cascade&lt;br&gt;&lt;br&gt;• Error accumulation&lt;br&gt;• Logical conflicts&lt;br&gt;• Uncertainty spread" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="590" y="320" width="140" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="44" value="Unfaithful explanations&lt;br&gt;&lt;br&gt;• Post-hoc rationalization&lt;br&gt;• Wrong attributions&lt;br&gt;• User misleading" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="770" y="320" width="140" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="45" value="Decision risk&lt;br&gt;&lt;br&gt;• Overconfidence&lt;br&gt;• Safety violations&lt;br&gt;• Accountability gaps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="950" y="320" width="140" height="110" as="geometry"/>
+        </mxCell>
+        <!-- Connector lines from markers to descriptions -->
+        <mxCell id="50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=1;dashed=1;" edge="1" source="30" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=1;dashed=1;" edge="1" source="31" target="41" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=1;dashed=1;" edge="1" source="32" target="42" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=1;dashed=1;" edge="1" source="33" target="43" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="54" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=1;dashed=1;" edge="1" source="34" target="44" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="55" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=1;dashed=1;" edge="1" source="35" target="45" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Error propagation arrow -->
+        <mxCell id="60" value="Errors propagate and amplify across stages" style="shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;notch=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="460" width="700" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

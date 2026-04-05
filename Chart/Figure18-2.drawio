@@ -1,0 +1,80 @@
+<mxfile>
+  <diagram name="Latency constraints and layered strategy">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 18-2 Latency constraints and a layered strategy" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="330" y="20" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Pyramid Tier 1: Hard Real-time (top) -->
+        <mxCell id="3" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f8cecc;strokeColor=#b85450;size=60;rotation=180;" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="400" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="&lt;b style=&quot;font-size:15px;&quot;&gt;Hard real-time tier&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="420" y="95" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="⏱ sub-10 ms (&lt;10ms)" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="420" y="120" width="160" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="&lt;b&gt;Scenarios: &lt;/b&gt;collision avoidance&lt;br&gt;&lt;b&gt;Models: &lt;/b&gt;rule engine&lt;br&gt;&lt;b&gt;Traits:&lt;/b&gt;deterministic, predictable latency" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=10;fillOpacity=40;" vertex="1" parent="1">
+          <mxGeometry x="740" y="80" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <!-- Pyramid Tier 2: Soft Real-time (middle) -->
+        <mxCell id="6" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;size=40;rotation=180;" vertex="1" parent="1">
+          <mxGeometry x="260" y="200" width="480" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="&lt;b style=&quot;font-size:15px;&quot;&gt;Soft real-time tier&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="420" y="215" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="8" value="⏱ sub-second to seconds (100ms-5s)" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="420" y="240" width="160" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="&lt;b&gt;Scenarios: &lt;/b&gt;path planning&lt;br&gt;&lt;b&gt;Models: &lt;/b&gt;lightweight GNN&lt;br&gt;&lt;b&gt;Traits:&lt;/b&gt;probabilistic, bounded delay OK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;align=left;spacingLeft=10;fillOpacity=40;" vertex="1" parent="1">
+          <mxGeometry x="740" y="200" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <!-- Pyramid Tier 3: Non-real-time (bottom) -->
+        <mxCell id="9" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;size=20;rotation=180;" vertex="1" parent="1">
+          <mxGeometry x="220" y="320" width="560" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="&lt;b style=&quot;font-size:15px;&quot;&gt;Non-real-time tier&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="420" y="335" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="⏱ multi-minute (>30s)" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="420" y="360" width="160" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="&lt;b&gt;Scenarios: &lt;/b&gt;global optimization&lt;br&gt;&lt;b&gt;Models: &lt;/b&gt;LLM analytics&lt;br&gt;&lt;b&gt;Traits:&lt;/b&gt;open-ended, high precision" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=10;fillOpacity=40;" vertex="1" parent="1">
+          <mxGeometry x="740" y="320" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <!-- Arrows to detail boxes -->
+        <mxCell id="33" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="130" as="sourcePoint"/>
+            <mxPoint x="740" y="130" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="250" as="sourcePoint"/>
+            <mxPoint x="740" y="250" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <!-- Priority indicators on left -->
+        <mxCell id="35" value="Priority: highest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="110" width="120" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="Priority: medium" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="230" width="120" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="37" value="Priority: low" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="350" width="120" height="35" as="geometry"/>
+        </mxCell>
+        <!-- Vertical label -->
+        <mxCell id="38" value="More time budget ↓" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=3;fontColor=#999999;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="230" width="130" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

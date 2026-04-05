@@ -1,0 +1,86 @@
+<mxfile>
+  <diagram name="Graph-based cooperative deconfliction">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 13-2 Graph-based cooperative deconfliction" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="350" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Conflict Graph Section -->
+        <mxCell id="5" value="Conflict graph" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;verticalAlign=top;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="280" height="320" as="geometry"/>
+        </mxCell>
+        <!-- Conflict graph nodes -->
+        <mxCell id="10" value="Agent A" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="120" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Agent B" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="220" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="Agent C" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="220" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="Agent D" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="320" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Conflict edges -->
+        <mxCell id="15" value="" style="rounded=1;html=1;strokeColor=#CC0000;strokeWidth=3;" edge="1" source="10" target="11" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="" style="rounded=1;html=1;strokeColor=#CC0000;strokeWidth=3;" edge="1" source="10" target="12" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="" style="rounded=1;html=1;strokeColor=#CC0000;strokeWidth=3;" edge="1" source="11" target="13" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Arrow to candidate paths -->
+        <mxCell id="20" value="Generate candidate paths" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;fontSize=12;fontStyle=1;" edge="1" source="5" target="25" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Candidate Paths Section -->
+        <mxCell id="25" value="Candidate avoidance plans" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;verticalAlign=top;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="390" y="80" width="280" height="320" as="geometry"/>
+        </mxCell>
+        <!-- Candidate paths -->
+        <mxCell id="26" value="Plan 1: A turn right + B slow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="130" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="27" value="Plan 2: A climb + C turn right" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="190" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="28" value="Plan 3: B turn left + D slow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="250" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="29" value="Plan 4: All climb to layers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="310" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Arrow to constraint filtering -->
+        <mxCell id="30" value="Constraint filter" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#333333;strokeWidth=2;fontSize=12;fontStyle=1;" edge="1" source="25" target="35" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Constraint Filtering Section -->
+        <mxCell id="35" value="Constraint evaluation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;verticalAlign=top;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="740" y="80" width="230" height="320" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="Safety&lt;br&gt;d_min ≥ D_safe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="130" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="37" value="Efficiency&lt;br&gt;ΔT ≤ T_max" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="200" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="38" value="Fairness&lt;br&gt;max(delay_i) − min(delay_i) ≤ ε" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="270" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Output: optimal solution -->
+        <mxCell id="40" value="Optimal joint plan&lt;br&gt;Plan 2 ✓" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="470" y="480" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="Output" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#82b366;strokeWidth=2;fontSize=12;fontStyle=1;" edge="1" source="35" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

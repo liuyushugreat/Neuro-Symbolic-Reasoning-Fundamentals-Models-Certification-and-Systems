@@ -1,0 +1,65 @@
+<mxfile>
+  <diagram name="Risk propagation chain">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="650">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="&lt;b&gt;Risk propagation chain&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="350" y="10" width="250" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="&lt;b style=&quot;font-size:15px&quot;&gt;Environmental stressors&lt;/b&gt;&lt;br&gt;&lt;hr&gt;High wind / low visibility;&lt;br&gt;storms / EMI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=5;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="&lt;b style=&quot;font-size:15px&quot;&gt;Failure risk&lt;/b&gt;&lt;br&gt;&lt;hr&gt;Comms loss / nav failure;&lt;br&gt;propulsion faults" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=5;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="280" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="&lt;b style=&quot;font-size:15px&quot;&gt;Violation risk&lt;/b&gt;&lt;br&gt;&lt;hr&gt;Boundary breach / altitude deviation;&lt;br&gt;unauthorized airspace entry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=5;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="40" value="&lt;b style=&quot;font-size:15px&quot;&gt;Conflict risk&lt;/b&gt;&lt;br&gt;&lt;hr&gt;Route conflicts / overlapping airspace;&lt;br&gt;potential collision" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=5;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="50" value="&lt;b style=&quot;font-size:15px;color:#CC0000&quot;&gt;Safety incident&lt;/b&gt;&lt;br&gt;&lt;hr&gt;Collision / crash / ground harm;&lt;br&gt;cascading accidents" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#CC0000;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=5;shadow=1;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="700" y="180" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="60" value="&lt;b&gt;Precipitates&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9673a6;strokeWidth=2;fontSize=12;fontColor=#9673a6;" edge="1" source="10" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="&lt;b&gt;Forces deviation&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9673a6;strokeWidth=2;fontSize=12;fontColor=#9673a6;" edge="1" source="10" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="62" value="&lt;b&gt;Causes breach&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;fontSize=12;fontColor=#d6b656;" edge="1" source="20" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="330"/>
+              <mxPoint x="330" y="130"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="63" value="&lt;b&gt;Uncontrolled drift&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;fontSize=12;fontColor=#d6b656;" edge="1" source="20" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="64" value="&lt;b&gt;Route intrusion&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#b85450;strokeWidth=2;fontSize=12;fontColor=#b85450;" edge="1" source="30" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="65" value="&lt;b&gt;Collision hazard&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=3;fontSize=12;fontColor=#CC0000;" edge="1" source="40" target="50" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="66" value="&lt;b&gt;Direct harm&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;fontSize=12;fontColor=#CC0000;dashed=1;" edge="1" source="30" target="50" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="67" value="&lt;b&gt;Loss of control&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#CC0000;strokeWidth=2;fontSize=12;fontColor=#CC0000;dashed=1;" edge="1" source="20" target="50" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="430"/>
+              <mxPoint x="800" y="430"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="70" value="&lt;b&gt;Risk cascades&lt;/b&gt;&lt;br&gt;A local risk can amplify&lt;br&gt;along the chain into systemic risk" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=12;fontColor=#666666;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="350" y="490" width="260" height="60" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

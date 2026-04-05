@@ -1,0 +1,85 @@
+<mxfile>
+  <diagram name="Static KG vs Temporal KG">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 11-1 Static knowledge graph vs temporal knowledge graph" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Left Panel Border -->
+        <mxCell id="3" value="Static knowledge graph" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;verticalAlign=top;fontSize=16;fontStyle=1;fontColor=#333333;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="440" height="400" as="geometry"/>
+        </mxCell>
+        <!-- Static KG Nodes -->
+        <mxCell id="10" value="Alice" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="140" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Peking Univ." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="260" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="Tsinghua Univ." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="260" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="AI research" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="380" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Static KG Edges -->
+        <mxCell id="20" value="employed at" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=12;fontColor=#333333;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="10" target="11" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="graduated from" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=12;fontColor=#333333;strokeColor=#82b366;strokeWidth=2;" edge="1" source="10" target="12" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="researches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=12;fontColor=#333333;strokeColor=#d6b656;strokeWidth=2;" edge="1" source="10" target="13" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="offers" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=12;fontColor=#333333;strokeColor=#82b366;strokeWidth=2;" edge="1" source="11" target="13" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="No temporal information" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#FF0000;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="160" y="460" width="180" height="30" as="geometry"/>
+        </mxCell>
+        <!-- Right Panel Border -->
+        <mxCell id="4" value="Temporal knowledge graph" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;verticalAlign=top;fontSize=16;fontStyle=1;fontColor=#333333;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="540" y="80" width="520" height="400" as="geometry"/>
+        </mxCell>
+        <!-- Temporal KG Nodes -->
+        <mxCell id="30" value="Alice" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="140" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="Peking Univ." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="260" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="Tsinghua Univ." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="260" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="AI research" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="380" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Temporal KG Edges with timestamps -->
+        <mxCell id="40" value="employed at [2018–present]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;fontColor=#0000CC;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="30" target="31" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="graduated from [2014–2018]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;fontColor=#0000CC;strokeColor=#82b366;strokeWidth=2;" edge="1" source="30" target="32" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="42" value="researches [2019–present]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;fontColor=#0000CC;strokeColor=#d6b656;strokeWidth=2;" edge="1" source="30" target="33" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="43" value="offers [2020–present]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;fontColor=#0000CC;strokeColor=#82b366;strokeWidth=2;" edge="1" source="31" target="33" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Temporal annotation -->
+        <mxCell id="44" value="Quadruple: (h, r, t, τ)&lt;br&gt;τ = timestamp / validity interval" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#0000CC;fontStyle=3;" vertex="1" parent="1">
+          <mxGeometry x="680" y="460" width="220" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Arrow between panels -->
+        <mxCell id="50" value="Temporal extension" style="shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;notch=0;fillColor=#e6d0de;strokeColor=#996185;fontSize=13;fontStyle=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="250" width="80" height="60" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

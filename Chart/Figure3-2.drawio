@@ -1,0 +1,76 @@
+<mxfile>
+  <diagram name="Ontology three layers">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="700">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="&lt;b&gt;Three-layer ontology (TBox / RBox / ABox)&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="310" y="15" width="220" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=10;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="100" y="70" width="680" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="&lt;b style=&quot;font-size:16px&quot;&gt;Concept layer (TBox)&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=16;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="&lt;b&gt;Aircraft&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="140" y="120" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="&lt;b&gt;Route&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="310" y="120" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="&lt;b&gt;Airspace&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="480" y="120" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="&lt;b&gt;Weather&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="650" y="120" width="100" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="Abstract concepts, class hierarchies, concept axioms" style="text;html=1;align=center;fontSize=12;fontColor=#6c8ebf;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="250" y="175" width="300" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;arcSize=10;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="100" y="260" width="680" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="&lt;b style=&quot;font-size:16px&quot;&gt;Relation layer (RBox)&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=16;fontColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="120" y="270" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="flies_on(Aircraft, Route)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="130" y="310" width="180" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="located_in(Route, Airspace)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="350" y="310" width="160" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="affects(Weather, Airspace)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="550" y="310" width="160" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="25" value="Relation definitions, domain/range constraints, role axioms" style="text;html=1;align=center;fontSize=12;fontColor=#d6b656;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="250" y="365" width="300" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;arcSize=10;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="100" y="450" width="680" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="&lt;b style=&quot;font-size:16px&quot;&gt;Instance layer (ABox)&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=16;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="120" y="460" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="Drone A : Aircraft" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="130" y="500" width="160" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="Route Alpha : Route" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="330" y="500" width="160" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="34" value="East China sector : Airspace" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="530" y="500" width="160" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="35" value="Concrete instance assertions and facts" style="text;html=1;align=center;fontSize=12;fontColor=#82b366;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="280" y="555" width="300" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="40" value="&lt;b&gt;Defines relation types&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#999999;strokeWidth=2;fontSize=12;fontColor=#999999;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" source="10" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="&lt;b&gt;Instantiation&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#999999;strokeWidth=2;fontSize=12;fontColor=#999999;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" source="20" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

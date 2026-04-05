@@ -1,0 +1,61 @@
+<mxfile>
+  <diagram name="Three-party interaction">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 17-3 Three-party interaction" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Regulator (top) -->
+        <mxCell id="3" value="&lt;b style=&quot;font-size:16px;&quot;&gt;Regulator&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="370" y="80" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="&lt;b&gt;Needs:&lt;/b&gt;&lt;br&gt;• compliance evidence&lt;br&gt;• statistical guarantees&lt;br&gt;• audit traceability" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=10;fillOpacity=40;" vertex="1" parent="1">
+          <mxGeometry x="350" y="160" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <!-- Operator (bottom-left) -->
+        <mxCell id="5" value="&lt;b style=&quot;font-size:16px;&quot;&gt;Operator&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="80" y="450" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="&lt;b&gt;Needs:&lt;/b&gt;&lt;br&gt;• system state&lt;br&gt;• performance reports&lt;br&gt;• operations metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=10;fillOpacity=40;" vertex="1" parent="1">
+          <mxGeometry x="60" y="530" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <!-- Executor (bottom-right) -->
+        <mxCell id="7" value="&lt;b style=&quot;font-size:16px;&quot;&gt;Executor&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="660" y="450" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="8" value="&lt;b&gt;Needs:&lt;/b&gt;&lt;br&gt;• real-time commands&lt;br&gt;• degradation policy&lt;br&gt;• safety envelope" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=left;spacingLeft=10;fillOpacity=40;" vertex="1" parent="1">
+          <mxGeometry x="640" y="530" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <!-- Edge: Regulator <-> Operator -->
+        <mxCell id="9" value="compliance reports ↑&lt;br&gt;policy requirements ↓" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;fontColor=#6c8ebf;" edge="1" source="3" target="5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: Regulator <-> Executor -->
+        <mxCell id="10" value="certification status ↑&lt;br&gt;safety standards ↓" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9673a6;strokeWidth=2;fontSize=12;fontColor=#9673a6;" edge="1" source="3" target="7" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: Operator <-> Executor -->
+        <mxCell id="11" value="telemetry ←  commands →" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#82b366;strokeWidth=2;fontSize=12;fontColor=#82b366;" edge="1" source="5" target="7" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Central coordination -->
+        <mxCell id="12" value="Certification platform&lt;br&gt;(coordination hub)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="370" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <!-- Central arrows -->
+        <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;dashed=1;" edge="1" source="12" target="3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;dashed=1;" edge="1" source="12" target="5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;dashed=1;" edge="1" source="12" target="7" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

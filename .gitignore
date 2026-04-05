@@ -1,0 +1,22 @@
+# Obsidian workspace
+.obsidian/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Build artifacts
+_build/
+site/

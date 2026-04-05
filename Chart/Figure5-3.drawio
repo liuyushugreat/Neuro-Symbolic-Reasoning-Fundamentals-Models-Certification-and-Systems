@@ -1,0 +1,106 @@
+<mxfile>
+  <diagram name="Four scenario templates">
+    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="650">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="&lt;b&gt;Four operational scenario templates&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="380" y="10" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="&lt;b style=&quot;font-size:16px&quot;&gt;Logistics delivery&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="200" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="&lt;b&gt;Mission profile&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="High frequency, short range;&lt;br&gt;point-to-point;&lt;br&gt;mostly fixed routes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="50" y="150" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="&lt;b&gt;Constraints&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="230" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="Tight deadlines;&lt;br&gt;strict payload;&lt;br&gt;urban low-altitude obstacle avoidance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="50" y="260" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="&lt;b&gt;Risk focus&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="340" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="Ground impact;&lt;br&gt;dense-area conflicts;&lt;br&gt;battery endurance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="50" y="370" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="&lt;b style=&quot;font-size:16px&quot;&gt;Inspection&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="60" width="200" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="&lt;b&gt;Mission profile&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="120" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="Periodic patrols;&lt;br&gt;line/area coverage;&lt;br&gt;image &amp; data collection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="300" y="150" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="&lt;b&gt;Constraints&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="230" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="Long endurance;&lt;br&gt;specific altitude &amp; attitude;&lt;br&gt;complex terrain" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="300" y="260" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="25" value="&lt;b&gt;Risk focus&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="340" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="26" value="Link loss;&lt;br&gt;adverse weather;&lt;br&gt;obstacle collision" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="300" y="370" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="&lt;b style=&quot;font-size:16px&quot;&gt;Emergency response&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="60" width="200" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="&lt;b&gt;Mission profile&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="120" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="Sudden, urgent;&lt;br&gt;rapid deployment;&lt;br&gt;cargo / SAR" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="550" y="150" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="&lt;b&gt;Constraints&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="230" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="34" value="Severe-weather ops;&lt;br&gt;temporary airspace;&lt;br&gt;multi-vehicle coordination" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="550" y="260" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="35" value="&lt;b&gt;Risk focus&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="340" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="High uncertainty;&lt;br&gt;weak comms;&lt;br&gt;manned-aircraft conflict" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="550" y="370" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="40" value="&lt;b style=&quot;font-size:16px&quot;&gt;Air taxi&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="60" width="200" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="&lt;b&gt;Mission profile&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="120" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="42" value="Passenger flights;&lt;br&gt;inter-/intra-city;&lt;br&gt;scheduled operations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="800" y="150" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="43" value="&lt;b&gt;Constraints&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="230" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="44" value="Highest safety bar;&lt;br&gt;noise &amp; emissions;&lt;br&gt;passenger comfort" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="800" y="260" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="45" value="&lt;b&gt;Risk focus&lt;/b&gt;" style="text;html=1;align=center;fontSize=13;fontColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="340" width="160" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="46" value="Casualty risk;&lt;br&gt;airworthiness compliance;&lt;br&gt;redundancy requirements" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontColor=#333333;arcSize=15;opacity=70;" vertex="1" parent="1">
+          <mxGeometry x="800" y="370" width="180" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="90" value="" style="shape=line;strokeColor=#EEEEEE;strokeWidth=1;rotation=90;" vertex="1" parent="1">
+          <mxGeometry x="60" y="240" width="400" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="91" value="" style="shape=line;strokeColor=#EEEEEE;strokeWidth=1;rotation=90;" vertex="1" parent="1">
+          <mxGeometry x="310" y="240" width="400" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="92" value="" style="shape=line;strokeColor=#EEEEEE;strokeWidth=1;rotation=90;" vertex="1" parent="1">
+          <mxGeometry x="560" y="240" width="400" height="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

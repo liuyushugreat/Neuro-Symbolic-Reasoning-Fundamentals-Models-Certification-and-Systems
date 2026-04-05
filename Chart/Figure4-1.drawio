@@ -1,0 +1,67 @@
+<mxfile>
+  <diagram name="Deep representation hierarchy">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="700">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="&lt;b&gt;Hierarchical abstraction in deep representation learning&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="250" y="15" width="350" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="&lt;b style=&quot;font-size:14px&quot;&gt;Task output&lt;/b&gt;&lt;br&gt;Classification / detection / decision" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="70" width="220" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="&lt;b style=&quot;font-size:14px&quot;&gt;High-level semantics&lt;/b&gt;&lt;br&gt;Concepts, intents, relations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="170" width="320" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="&lt;b style=&quot;font-size:14px&quot;&gt;Mid-level features&lt;/b&gt;&lt;br&gt;Parts, patterns, local structure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="270" width="440" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="40" value="&lt;b style=&quot;font-size:14px&quot;&gt;Low-level features&lt;/b&gt;&lt;br&gt;Edges, textures, frequency content" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="370" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="50" value="&lt;b style=&quot;font-size:14px&quot;&gt;Raw input&lt;/b&gt;&lt;br&gt;Image pixels / text tokens / sensor signals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontColor=#333333;arcSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="470" width="680" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9673a6;strokeWidth=2;" edge="1" source="50" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#b85450;strokeWidth=2;" edge="1" source="40" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="62" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;" edge="1" source="30" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#82b366;strokeWidth=2;" edge="1" source="20" target="10" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="70" value="&lt;b&gt;Abstraction&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontColor=#333333;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="0" y="260" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="71" value="High" style="text;html=1;align=center;fontSize=13;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="20" y="100" width="40" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="72" value="Low" style="text;html=1;align=center;fontSize=13;fontColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="20" y="480" width="40" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="73" value="" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;strokeWidth=2;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="470" as="sourcePoint"/>
+            <mxPoint x="40" y="130" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80" value="e.g., “This is a drone”" style="text;html=1;align=left;fontSize=11;fontColor=#82b366;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="770" y="180" width="130" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="81" value="e.g., propeller shape" style="text;html=1;align=left;fontSize=11;fontColor=#d6b656;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="770" y="280" width="130" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="82" value="e.g., edge contours" style="text;html=1;align=left;fontSize=11;fontColor=#b85450;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="770" y="380" width="130" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="83" value="e.g., RGB pixels" style="text;html=1;align=left;fontSize=11;fontColor=#9673a6;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="770" y="480" width="130" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

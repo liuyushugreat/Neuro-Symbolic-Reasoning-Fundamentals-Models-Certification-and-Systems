@@ -1,0 +1,78 @@
+<mxfile>
+  <diagram name="Explainability vs certifiability">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="800">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 14-2 Explainability vs certifiability" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="320" y="20" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Left Column: Explainability -->
+        <mxCell id="5" value="Explainability" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;fontSize=16;fontStyle=1;fontColor=#333333;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="380" height="400" as="geometry"/>
+        </mxCell>
+        <!-- What -->
+        <mxCell id="10" value="What" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Post-hoc explanation&lt;br&gt;Human-readable reasons&lt;br&gt;for a decision already made" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="120" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <!-- How -->
+        <mxCell id="12" value="How" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="220" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="• Feature attribution (SHAP/LIME)&lt;br&gt;• Attention maps&lt;br&gt;• Rule extraction&lt;br&gt;• Counterfactual explanations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="220" y="210" width="200" height="80" as="geometry"/>
+        </mxCell>
+        <!-- Goal -->
+        <mxCell id="14" value="Goal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="330" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="Human understanding&lt;br&gt;Clarify &lt;i&gt;why&lt;/i&gt; the system&lt;br&gt;chose this action" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="320" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <!-- Right Column: Certifiability -->
+        <mxCell id="6" value="Certifiability" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontSize=16;fontStyle=1;fontColor=#333333;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="580" y="80" width="380" height="400" as="geometry"/>
+        </mxCell>
+        <!-- What -->
+        <mxCell id="20" value="What" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="130" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="Probabilistic assurance&lt;br&gt;Mathematical confidence&lt;br&gt;statements for predictions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="120" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <!-- How -->
+        <mxCell id="22" value="How" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="220" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="• Statistical tests&lt;br&gt;• Formal verification (model checking)&lt;br&gt;• Conformal prediction&lt;br&gt;• Robustness certification" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="740" y="210" width="200" height="80" as="geometry"/>
+        </mxCell>
+        <!-- Goal -->
+        <mxCell id="24" value="Goal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="330" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="25" value="Quantified trust&lt;br&gt;Metrics for how reliable&lt;br&gt;this prediction is" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="320" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <!-- Complementary Connection -->
+        <mxCell id="40" value="Complementary — not equivalent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="520" width="260" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="5" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="42" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#82b366;strokeWidth=2;" edge="1" source="6" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Bottom note -->
+        <mxCell id="45" value="Trustworthy neuro-symbolic systems need both: explanations of why, and guarantees of how confident." style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#666666;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="600" width="600" height="30" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

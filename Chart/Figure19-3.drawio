@@ -1,0 +1,100 @@
+<mxfile>
+  <diagram name="Cross-region coordination state transitions">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 19-3 Cross-region coordination state transitions" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="380" y="20" width="300" height="40" as="geometry"/>
+        </mxCell>
+        <!-- State: Normal Operation -->
+        <mxCell id="3" value="normal operation" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <!-- State: Boundary Approaching -->
+        <mxCell id="4" value="approaching boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="100" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <!-- State: Switch Preparation -->
+        <mxCell id="5" value="handover preparation" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="100" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <!-- State: Execute Switch -->
+        <mxCell id="6" value="execute handover" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="100" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <!-- State: New Region Confirmation -->
+        <mxCell id="7" value="new region confirmed" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="300" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <!-- State: Switch Failed -->
+        <mxCell id="8" value="handover failed" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="420" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <!-- State: Rollback -->
+        <mxCell id="9" value="rollback" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="420" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <!-- State: Retry -->
+        <mxCell id="10" value="retry" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="260" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <!-- Normal flow edges -->
+        <mxCell id="11" value="boundary detected" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#82b366;strokeWidth=2;fontSize=11;fontColor=#555555;" edge="1" source="3" target="4" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="resource preallocation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;fontSize=11;fontColor=#555555;" edge="1" source="4" target="5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="start handover" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;fontSize=11;fontColor=#555555;" edge="1" source="5" target="6" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="handover succeeded" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#82b366;strokeWidth=2;fontSize=11;fontColor=#555555;" edge="1" source="6" target="7" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="confirmation complete" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;fontColor=#555555;" edge="1" source="7" target="3" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="400"/>
+              <mxPoint x="920" y="400"/>
+              <mxPoint x="920" y="550"/>
+              <mxPoint x="150" y="550"/>
+              <mxPoint x="150" y="280"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Error flow edges -->
+        <mxCell id="16" value="handover fault" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#b85450;strokeWidth=2;dashed=1;fontSize=11;fontColor=#b85450;" edge="1" source="6" target="8" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="execute rollback" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#b85450;strokeWidth=2;dashed=1;fontSize=11;fontColor=#b85450;" edge="1" source="8" target="9" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="18" value="prepare retry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;dashed=1;fontSize=11;fontColor=#d6b656;" edge="1" source="9" target="10" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="19" value="retry handover" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;dashed=1;fontSize=11;fontColor=#d6b656;" edge="1" source="10" target="5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Location labels -->
+        <mxCell id="20" value="[Edge]" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="310" y="80" width="70" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="[Edge]" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="540" y="80" width="70" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="[Cloud coordination]" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="770" y="80" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="[Cloud confirmation]" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="770" y="375" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <!-- Legend -->
+        <mxCell id="24" value="── normal path&lt;br&gt;- - error path" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="120" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,81 @@
+<mxfile>
+  <diagram name="Scientific agent workflow">
+    <mxGraphModel dx="1422" dy="862" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="Figure 24-3 Scientific agent workflow" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="240" y="15" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="Problem definition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="130" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="Literature search&#xa;(RAG)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="220" y="80" width="130" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="Hypothesis generation&#xa;(LLM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="130" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="40" value="Formal modeling&#xa;(symbolic reasoning)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="580" y="80" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="50" value="Solver verification&#xa;(numeric / symbolic)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="580" y="200" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="60" value="Experimental feedback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="200" width="130" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="70" value="Hypothesis revision" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="220" y="200" width="130" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="75" value="Iterative refinement" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="200" width="130" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="80" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="10" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="81" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="20" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="82" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="30" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="83" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="40" target="50" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="84" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="50" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="85" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="60" target="70" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="86" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="70" target="75" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="87" value="Iteration loop" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#b85450;strokeWidth=2;dashed=1;endArrow=blockThin;endFill=1;fontSize=11;fontColor=#b85450;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="75" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="105" y="290"/>
+              <mxPoint x="465" y="290"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="90" value="👤 Human review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=2;arcSize=20;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="320" width="100" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="91" value="👤 Human review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=2;arcSize=20;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="320" width="100" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="92" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;strokeWidth=1;dashed=1;" edge="1" source="90" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="93" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;strokeWidth=1;dashed=1;" edge="1" source="91" target="75" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="95" value="Human-in-the-loop checkpoints" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=3;fontColor=#9c6500;" vertex="1" parent="1">
+          <mxGeometry x="130" y="360" width="280" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

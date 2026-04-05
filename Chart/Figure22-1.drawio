@@ -1,0 +1,66 @@
+<mxfile>
+  <diagram name="LLM–KG–Solver collaboration">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 22-1 LLM–KG–Solver collaboration architecture" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="170" y="20" width="480" height="40" as="geometry"/>
+        </mxCell>
+        <!-- LLM (top) -->
+        <mxCell id="10" value="Large language model (LLM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="290" y="80" width="240" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="· Natural language understanding&#xa;· Contextual reasoning&#xa;· Text generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f7ff;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="140" width="220" height="70" as="geometry"/>
+        </mxCell>
+        <!-- KG (bottom left) -->
+        <mxCell id="20" value="Knowledge graph (KG)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="320" width="220" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="· Structured knowledge store&#xa;· Relational queries&#xa;· Subgraph retrieval" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fff0;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="70" y="380" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <!-- Solver (bottom right) -->
+        <mxCell id="30" value="Formal solver" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="530" y="320" width="220" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="· Constraint solving&#xa;· Logic verification&#xa;· Mathematical optimization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffde6;strokeColor=#d6b656;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="540" y="380" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <!-- LLM ↔ KG -->
+        <mxCell id="40" value="Knowledge retrieval&#xa;Entity disambiguation" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#2d6b22;strokeWidth=2;fontSize=11;fontColor=#2d6b22;labelBackgroundColor=#ffffff;" edge="1" source="10" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="Semantic queries&#xa;Text annotation" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;fontColor=#6c8ebf;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="10" target="20" parent="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="-20" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <!-- LLM ↔ Solver -->
+        <mxCell id="42" value="Formal constraints&#xa;Verification feedback" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;strokeWidth=2;fontSize=11;fontColor=#9c6500;labelBackgroundColor=#ffffff;" edge="1" source="10" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="43" value="Natural-language specs&#xa;Constraint translation" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;fontColor=#6c8ebf;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="10" target="30" parent="1">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="20" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <!-- KG ↔ Solver -->
+        <mxCell id="44" value="Fact checking · Constraint extraction" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#82b366;strokeWidth=2;fontSize=11;fontColor=#2d6b22;labelBackgroundColor=#ffffff;" edge="1" source="20" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="45" value="Inference results · Knowledge update" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;strokeWidth=2;fontSize=11;fontColor=#9c6500;labelBackgroundColor=#ffffff;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" source="20" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="15" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <!-- Center label -->
+        <mxCell id="50" value="Collaborative reasoning" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="290" width="110" height="50" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

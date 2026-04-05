@@ -1,0 +1,97 @@
+<mxfile>
+  <diagram name="Multi-source mapping">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="600">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="&lt;b&gt;From heterogeneous multi-source data to a unified representation&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="340" y="15" width="420" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="&lt;b&gt;Structured databases&lt;/b&gt;&lt;br&gt;MySQL / PostgreSQL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontColor=#333333;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="&lt;b&gt;Text documents&lt;/b&gt;&lt;br&gt;Technical reports / manuals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontColor=#333333;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="&lt;b&gt;Sensor data&lt;/b&gt;&lt;br&gt;ADS-B / radar / GPS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="&lt;b&gt;Regulatory documents&lt;/b&gt;&lt;br&gt;Aviation regulations / airspace rules" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontColor=#333333;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="&lt;b style=&quot;font-size:14px&quot;&gt;Knowledge extraction&lt;/b&gt;&lt;br&gt;&lt;hr&gt;NER&lt;br&gt;Relation extraction&lt;br&gt;Attribute extraction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=3;" vertex="1" parent="1">
+          <mxGeometry x="330" y="80" width="160" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="&lt;b style=&quot;font-size:14px&quot;&gt;Knowledge alignment&lt;/b&gt;&lt;br&gt;&lt;hr&gt;Entity disambiguation&lt;br&gt;Ontology alignment&lt;br&gt;Schema mapping" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=3;" vertex="1" parent="1">
+          <mxGeometry x="330" y="220" width="160" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="&lt;b style=&quot;font-size:14px&quot;&gt;Knowledge fusion&lt;/b&gt;&lt;br&gt;&lt;hr&gt;Conflict resolution&lt;br&gt;Deduplication&lt;br&gt;Consistency checking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=3;" vertex="1" parent="1">
+          <mxGeometry x="330" y="360" width="160" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;arcSize=10;opacity=40;" vertex="1" parent="1">
+          <mxGeometry x="620" y="80" width="300" height="400" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="&lt;b style=&quot;font-size:16px&quot;&gt;Unified knowledge graph&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="680" y="90" width="180" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="Aircraft" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="650" y="150" width="100" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="Route" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="790" y="150" width="100" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="34" value="Airspace" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="650" y="230" width="100" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="35" value="Weather" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="790" y="230" width="100" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="Rules" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="720" y="310" width="100" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="37" value="" style="strokeColor=#6c8ebf;strokeWidth=1;" edge="1" source="32" target="33" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="38" value="" style="strokeColor=#6c8ebf;strokeWidth=1;" edge="1" source="32" target="34" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="39" value="" style="strokeColor=#6c8ebf;strokeWidth=1;" edge="1" source="34" target="35" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="39b" value="" style="strokeColor=#6c8ebf;strokeWidth=1;" edge="1" source="34" target="36" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="39c" value="" style="strokeColor=#6c8ebf;strokeWidth=1;" edge="1" source="33" target="35" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="39d" value="&lt;i&gt;RDF triples / OWL ontology;&lt;br&gt;standardized representation&lt;/i&gt;" style="text;html=1;align=center;fontSize=12;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="660" y="380" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#b85450;strokeWidth=2;" edge="1" source="10" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;" edge="1" source="11" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#82b366;strokeWidth=2;" edge="1" source="12" target="21" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9673a6;strokeWidth=2;" edge="1" source="13" target="21" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="54" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#666666;strokeWidth=2;" edge="1" source="20" target="21" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="55" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#666666;strokeWidth=2;" edge="1" source="21" target="22" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="20" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="22" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

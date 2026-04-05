@@ -1,0 +1,93 @@
+<mxfile>
+  <diagram name="Modular microservices architecture">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 21-2 Modular microservices architecture" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="220" y="20" width="380" height="40" as="geometry"/>
+        </mxCell>
+        <!-- API gateway -->
+        <mxCell id="3" value="API gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e3a5f;strokeColor=#1e3a5f;fontColor=#ffffff;fontSize=14;fontStyle=1;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="580" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Service 1: Perception ingress -->
+        <mxCell id="10" value="Perception ingress service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="170" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Sensor integration&#xa;Data cleaning&#xa;Protocol adaptation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f7ff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="230" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Service 2: Knowledge management -->
+        <mxCell id="20" value="Knowledge management service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="170" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="Graph CRUD&#xa;Ontology management&#xa;Version sync" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fff0;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="230" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Service 3: Joint inference -->
+        <mxCell id="30" value="Joint inference service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="170" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="Hybrid reasoning&#xa;Model orchestration&#xa;Result fusion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffde6;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="360" y="230" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Service 4: Audit generation -->
+        <mxCell id="40" value="Audit generation service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="170" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="Logging&#xa;Compliance review&#xa;Certificate issuance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5eef8;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="520" y="230" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Service 5: Configuration management -->
+        <mxCell id="50" value="Configuration management service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="170" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="51" value="Parameter configuration&#xa;Policy rollout&#xa;Dynamic tuning" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff0ef;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="680" y="230" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Message bus -->
+        <mxCell id="60" value="Message bus / event-driven layer (Kafka / RabbitMQ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;fontStyle=1;fontColor=#333333;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="770" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Edges: gateway to services -->
+        <mxCell id="70" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#999999;strokeWidth=1;" edge="1" source="3" target="10" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="71" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#999999;strokeWidth=1;" edge="1" source="3" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="72" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#999999;strokeWidth=1;" edge="1" source="3" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="73" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#999999;strokeWidth=1;" edge="1" source="3" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="74" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#999999;strokeWidth=1;" edge="1" source="3" target="50" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edges: services to bus -->
+        <mxCell id="80" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;strokeWidth=1;dashed=1;" edge="1" source="11" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="81" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;strokeWidth=1;dashed=1;" edge="1" source="21" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="82" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;strokeWidth=1;dashed=1;" edge="1" source="31" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="83" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;strokeWidth=1;dashed=1;" edge="1" source="41" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="84" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;strokeWidth=1;dashed=1;" edge="1" source="51" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Data layer -->
+        <mxCell id="90" value="Persistence layer (graph DB · relational DB · object storage)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#999999;fontSize=12;fontColor=#333333;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="770" height="35" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

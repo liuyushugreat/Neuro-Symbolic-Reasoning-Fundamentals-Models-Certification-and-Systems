@@ -1,0 +1,92 @@
+<mxfile>
+  <diagram name="Cloud–edge–device deployment">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 18-3 Cloud–edge–device deployment architecture" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="300" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Cloud Layer -->
+        <mxCell id="3" value="☁ Cloud" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=18;fontStyle=1;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="840" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="Large-model inference&lt;br&gt;(LLM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="130" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="global optimization&lt;br&gt;(graph upkeep)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="130" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="offline training&lt;br&gt;(model refresh)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="130" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="certification management&lt;br&gt;(global policy)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="130" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Latency label cloud-edge -->
+        <mxCell id="8" value="Latency: 50–200 ms&lt;br&gt;Bandwidth: high" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="440" y="240" width="120" height="35" as="geometry"/>
+        </mxCell>
+        <!-- Edge Layer -->
+        <mxCell id="9" value="⚡ Edge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=18;fontStyle=1;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="120" y="290" width="760" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="lightweight GNN&lt;br&gt;(regional inference)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="340" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="regional inference&lt;br&gt;(subgraph processing)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="340" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="model cache&lt;br&gt;(hot update)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="340" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="event aggregation&lt;br&gt;(filter & report)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="340" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Latency label edge-device -->
+        <mxCell id="14" value="Latency: 1–10 ms&lt;br&gt;Bandwidth: medium" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="440" y="450" width="120" height="35" as="geometry"/>
+        </mxCell>
+        <!-- Device Layer -->
+        <mxCell id="15" value="📱 Device" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=18;fontStyle=1;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="160" y="500" width="680" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="rule engine&lt;br&gt;(fast response)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="550" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="sensor fusion&lt;br&gt;(data capture)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="550" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="18" value="emergency response&lt;br&gt;(safety assurance)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="550" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Data flow arrows -->
+        <mxCell id="19" value="model push" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;fontColor=#6c8ebf;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="230" as="sourcePoint"/>
+            <mxPoint x="350" y="290" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" value="data upload" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#82b366;strokeWidth=2;fontSize=11;fontColor=#82b366;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="290" as="sourcePoint"/>
+            <mxPoint x="650" y="230" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="inference commands" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#82b366;strokeWidth=2;fontSize=11;fontColor=#82b366;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="440" as="sourcePoint"/>
+            <mxPoint x="350" y="500" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" value="sensory data" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;fontSize=11;fontColor=#d6b656;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="500" as="sourcePoint"/>
+            <mxPoint x="650" y="440" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

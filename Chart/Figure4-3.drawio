@@ -1,0 +1,67 @@
+<mxfile>
+  <diagram name="GNN message passing">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="700">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="&lt;b&gt;GNN message passing and attention&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="240" y="15" width="440" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="&lt;b style=&quot;font-size:14px&quot;&gt;v&lt;/b&gt;&lt;br&gt;h&lt;sub&gt;v&lt;/sub&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontColor=#333333;shadow=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="260" y="200" width="80" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="&lt;b&gt;u₁&lt;/b&gt;&lt;br&gt;h&lt;sub&gt;u₁&lt;/sub&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="70" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="&lt;b&gt;u₂&lt;/b&gt;&lt;br&gt;h&lt;sub&gt;u₂&lt;/sub&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="70" width="70" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="&lt;b&gt;u₃&lt;/b&gt;&lt;br&gt;h&lt;sub&gt;u₃&lt;/sub&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="330" width="70" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="&lt;b&gt;u₄&lt;/b&gt;&lt;br&gt;h&lt;sub&gt;u₄&lt;/sub&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="340" width="70" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="&lt;b&gt;w&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#CCCCCC;fontSize=12;fontColor=#999999;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="200" width="60" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="&lt;b&gt;α₁ = 0.3&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#82b366;strokeWidth=3;fontSize=11;fontColor=#82b366;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" source="11" target="10" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="&lt;b&gt;α₂ = 0.4&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;strokeWidth=4;fontSize=11;fontColor=#6c8ebf;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" source="12" target="10" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="&lt;b&gt;α₃ = 0.2&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;strokeWidth=2;fontSize=11;fontColor=#d6b656;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" source="13" target="10" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="&lt;b&gt;α₄ = 0.1&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#b85450;strokeWidth=1;fontSize=11;fontColor=#b85450;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" source="14" target="10" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="" style="strokeColor=#CCCCCC;strokeWidth=1;dashed=1;" edge="1" source="12" target="15" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="&lt;b style=&quot;font-size:14px&quot;&gt;AGGREGATE&lt;/b&gt;&lt;br&gt;&lt;hr&gt;m&lt;sub&gt;N(v)&lt;/sub&gt; = Σ α&lt;sub&gt;u&lt;/sub&gt; · W · h&lt;sub&gt;u&lt;/sub&gt;&lt;br&gt;&lt;br&gt;Aggregate neighbor messages;&lt;br&gt;attention-weighted sum" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="620" y="80" width="250" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="&lt;b style=&quot;font-size:14px&quot;&gt;UPDATE&lt;/b&gt;&lt;br&gt;&lt;hr&gt;h&lt;sub&gt;v&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt; = σ(W · [h&lt;sub&gt;v&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt; ‖ m&lt;sub&gt;N(v)&lt;/sub&gt;])&lt;br&gt;&lt;br&gt;Fuse self and aggregated info;&lt;br&gt;update node embedding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontColor=#333333;arcSize=15;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="620" y="260" width="250" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="35" value="&lt;b&gt;Aggregated message&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;strokeWidth=2;fontSize=12;fontColor=#333333;" edge="1" source="30" target="31" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#999999;strokeWidth=2;dashed=1;" edge="1" source="10" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="40" value="&lt;b style=&quot;font-size:14px&quot;&gt;Updated v&lt;/b&gt;&lt;br&gt;h&lt;sub&gt;v&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontColor=#333333;shadow=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="690" y="440" width="110" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="31" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="50" value="&lt;b&gt;Line width ∝ attention weight&lt;/b&gt;&lt;br&gt;larger α, thicker edge" style="text;html=1;align=left;fontSize=11;fontColor=#666666;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="440" width="200" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

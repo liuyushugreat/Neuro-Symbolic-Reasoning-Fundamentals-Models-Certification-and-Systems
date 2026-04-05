@@ -1,0 +1,70 @@
+<mxfile>
+  <diagram name="Event nodes and temporal relations">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="2" value="Figure 11-2 Event nodes and temporal relation graph" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="380" y="20" width="320" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Event Nodes (Hexagons) -->
+        <mxCell id="10" value="Event E1&lt;br&gt;UAV takeoff&lt;br&gt;t=08:00" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;size=0.25;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Event E2&lt;br&gt;Enter waypoint A&lt;br&gt;t=08:15" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;size=0.25;" vertex="1" parent="1">
+          <mxGeometry x="400" y="100" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="Event E3&lt;br&gt;Conflict alert&lt;br&gt;t=08:20" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;size=0.25;" vertex="1" parent="1">
+          <mxGeometry x="720" y="120" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="Event E4&lt;br&gt;Execute avoidance&lt;br&gt;t=08:21–08:25" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;size=0.25;" vertex="1" parent="1">
+          <mxGeometry x="720" y="320" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="Event E5&lt;br&gt;Resume route&lt;br&gt;t=08:30" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=1;size=0.25;" vertex="1" parent="1">
+          <mxGeometry x="400" y="380" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="Event E6&lt;br&gt;Safe landing&lt;br&gt;t=09:00" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;size=0.25;" vertex="1" parent="1">
+          <mxGeometry x="80" y="380" width="160" height="90" as="geometry"/>
+        </mxCell>
+        <!-- Temporal Relations -->
+        <mxCell id="20" value="before" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=12;fontColor=#333333;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;" edge="1" source="10" target="11" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="before" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=12;fontColor=#333333;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;" edge="1" source="11" target="12" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="triggers" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=12;fontColor=#CC0000;strokeColor=#CC0000;strokeWidth=2;fontStyle=1;" edge="1" source="12" target="13" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="during (4 min)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;fontColor=#996600;strokeColor=#d6b656;strokeWidth=2;fontStyle=2;" edge="1" source="13" target="14" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="before" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=12;fontColor=#333333;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;" edge="1" source="14" target="15" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- State transition nodes -->
+        <mxCell id="30" value="State: in flight" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=11;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="100" y="250" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="State: in conflict" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="740" y="240" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="State: avoiding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="740" y="440" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <!-- State transitions -->
+        <mxCell id="35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#999999;strokeWidth=1;dashed=1;" edge="1" source="30" target="31" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#999999;strokeWidth=1;dashed=1;" edge="1" source="31" target="32" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Legend -->
+        <mxCell id="50" value="Relation legend:&lt;br&gt;● before (temporal order)&lt;br&gt;● triggers (causal)&lt;br&gt;● during (time interval)&lt;br&gt;● concurrent (simultaneous)" style="text;html=1;align=left;verticalAlign=top;fontSize=12;fontColor=#333333;rounded=1;fillColor=#f5f5f5;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="80" y="520" width="280" height="110" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
