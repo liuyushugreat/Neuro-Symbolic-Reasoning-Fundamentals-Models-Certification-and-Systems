@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,9 +60,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'experiments/README';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lab 1: Small Low-Altitude Ontology and Rule Encoding" href="lab1_ontology_rules.html" />
     <link rel="prev" title="Lab 1: Small low-altitude ontology and rule encoding" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -551,7 +554,15 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Appendix C — Experiment Code</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Appendix C — Experiment Code</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lab1_ontology_rules.html">Lab 1: Small Low-Altitude Ontology and Rule Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab2_static_risk_reasoning.html">Lab 2: Static Risk Reasoning with KG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab3_tkg_conflict_detection.html">Lab 3: Temporal KG Conflict Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab4_conformal_prediction.html">Lab 4: Conformal Prediction and Uncertainty Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab5_edge_cloud_pipeline.html">Lab 5: Cloud-Edge Collaboration and Event-Driven Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab6_ns_agent.html">Lab 6: Neuro-Symbolic Agent Prototype</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -721,7 +732,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -737,6 +750,16 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labs">Labs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-run">How to run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suggested-order">Suggested order</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -756,16 +779,46 @@
 <li><p>Emphasize methodology and engineering skeletons—not big data or peak performance</p></li>
 <li><p>Easy to swap in real <code class="docutils literal notranslate"><span class="pre">SkyNetUamPlatform</span></code> components, graph stores, model services, and LLM APIs</p></li>
 </ul>
-<p>Files:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">lab1_ontology_rules.py</span></code> — Small low-altitude ontology and rule encoding</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lab2_static_risk_reasoning.py</span></code> — Static risk reasoning with KG + SPARQL-style queries + constrained explanations</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lab3_tkg_conflict_detection.py</span></code> — Simplified conflict-detection train/eval on temporal snapshot features</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lab4_conformal_prediction.py</span></code> — Prediction sets and empirical coverage for risk outputs</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lab5_edge_cloud_pipeline.py</span></code> — Cloud–edge collaboration and event-driven prototype</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lab6_ns_agent.py</span></code> — Joint agent prototype: KG retrieval + tool calls + rule-bounded planning</p></li>
-</ul>
-<p>How to run:</p>
+<section id="labs">
+<h2>Labs<a class="headerlink" href="#labs" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Lab</p></th>
+<th class="head"><p>Topic</p></th>
+<th class="head"><p>Related Chapters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="lab1_ontology_rules.html"><span class="doc">Lab 1</span></a></p></td>
+<td><p>Small low-altitude ontology and rule encoding</p></td>
+<td><p>Ch. 5–6</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="lab2_static_risk_reasoning.html"><span class="doc">Lab 2</span></a></p></td>
+<td><p>Static risk reasoning with KG + SPARQL-style queries</p></td>
+<td><p>Ch. 8–10</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="lab3_tkg_conflict_detection.html"><span class="doc">Lab 3</span></a></p></td>
+<td><p>Conflict-detection train/eval on temporal snapshot features</p></td>
+<td><p>Ch. 11–12</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="lab4_conformal_prediction.html"><span class="doc">Lab 4</span></a></p></td>
+<td><p>Prediction sets and empirical coverage for risk outputs</p></td>
+<td><p>Ch. 15</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="lab5_edge_cloud_pipeline.html"><span class="doc">Lab 5</span></a></p></td>
+<td><p>Cloud–edge collaboration and event-driven prototype</p></td>
+<td><p>Ch. 18–20</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="lab6_ns_agent.html"><span class="doc">Lab 6</span></a></p></td>
+<td><p>Neuro-symbolic agent: KG retrieval + tool calls + rule-bounded planning</p></td>
+<td><p>Ch. 22</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="how-to-run">
+<h2>How to run<a class="headerlink" href="#how-to-run" title="Link to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>lab1_ontology_rules.py
 python<span class="w"> </span>lab2_static_risk_reasoning.py
 python<span class="w"> </span>lab3_tkg_conflict_detection.py
@@ -774,12 +827,17 @@ python<span class="w"> </span>lab5_edge_cloud_pipeline.py
 python<span class="w"> </span>lab6_ns_agent.py
 </pre></div>
 </div>
-<p>Suggested order:</p>
+</section>
+<section id="suggested-order">
+<h2>Suggested order<a class="headerlink" href="#suggested-order" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">lab1</span></code> and <code class="docutils literal notranslate"><span class="pre">lab2</span></code> for the knowledge substrate and static reasoning</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">lab3</span></code> and <code class="docutils literal notranslate"><span class="pre">lab4</span></code> for dynamic risk and trustworthy calibration</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">lab5</span></code> and <code class="docutils literal notranslate"><span class="pre">lab6</span></code> for deployment patterns and agent loops</p></li>
+<li><p>Run <strong>Lab 1</strong> and <strong>Lab 2</strong> for the knowledge substrate and static reasoning</p></li>
+<li><p>Run <strong>Lab 3</strong> and <strong>Lab 4</strong> for dynamic risk and trustworthy calibration</p></li>
+<li><p>Run <strong>Lab 5</strong> and <strong>Lab 6</strong> for deployment patterns and agent loops</p></li>
 </ol>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -821,12 +879,40 @@ python<span class="w"> </span>lab6_ns_agent.py
         <p class="prev-next-title">Lab 1: Small low-altitude ontology and rule encoding</p>
       </div>
     </a>
+    <a class="right-next"
+       href="lab1_ontology_rules.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 1: Small Low-Altitude Ontology and Rule Encoding</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labs">Labs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-run">How to run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suggested-order">Suggested order</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
