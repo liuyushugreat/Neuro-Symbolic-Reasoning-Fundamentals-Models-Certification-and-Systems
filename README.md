@@ -17,7 +17,8 @@
 <p align="center">
   <b>Yushu Liu</b> &nbsp;|&nbsp;
   <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> &nbsp;|&nbsp;
-  <a href="https://github.com/liuyushugreat">GitHub</a>
+  <a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems">GitHub</a> &nbsp;|&nbsp;
+  <a href="https://liuyushugreat.github.io/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/intro.html">Open-source Book</a>
 </p>
 
 ---
