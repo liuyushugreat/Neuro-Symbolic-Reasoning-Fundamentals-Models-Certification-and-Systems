@@ -58,3 +58,10 @@ parts:
   - caption: "Experiments"
     chapters:
       - file: experiments/README
+        sections:
+          - file: experiments/lab1_ontology_rules
+          - file: experiments/lab2_static_risk_reasoning
+          - file: experiments/lab3_tkg_conflict_detection
+          - file: experiments/lab4_conformal_prediction
+          - file: experiments/lab5_edge_cloud_pipeline
+          - file: experiments/lab6_ns_agent

@@ -4,7 +4,7 @@ The following labs pair with chapters in the main text and can be extended with 
 
 Work with Chapters 5–6 to model domain objects and the SkyKG concept and rule layers.
 
-**Code entry:** `experiments/lab1_ontology_rules.py`
+**Code entry:** {doc}`experiments/lab1_ontology_rules.py <../experiments/lab1_ontology_rules>`
 
 ```python
 """
@@ -184,7 +184,7 @@ if __name__ == "__main__":
 
 Work with Chapters 8–10 for SPARQL-style evidence extraction and constrained semantic generation.
 
-**Code entry:** `experiments/lab2_static_risk_reasoning.py`
+**Code entry:** {doc}`experiments/lab2_static_risk_reasoning.py <../experiments/lab2_static_risk_reasoning>`
 
 ```python
 """
@@ -327,7 +327,7 @@ if __name__ == "__main__":
 
 Work with Chapters 11–12 to train/evaluate a conflict-detection module on TKG snapshots.
 
-**Code entry:** `experiments/lab3_tkg_conflict_detection.py`
+**Code entry:** {doc}`experiments/lab3_tkg_conflict_detection.py <../experiments/lab3_tkg_conflict_detection>`
 
 ```python
 """
@@ -485,7 +485,7 @@ if __name__ == "__main__":
 
 Work with Chapter 15 to build prediction sets/intervals and interpret coverage.
 
-**Code entry:** `experiments/lab4_conformal_prediction.py`
+**Code entry:** {doc}`experiments/lab4_conformal_prediction.py <../experiments/lab4_conformal_prediction>`
 
 ```python
 """
@@ -588,7 +588,7 @@ if __name__ == "__main__":
 
 Work with Chapters 18–20 to partition device–edge–cloud roles and event-driven flows.
 
-**Code entry:** `experiments/lab5_edge_cloud_pipeline.py`
+**Code entry:** {doc}`experiments/lab5_edge_cloud_pipeline.py <../experiments/lab5_edge_cloud_pipeline>`
 
 ```python
 """
@@ -719,7 +719,7 @@ if __name__ == "__main__":
 
 Work with Chapter 22 to practice GraphRAG patterns, tool calls, and rule-bounded agent loops.
 
-**Code entry:** `experiments/lab6_ns_agent.py`
+**Code entry:** {doc}`experiments/lab6_ns_agent.py <../experiments/lab6_ns_agent>`
 
 ```python
 """
