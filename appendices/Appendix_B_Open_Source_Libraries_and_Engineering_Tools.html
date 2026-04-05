@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>B.1 PyKEEN &#8212; Neuro-Symbolic Reasoning</title>
+    <title>Appendix B — Open-Source Libraries and Engineering Tools &#8212; Neuro-Symbolic Reasoning</title>
   
   
   
@@ -63,8 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lab 1: Small low-altitude ontology and rule encoding" href="Appendix_C_Course_Labs_and_Practice_Projects.html" />
-    <link rel="prev" title="A.1 Logical Symbols and Common Rule Templates" href="Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html" />
+    <link rel="next" title="Appendix C — Course Labs and Practice Projects" href="Appendix_C_Course_Labs_and_Practice_Projects.html" />
+    <link rel="prev" title="Appendix A — Mathematical, Logical and Graph Learning Notation" href="Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -530,25 +530,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
-
-
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">B.1 PyKEEN</a></li>
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">Appendix A — Mathematical, Logical and Graph Learning Notation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Appendix B — Open-Source Libraries and Engineering Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix_C_Course_Labs_and_Practice_Projects.html">Appendix C — Course Labs and Practice Projects</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
 <ul class="nav bd-sidenav">
@@ -743,7 +727,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>B.1 PyKEEN</h1>
+    <h1>Appendix B — Open-Source Libraries and Engineering Tools</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -753,15 +737,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">B.1 PyKEEN</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-2-deepproblog">B.2 DeepProbLog</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-3-logic-tensor-networks-ltn">B.3 Logic Tensor Networks (LTN)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-4-pytorch-geometric-pyg">B.4 PyTorch Geometric (PyG)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-5-rdflib-owlready2-neo4j-graphdb">B.5 RDFLib / OWLReady2 / Neo4j / GraphDB</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-6-llm-kg-integration-stacks">B.6 LLM + KG Integration Stacks</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-7-streaming-inference-and-edge-deployment">B.7 Streaming Inference and Edge Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-1-pykeen">B.1 PyKEEN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-2-deepproblog">B.2 DeepProbLog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-3-logic-tensor-networks-ltn">B.3 Logic Tensor Networks (LTN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-4-pytorch-geometric-pyg">B.4 PyTorch Geometric (PyG)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-5-rdflib-owlready2-neo4j-graphdb">B.5 RDFLib / OWLReady2 / Neo4j / GraphDB</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-6-llm-kg-integration-stacks">B.6 LLM + KG Integration Stacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-7-streaming-inference-and-edge-deployment">B.7 Streaming Inference and Edge Deployment</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -772,9 +755,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>This appendix lists curated open-source tools for neuro-symbolic algorithms, knowledge-graph construction, and cloud–edge deployment. For Appendix C labs or a low-altitude governance prototype, you can compose a toolchain from the sections below.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="appendix-b-open-source-libraries-and-engineering-tools">
+<h1>Appendix B — Open-Source Libraries and Engineering Tools<a class="headerlink" href="#appendix-b-open-source-libraries-and-engineering-tools" title="Link to this heading">#</a></h1>
+<p>This appendix lists curated open-source tools for neuro-symbolic algorithms, knowledge-graph construction, and cloud–edge deployment. For Appendix C labs or a low-altitude governance prototype, you can compose a toolchain from the sections below.</p>
 <section id="b-1-pykeen">
-<h1>B.1 PyKEEN<a class="headerlink" href="#b-1-pykeen" title="Link to this heading">#</a></h1>
+<h2>B.1 PyKEEN<a class="headerlink" href="#b-1-pykeen" title="Link to this heading">#</a></h2>
 <p><strong>PyKEEN (Python KnowledgE EmbeddiNgs)</strong> is a leading Python library for training and evaluating knowledge-graph embedding (KGE) models.</p>
 <ul class="simple">
 <li><p><strong>Core capabilities:</strong> Dozens of classic KGE models (TransE, RotatE, ComplEx, …) with standard training pipelines and metrics (MRR, Hits&#64;K).</p></li>
@@ -782,7 +767,7 @@
 </ul>
 </section>
 <section id="b-2-deepproblog">
-<h1>B.2 DeepProbLog<a class="headerlink" href="#b-2-deepproblog" title="Link to this heading">#</a></h1>
+<h2>B.2 DeepProbLog<a class="headerlink" href="#b-2-deepproblog" title="Link to this heading">#</a></h2>
 <p><strong>DeepProbLog</strong> is a prominent probabilistic logic programming framework for neuro-symbolic AI, extending ProbLog with neural components.</p>
 <ul class="simple">
 <li><p><strong>Core capabilities:</strong> Neural networks appear as <strong>neural predicates</strong> in first-order rules; the engine performs exact logical inference and backpropagation over hybrid programs.</p></li>
@@ -790,7 +775,7 @@
 </ul>
 </section>
 <section id="b-3-logic-tensor-networks-ltn">
-<h1>B.3 Logic Tensor Networks (LTN)<a class="headerlink" href="#b-3-logic-tensor-networks-ltn" title="Link to this heading">#</a></h1>
+<h2>B.3 Logic Tensor Networks (LTN)<a class="headerlink" href="#b-3-logic-tensor-networks-ltn" title="Link to this heading">#</a></h2>
 <p><strong>Logic Tensor Networks (LTN)</strong> fuse real-valued (fuzzy) logic with deep learning computation graphs.</p>
 <ul class="simple">
 <li><p><strong>Core capabilities:</strong> T-norms turn Boolean formulas into differentiable losses; TensorFlow or PyTorch backends supported.</p></li>
@@ -798,7 +783,7 @@
 </ul>
 </section>
 <section id="b-4-pytorch-geometric-pyg">
-<h1>B.4 PyTorch Geometric (PyG)<a class="headerlink" href="#b-4-pytorch-geometric-pyg" title="Link to this heading">#</a></h1>
+<h2>B.4 PyTorch Geometric (PyG)<a class="headerlink" href="#b-4-pytorch-geometric-pyg" title="Link to this heading">#</a></h2>
 <p><strong>PyTorch Geometric</strong> is the dominant PyTorch extension for graph neural networks.</p>
 <ul class="simple">
 <li><p><strong>Core capabilities:</strong> Sparse/dynamic graph kernels, GCN/GAT/GraphSAGE-style message passing, temporal and heterogeneous graph utilities.</p></li>
@@ -806,7 +791,7 @@
 </ul>
 </section>
 <section id="b-5-rdflib-owlready2-neo4j-graphdb">
-<h1>B.5 RDFLib / OWLReady2 / Neo4j / GraphDB<a class="headerlink" href="#b-5-rdflib-owlready2-neo4j-graphdb" title="Link to this heading">#</a></h1>
+<h2>B.5 RDFLib / OWLReady2 / Neo4j / GraphDB<a class="headerlink" href="#b-5-rdflib-owlready2-neo4j-graphdb" title="Link to this heading">#</a></h2>
 <p>These tools cover the KG lifecycle from ontology modeling to graph storage.</p>
 <ul class="simple">
 <li><p><strong>RDFLib &amp; OWLReady2:</strong> Native Python semantic-web stacks. RDFLib reads/writes/queries RDF; OWLReady2 loads and reasons over OWL ontologies in Python—useful for SkyKG concept and rule layers (Chapter 6).</p></li>
@@ -815,7 +800,7 @@
 </ul>
 </section>
 <section id="b-6-llm-kg-integration-stacks">
-<h1>B.6 LLM + KG Integration Stacks<a class="headerlink" href="#b-6-llm-kg-integration-stacks" title="Link to this heading">#</a></h1>
+<h2>B.6 LLM + KG Integration Stacks<a class="headerlink" href="#b-6-llm-kg-integration-stacks" title="Link to this heading">#</a></h2>
 <p>Middleware connecting large models to structured knowledge is central to GraphRAG (Chapters 10 and 22).</p>
 <ul class="simple">
 <li><p><strong>LangChain &amp; LlamaIndex:</strong> Mainstream LLM orchestration frameworks with loaders for graph stores, SPARQL/Cypher generation, and multi-hop subgraph retrieval.</p></li>
@@ -823,12 +808,13 @@
 </ul>
 </section>
 <section id="b-7-streaming-inference-and-edge-deployment">
-<h1>B.7 Streaming Inference and Edge Deployment<a class="headerlink" href="#b-7-streaming-inference-and-edge-deployment" title="Link to this heading">#</a></h1>
+<h2>B.7 Streaming Inference and Edge Deployment<a class="headerlink" href="#b-7-streaming-inference-and-edge-deployment" title="Link to this heading">#</a></h2>
 <p>To bridge the compute–latency gap (Chapter 18) and deploy in the field, use stream processing and edge runtimes.</p>
 <ul class="simple">
 <li><p><strong>Apache Flink / Kafka:</strong> High-throughput streaming and messaging—ingest ~10 Hz ADS-B feeds and drive event-driven TKG updates.</p></li>
 <li><p><strong>TensorRT &amp; ONNX Runtime:</strong> Quantization and optimized inference—deploy trained GNNs and light perception nets to 5G MEC or onboard Jetson-class devices for low-latency interventions.</p></li>
 </ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -867,7 +853,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">A.1 Logical Symbols and Common Rule Templates</p>
+        <p class="prev-next-title">Appendix A — Mathematical, Logical and Graph Learning Notation</p>
       </div>
     </a>
     <a class="right-next"
@@ -875,7 +861,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab 1: Small low-altitude ontology and rule encoding</p>
+        <p class="prev-next-title">Appendix C — Course Labs and Practice Projects</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -897,15 +883,14 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">B.1 PyKEEN</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-2-deepproblog">B.2 DeepProbLog</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-3-logic-tensor-networks-ltn">B.3 Logic Tensor Networks (LTN)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-4-pytorch-geometric-pyg">B.4 PyTorch Geometric (PyG)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-5-rdflib-owlready2-neo4j-graphdb">B.5 RDFLib / OWLReady2 / Neo4j / GraphDB</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-6-llm-kg-integration-stacks">B.6 LLM + KG Integration Stacks</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#b-7-streaming-inference-and-edge-deployment">B.7 Streaming Inference and Edge Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-1-pykeen">B.1 PyKEEN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-2-deepproblog">B.2 DeepProbLog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-3-logic-tensor-networks-ltn">B.3 Logic Tensor Networks (LTN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-4-pytorch-geometric-pyg">B.4 PyTorch Geometric (PyG)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-5-rdflib-owlready2-neo4j-graphdb">B.5 RDFLib / OWLReady2 / Neo4j / GraphDB</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-6-llm-kg-integration-stacks">B.6 LLM + KG Integration Stacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-7-streaming-inference-and-edge-deployment">B.7 Streaming Inference and Edge Deployment</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

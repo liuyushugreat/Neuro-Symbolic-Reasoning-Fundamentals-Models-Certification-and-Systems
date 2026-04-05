@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>A.1 Logical Symbols and Common Rule Templates &#8212; Neuro-Symbolic Reasoning</title>
+    <title>Appendix A — Mathematical, Logical and Graph Learning Notation &#8212; Neuro-Symbolic Reasoning</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="B.1 PyKEEN" href="Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html" />
+    <link rel="next" title="Appendix B — Open-Source Libraries and Engineering Tools" href="Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html" />
     <link rel="prev" title="25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems" href="../chapters/Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -532,25 +532,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">A.1 Logical Symbols and Common Rule Templates</a></li>
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
-
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Appendix A — Mathematical, Logical and Graph Learning Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">Appendix B — Open-Source Libraries and Engineering Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix_C_Course_Labs_and_Practice_Projects.html">Appendix C — Course Labs and Practice Projects</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
 <ul class="nav bd-sidenav">
@@ -745,7 +729,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>A.1 Logical Symbols and Common Rule Templates</h1>
+    <h1>Appendix A — Mathematical, Logical and Graph Learning Notation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -755,41 +739,40 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">A.1 Logical Symbols and Common Rule Templates</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-1-basic-logical-symbols">A.1.1 Basic Logical Symbols</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-2-common-knowledge-representation-templates">A.1.2 Common Knowledge-Representation Templates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-3-engineering-rule-templates">A.1.3 Engineering Rule Templates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-4-evidence-and-explanation-chains">A.1.4 Evidence and Explanation Chains</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-logical-symbols-and-common-rule-templates">A.1 Logical Symbols and Common Rule Templates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-1-basic-logical-symbols">A.1.1 Basic Logical Symbols</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-2-common-knowledge-representation-templates">A.1.2 Common Knowledge-Representation Templates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-3-engineering-rule-templates">A.1.3 Engineering Rule Templates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-4-evidence-and-explanation-chains">A.1.4 Evidence and Explanation Chains</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-graph-neural-networks-and-temporal-graph-notation">A.2 Graph Neural Networks and Temporal Graph Notation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-1-graphs-and-knowledge-graphs">A.2.1 Graphs and Knowledge Graphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-2-node-edge-and-relation-features">A.2.2 Node, Edge, and Relation Features</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-3-gnn-and-attention-notation">A.2.3 GNN and Attention Notation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-4-temporal-graphs-and-dynamic-reasoning">A.2.4 Temporal Graphs and Dynamic Reasoning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-5-coordination-de-confliction-and-path-reasoning">A.2.5 Coordination, De-confliction, and Path Reasoning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-graph-neural-networks-and-temporal-graph-notation">A.2 Graph Neural Networks and Temporal Graph Notation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-1-graphs-and-knowledge-graphs">A.2.1 Graphs and Knowledge Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-2-node-edge-and-relation-features">A.2.2 Node, Edge, and Relation Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-3-gnn-and-attention-notation">A.2.3 GNN and Attention Notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-4-temporal-graphs-and-dynamic-reasoning">A.2.4 Temporal Graphs and Dynamic Reasoning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-5-coordination-de-confliction-and-path-reasoning">A.2.5 Coordination, De-confliction, and Path Reasoning</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-conformal-prediction-and-statistical-calibration">A.3 Conformal Prediction and Statistical Calibration</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-1-basic-probability-and-statistics">A.3.1 Basic Probability and Statistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-2-conformal-prediction">A.3.2 Conformal Prediction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-3-calibration-and-trust-scores">A.3.3 Calibration and Trust Scores</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-4-online-monitoring-and-drift">A.3.4 Online Monitoring and Drift</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-5-dynamic-risk-prediction-and-certified-wrappers">A.3.5 Dynamic Risk Prediction and Certified Wrappers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-conformal-prediction-and-statistical-calibration">A.3 Conformal Prediction and Statistical Calibration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-1-basic-probability-and-statistics">A.3.1 Basic Probability and Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-2-conformal-prediction">A.3.2 Conformal Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-3-calibration-and-trust-scores">A.3.3 Calibration and Trust Scores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-4-online-monitoring-and-drift">A.3.4 Online Monitoring and Drift</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-5-dynamic-risk-prediction-and-certified-wrappers">A.3.5 Dynamic Risk Prediction and Certified Wrappers</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-system-architecture-and-complexity-analysis">A.4 System Architecture and Complexity Analysis</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-1-system-architecture">A.4.1 System Architecture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-2-spatiotemporal-partitioning-and-propagation">A.4.2 Spatiotemporal Partitioning and Propagation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-3-parallel-reasoning-and-complexity">A.4.3 Parallel Reasoning and Complexity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-4-throughput-latency-and-fault-tolerance">A.4.4 Throughput, Latency, and Fault Tolerance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-5-platform-and-governance-interfaces">A.4.5 Platform and Governance Interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-system-architecture-and-complexity-analysis">A.4 System Architecture and Complexity Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-1-system-architecture">A.4.1 System Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-2-spatiotemporal-partitioning-and-propagation">A.4.2 Spatiotemporal Partitioning and Propagation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-3-parallel-reasoning-and-complexity">A.4.3 Parallel Reasoning and Complexity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-4-throughput-latency-and-fault-tolerance">A.4.4 Throughput, Latency, and Fault Tolerance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-5-platform-and-governance-interfaces">A.4.5 Platform and Governance Interfaces</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-appendix-a">How to Use Appendix A</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-summary">Appendix Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-appendix-a">How to Use Appendix A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-summary">Appendix Summary</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -800,16 +783,18 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <blockquote>
+  <section class="tex2jax_ignore mathjax_ignore" id="appendix-a-mathematical-logical-and-graph-learning-notation">
+<h1>Appendix A — Mathematical, Logical and Graph Learning Notation<a class="headerlink" href="#appendix-a-mathematical-logical-and-graph-learning-notation" title="Link to this heading">#</a></h1>
+<blockquote>
 <div><p>This appendix follows the book outline’s “Appendix A: Notation for mathematics, logic, and graph learning.” It unifies notation for logic, graph learning, statistical certification, and system architecture so readers can cross-reference chapters quickly.</p>
 </div></blockquote>
 <p>This appendix does not aim for the most abstract axiomatic treatment; it serves the book’s narrative. It explains symbols that recur in KG-driven neuro-symbolic reasoning, temporal relational graphs, conformal prediction and online certification, and cloud–edge deployment. To avoid semantic drift of the same symbol across chapters, we follow: (1) prefer the most common, intuitive notation used in the main text; (2) if a symbol may differ by context, the “Notes” column limits scope; (3) for rule templates, graph tensors, and calibration quantities, give both formal meaning and engineering reading to link theory and implementation.</p>
 <hr class="docutils" />
 <section id="a-1-logical-symbols-and-common-rule-templates">
-<h1>A.1 Logical Symbols and Common Rule Templates<a class="headerlink" href="#a-1-logical-symbols-and-common-rule-templates" title="Link to this heading">#</a></h1>
+<h2>A.1 Logical Symbols and Common Rule Templates<a class="headerlink" href="#a-1-logical-symbols-and-common-rule-templates" title="Link to this heading">#</a></h2>
 <p>This section collects notation for propositional logic, first-order logic, rule representation, constraints, and explanation chains. Neuro-symbolic systems mix formal logic and engineering rules, so we keep both <strong>strict logical symbols</strong> and <strong>rule-template</strong> forms.</p>
 <section id="a-1-1-basic-logical-symbols">
-<h2>A.1.1 Basic Logical Symbols<a class="headerlink" href="#a-1-1-basic-logical-symbols" title="Link to this heading">#</a></h2>
+<h3>A.1.1 Basic Logical Symbols<a class="headerlink" href="#a-1-1-basic-logical-symbols" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -904,7 +889,7 @@
 </div>
 </section>
 <section id="a-1-2-common-knowledge-representation-templates">
-<h2>A.1.2 Common Knowledge-Representation Templates<a class="headerlink" href="#a-1-2-common-knowledge-representation-templates" title="Link to this heading">#</a></h2>
+<h3>A.1.2 Common Knowledge-Representation Templates<a class="headerlink" href="#a-1-2-common-knowledge-representation-templates" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Template</p></th>
@@ -959,7 +944,7 @@
 </div>
 </section>
 <section id="a-1-3-engineering-rule-templates">
-<h2>A.1.3 Engineering Rule Templates<a class="headerlink" href="#a-1-3-engineering-rule-templates" title="Link to this heading">#</a></h2>
+<h3>A.1.3 Engineering Rule Templates<a class="headerlink" href="#a-1-3-engineering-rule-templates" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Template name</p></th>
@@ -997,7 +982,7 @@
 </div>
 </section>
 <section id="a-1-4-evidence-and-explanation-chains">
-<h2>A.1.4 Evidence and Explanation Chains<a class="headerlink" href="#a-1-4-evidence-and-explanation-chains" title="Link to this heading">#</a></h2>
+<h3>A.1.4 Evidence and Explanation Chains<a class="headerlink" href="#a-1-4-evidence-and-explanation-chains" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1041,14 +1026,14 @@
 </tbody>
 </table>
 </div>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="a-2-graph-neural-networks-and-temporal-graph-notation">
-<h1>A.2 Graph Neural Networks and Temporal Graph Notation<a class="headerlink" href="#a-2-graph-neural-networks-and-temporal-graph-notation" title="Link to this heading">#</a></h1>
+<h2>A.2 Graph Neural Networks and Temporal Graph Notation<a class="headerlink" href="#a-2-graph-neural-networks-and-temporal-graph-notation" title="Link to this heading">#</a></h2>
 <p>Notation for KG embedding, temporal relational graphs, GNNs, relational attention, dynamic conflict detection, and coordination. Some symbols carry both generic graph meaning and UAM-specific reading.</p>
 <section id="a-2-1-graphs-and-knowledge-graphs">
-<h2>A.2.1 Graphs and Knowledge Graphs<a class="headerlink" href="#a-2-1-graphs-and-knowledge-graphs" title="Link to this heading">#</a></h2>
+<h3>A.2.1 Graphs and Knowledge Graphs<a class="headerlink" href="#a-2-1-graphs-and-knowledge-graphs" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1114,7 +1099,7 @@
 </div>
 </section>
 <section id="a-2-2-node-edge-and-relation-features">
-<h2>A.2.2 Node, Edge, and Relation Features<a class="headerlink" href="#a-2-2-node-edge-and-relation-features" title="Link to this heading">#</a></h2>
+<h3>A.2.2 Node, Edge, and Relation Features<a class="headerlink" href="#a-2-2-node-edge-and-relation-features" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1160,7 +1145,7 @@
 </div>
 </section>
 <section id="a-2-3-gnn-and-attention-notation">
-<h2>A.2.3 GNN and Attention Notation<a class="headerlink" href="#a-2-3-gnn-and-attention-notation" title="Link to this heading">#</a></h2>
+<h3>A.2.3 GNN and Attention Notation<a class="headerlink" href="#a-2-3-gnn-and-attention-notation" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1218,7 +1203,7 @@
 </div>
 </section>
 <section id="a-2-4-temporal-graphs-and-dynamic-reasoning">
-<h2>A.2.4 Temporal Graphs and Dynamic Reasoning<a class="headerlink" href="#a-2-4-temporal-graphs-and-dynamic-reasoning" title="Link to this heading">#</a></h2>
+<h3>A.2.4 Temporal Graphs and Dynamic Reasoning<a class="headerlink" href="#a-2-4-temporal-graphs-and-dynamic-reasoning" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1280,7 +1265,7 @@
 </div>
 </section>
 <section id="a-2-5-coordination-de-confliction-and-path-reasoning">
-<h2>A.2.5 Coordination, De-confliction, and Path Reasoning<a class="headerlink" href="#a-2-5-coordination-de-confliction-and-path-reasoning" title="Link to this heading">#</a></h2>
+<h3>A.2.5 Coordination, De-confliction, and Path Reasoning<a class="headerlink" href="#a-2-5-coordination-de-confliction-and-path-reasoning" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1324,14 +1309,14 @@
 </tbody>
 </table>
 </div>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="a-3-conformal-prediction-and-statistical-calibration">
-<h1>A.3 Conformal Prediction and Statistical Calibration<a class="headerlink" href="#a-3-conformal-prediction-and-statistical-calibration" title="Link to this heading">#</a></h1>
+<h2>A.3 Conformal Prediction and Statistical Calibration<a class="headerlink" href="#a-3-conformal-prediction-and-statistical-calibration" title="Link to this heading">#</a></h2>
 <p>Notation for trustworthy certification, uncertainty, conformal prediction, online monitoring, and drift. We distinguish raw model outputs, calibrated scores, certified sets/intervals, and online monitors—reflecting the move from explanatory to certifiable outputs.</p>
 <section id="a-3-1-basic-probability-and-statistics">
-<h2>A.3.1 Basic Probability and Statistics<a class="headerlink" href="#a-3-1-basic-probability-and-statistics" title="Link to this heading">#</a></h2>
+<h3>A.3.1 Basic Probability and Statistics<a class="headerlink" href="#a-3-1-basic-probability-and-statistics" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1397,7 +1382,7 @@
 </div>
 </section>
 <section id="a-3-2-conformal-prediction">
-<h2>A.3.2 Conformal Prediction<a class="headerlink" href="#a-3-2-conformal-prediction" title="Link to this heading">#</a></h2>
+<h3>A.3.2 Conformal Prediction<a class="headerlink" href="#a-3-2-conformal-prediction" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1447,7 +1432,7 @@
 </div>
 </section>
 <section id="a-3-3-calibration-and-trust-scores">
-<h2>A.3.3 Calibration and Trust Scores<a class="headerlink" href="#a-3-3-calibration-and-trust-scores" title="Link to this heading">#</a></h2>
+<h3>A.3.3 Calibration and Trust Scores<a class="headerlink" href="#a-3-3-calibration-and-trust-scores" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1501,7 +1486,7 @@
 </div>
 </section>
 <section id="a-3-4-online-monitoring-and-drift">
-<h2>A.3.4 Online Monitoring and Drift<a class="headerlink" href="#a-3-4-online-monitoring-and-drift" title="Link to this heading">#</a></h2>
+<h3>A.3.4 Online Monitoring and Drift<a class="headerlink" href="#a-3-4-online-monitoring-and-drift" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1555,7 +1540,7 @@
 </div>
 </section>
 <section id="a-3-5-dynamic-risk-prediction-and-certified-wrappers">
-<h2>A.3.5 Dynamic Risk Prediction and Certified Wrappers<a class="headerlink" href="#a-3-5-dynamic-risk-prediction-and-certified-wrappers" title="Link to this heading">#</a></h2>
+<h3>A.3.5 Dynamic Risk Prediction and Certified Wrappers<a class="headerlink" href="#a-3-5-dynamic-risk-prediction-and-certified-wrappers" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1595,14 +1580,14 @@
 </tbody>
 </table>
 </div>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="a-4-system-architecture-and-complexity-analysis">
-<h1>A.4 System Architecture and Complexity Analysis<a class="headerlink" href="#a-4-system-architecture-and-complexity-analysis" title="Link to this heading">#</a></h1>
+<h2>A.4 System Architecture and Complexity Analysis<a class="headerlink" href="#a-4-system-architecture-and-complexity-analysis" title="Link to this heading">#</a></h2>
 <p>Notation for cloud–edge collaboration, distributed graph reasoning, spatiotemporal partitioning, throughput, fault tolerance, and complexity—supporting the systems part of the book (SkyGrid, edge inference, concurrent engines, city-scale deployment).</p>
 <section id="a-4-1-system-architecture">
-<h2>A.4.1 System Architecture<a class="headerlink" href="#a-4-1-system-architecture" title="Link to this heading">#</a></h2>
+<h3>A.4.1 System Architecture<a class="headerlink" href="#a-4-1-system-architecture" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1656,7 +1641,7 @@
 </div>
 </section>
 <section id="a-4-2-spatiotemporal-partitioning-and-propagation">
-<h2>A.4.2 Spatiotemporal Partitioning and Propagation<a class="headerlink" href="#a-4-2-spatiotemporal-partitioning-and-propagation" title="Link to this heading">#</a></h2>
+<h3>A.4.2 Spatiotemporal Partitioning and Propagation<a class="headerlink" href="#a-4-2-spatiotemporal-partitioning-and-propagation" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1698,7 +1683,7 @@
 </div>
 </section>
 <section id="a-4-3-parallel-reasoning-and-complexity">
-<h2>A.4.3 Parallel Reasoning and Complexity<a class="headerlink" href="#a-4-3-parallel-reasoning-and-complexity" title="Link to this heading">#</a></h2>
+<h3>A.4.3 Parallel Reasoning and Complexity<a class="headerlink" href="#a-4-3-parallel-reasoning-and-complexity" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1756,7 +1741,7 @@
 </div>
 </section>
 <section id="a-4-4-throughput-latency-and-fault-tolerance">
-<h2>A.4.4 Throughput, Latency, and Fault Tolerance<a class="headerlink" href="#a-4-4-throughput-latency-and-fault-tolerance" title="Link to this heading">#</a></h2>
+<h3>A.4.4 Throughput, Latency, and Fault Tolerance<a class="headerlink" href="#a-4-4-throughput-latency-and-fault-tolerance" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1814,7 +1799,7 @@
 </div>
 </section>
 <section id="a-4-5-platform-and-governance-interfaces">
-<h2>A.4.5 Platform and Governance Interfaces<a class="headerlink" href="#a-4-5-platform-and-governance-interfaces" title="Link to this heading">#</a></h2>
+<h3>A.4.5 Platform and Governance Interfaces<a class="headerlink" href="#a-4-5-platform-and-governance-interfaces" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -1854,11 +1839,11 @@
 </tbody>
 </table>
 </div>
+</section>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="how-to-use-appendix-a">
-<h1>How to Use Appendix A<a class="headerlink" href="#how-to-use-appendix-a" title="Link to this heading">#</a></h1>
+<h2>How to Use Appendix A<a class="headerlink" href="#how-to-use-appendix-a" title="Link to this heading">#</a></h2>
 <p><strong>First</strong>, when the same symbol appears in multiple chapters, we keep a stable primary reading—e.g., <span class="math notranslate nohighlight">\(G_t\)</span> as “graph state at time <span class="math notranslate nohighlight">\(t\)</span>,” <span class="math notranslate nohighlight">\(R\)</span> as “rule set” or “relation-type set,” disambiguated by context.</p>
 <p><strong>Second</strong>, if a chapter specializes a symbol for a domain, the local definition wins but should not contradict this appendix.</p>
 <p><strong>Third</strong>, in engineering chapters, symbols like <span class="math notranslate nohighlight">\(\mathrm{API}_{\mathrm{risk}}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{degrade\_mode}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{load}(P_k)\)</span> stress interfaces and system semantics over mathematical elegance.</p>
@@ -1866,8 +1851,9 @@
 <p><strong>Fifth</strong>, this appendix is a <strong>unified notation table</strong>, not a replacement for per-chapter problem statements. Chapters may introduce extra symbols; compatibility with this table is recommended.</p>
 </section>
 <section id="appendix-summary">
-<h1>Appendix Summary<a class="headerlink" href="#appendix-summary" title="Link to this heading">#</a></h1>
+<h2>Appendix Summary<a class="headerlink" href="#appendix-summary" title="Link to this heading">#</a></h2>
 <p>Appendix A organizes notation along four technical threads: logic and rule systems, GNNs and temporal graphs, conformal prediction and calibration, and system architecture with complexity analysis. The goal is cross-chapter consistency, not heavier formalism. For a book spanning knowledge representation, dynamic graph reasoning, trustworthy certification, and city-scale deployment, shared notation is both a convenience and a prerequisite for clear communication between theory and engineering.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1914,7 +1900,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">B.1 PyKEEN</p>
+        <p class="prev-next-title">Appendix B — Open-Source Libraries and Engineering Tools</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1936,41 +1922,40 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">A.1 Logical Symbols and Common Rule Templates</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-1-basic-logical-symbols">A.1.1 Basic Logical Symbols</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-2-common-knowledge-representation-templates">A.1.2 Common Knowledge-Representation Templates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-3-engineering-rule-templates">A.1.3 Engineering Rule Templates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-4-evidence-and-explanation-chains">A.1.4 Evidence and Explanation Chains</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-logical-symbols-and-common-rule-templates">A.1 Logical Symbols and Common Rule Templates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-1-basic-logical-symbols">A.1.1 Basic Logical Symbols</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-2-common-knowledge-representation-templates">A.1.2 Common Knowledge-Representation Templates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-3-engineering-rule-templates">A.1.3 Engineering Rule Templates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-4-evidence-and-explanation-chains">A.1.4 Evidence and Explanation Chains</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-graph-neural-networks-and-temporal-graph-notation">A.2 Graph Neural Networks and Temporal Graph Notation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-1-graphs-and-knowledge-graphs">A.2.1 Graphs and Knowledge Graphs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-2-node-edge-and-relation-features">A.2.2 Node, Edge, and Relation Features</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-3-gnn-and-attention-notation">A.2.3 GNN and Attention Notation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-4-temporal-graphs-and-dynamic-reasoning">A.2.4 Temporal Graphs and Dynamic Reasoning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-5-coordination-de-confliction-and-path-reasoning">A.2.5 Coordination, De-confliction, and Path Reasoning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-graph-neural-networks-and-temporal-graph-notation">A.2 Graph Neural Networks and Temporal Graph Notation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-1-graphs-and-knowledge-graphs">A.2.1 Graphs and Knowledge Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-2-node-edge-and-relation-features">A.2.2 Node, Edge, and Relation Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-3-gnn-and-attention-notation">A.2.3 GNN and Attention Notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-4-temporal-graphs-and-dynamic-reasoning">A.2.4 Temporal Graphs and Dynamic Reasoning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-5-coordination-de-confliction-and-path-reasoning">A.2.5 Coordination, De-confliction, and Path Reasoning</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-conformal-prediction-and-statistical-calibration">A.3 Conformal Prediction and Statistical Calibration</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-1-basic-probability-and-statistics">A.3.1 Basic Probability and Statistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-2-conformal-prediction">A.3.2 Conformal Prediction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-3-calibration-and-trust-scores">A.3.3 Calibration and Trust Scores</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-4-online-monitoring-and-drift">A.3.4 Online Monitoring and Drift</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-5-dynamic-risk-prediction-and-certified-wrappers">A.3.5 Dynamic Risk Prediction and Certified Wrappers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-conformal-prediction-and-statistical-calibration">A.3 Conformal Prediction and Statistical Calibration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-1-basic-probability-and-statistics">A.3.1 Basic Probability and Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-2-conformal-prediction">A.3.2 Conformal Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-3-calibration-and-trust-scores">A.3.3 Calibration and Trust Scores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-4-online-monitoring-and-drift">A.3.4 Online Monitoring and Drift</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-5-dynamic-risk-prediction-and-certified-wrappers">A.3.5 Dynamic Risk Prediction and Certified Wrappers</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-system-architecture-and-complexity-analysis">A.4 System Architecture and Complexity Analysis</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-1-system-architecture">A.4.1 System Architecture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-2-spatiotemporal-partitioning-and-propagation">A.4.2 Spatiotemporal Partitioning and Propagation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-3-parallel-reasoning-and-complexity">A.4.3 Parallel Reasoning and Complexity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-4-throughput-latency-and-fault-tolerance">A.4.4 Throughput, Latency, and Fault Tolerance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-5-platform-and-governance-interfaces">A.4.5 Platform and Governance Interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-system-architecture-and-complexity-analysis">A.4 System Architecture and Complexity Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-1-system-architecture">A.4.1 System Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-2-spatiotemporal-partitioning-and-propagation">A.4.2 Spatiotemporal Partitioning and Propagation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-3-parallel-reasoning-and-complexity">A.4.3 Parallel Reasoning and Complexity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-4-throughput-latency-and-fault-tolerance">A.4.4 Throughput, Latency, and Fault Tolerance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-5-platform-and-governance-interfaces">A.4.5 Platform and Governance Interfaces</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-appendix-a">How to Use Appendix A</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-summary">Appendix Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-appendix-a">How to Use Appendix A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-summary">Appendix Summary</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

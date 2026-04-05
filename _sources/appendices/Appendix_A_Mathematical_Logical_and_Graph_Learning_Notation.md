@@ -1,5 +1,4 @@
-
-
+# Appendix A — Mathematical, Logical and Graph Learning Notation
 > This appendix follows the book outline’s “Appendix A: Notation for mathematics, logic, and graph learning.” It unifies notation for logic, graph learning, statistical certification, and system architecture so readers can cross-reference chapters quickly.
 
 This appendix does not aim for the most abstract axiomatic treatment; it serves the book’s narrative. It explains symbols that recur in KG-driven neuro-symbolic reasoning, temporal relational graphs, conformal prediction and online certification, and cloud–edge deployment. To avoid semantic drift of the same symbol across chapters, we follow: (1) prefer the most common, intuitive notation used in the main text; (2) if a symbol may differ by context, the “Notes” column limits scope; (3) for rule templates, graph tensors, and calibration quantities, give both formal meaning and engineering reading to link theory and implementation.

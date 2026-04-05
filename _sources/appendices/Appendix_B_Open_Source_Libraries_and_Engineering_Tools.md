@@ -1,5 +1,4 @@
-
-
+# Appendix B — Open-Source Libraries and Engineering Tools
 This appendix lists curated open-source tools for neuro-symbolic algorithms, knowledge-graph construction, and cloud–edge deployment. For Appendix C labs or a low-altitude governance prototype, you can compose a toolchain from the sections below.
 
 ### B.1 PyKEEN
