@@ -1,0 +1,37 @@
+title: "Neuro-Symbolic Reasoning"
+author: "Yushu Liu"
+copyright: "2025"
+logo: cover.png
+
+execute:
+  execute_notebooks: "off"
+
+html:
+  favicon: ""
+  use_issues_button: true
+  use_repository_button: true
+  use_download_button: true
+  home_page_in_navbar: true
+  extra_footer: |
+    <p>
+      <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+      <a href="https://github.com/liuyushugreat">GitHub</a><br>
+      Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+      Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+    </p>
+
+repository:
+  url: https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems
+  path_to_book: ""
+  branch: main
+
+launch_buttons:
+  binderhub_url: ""
+
+sphinx:
+  extra_extensions:
+    - sphinx.ext.mathjax
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    html_show_copyright: true
+    language: en

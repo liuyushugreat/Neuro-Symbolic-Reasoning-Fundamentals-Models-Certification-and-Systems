@@ -1,0 +1,60 @@
+format: jb-book
+root: intro
+
+parts:
+  - caption: "Introduction"
+    chapters:
+      - file: INTRODUCTION_EN
+
+  - caption: "Part I · Foundations"
+    chapters:
+      - file: chapters/Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI
+      - file: chapters/Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning
+      - file: chapters/Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation
+      - file: chapters/Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation
+
+  - caption: "Part II · Domain Knowledge Modeling"
+    chapters:
+      - file: chapters/Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic
+      - file: chapters/Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation
+
+  - caption: "Part III · Hybrid Reasoning"
+    chapters:
+      - file: chapters/Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems
+      - file: chapters/Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning
+      - file: chapters/Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning
+      - file: chapters/Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology
+      - file: chapters/Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning
+      - file: chapters/Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models
+      - file: chapters/Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs
+
+  - caption: "Part IV · Trustworthy Certification"
+    chapters:
+      - file: chapters/Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems
+      - file: chapters/Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration
+      - file: chapters/Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification
+      - file: chapters/Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces
+
+  - caption: "Part V · System Deployment"
+    chapters:
+      - file: chapters/Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap
+      - file: chapters/Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration
+      - file: chapters/Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines
+      - file: chapters/Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop
+
+  - caption: "Part VI · Frontier"
+    chapters:
+      - file: chapters/Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models
+      - file: chapters/Chapter_23_Applications_in_Safety_Critical_Industries
+      - file: chapters/Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science
+      - file: chapters/Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability
+
+  - caption: "Appendices"
+    chapters:
+      - file: appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation
+      - file: appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools
+      - file: appendices/Appendix_C_Course_Labs_and_Practice_Projects
+
+  - caption: "Experiments"
+    chapters:
+      - file: experiments/README
