@@ -1,0 +1,1079 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8.1 Logic rules as loss functions &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.1 SPARQL queries and deterministic evidence extraction" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html" />
+    <link rel="prev" title="7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8.1 Logic rules as loss functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8.1 Logic rules as loss functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#constrained-optimization-and-posterior-regularization">8.2 Constrained optimization and posterior regularization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#co-training-rules-and-neural-models">8.3 Co-training rules and neural models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-constraints-and-mechanism-informed-networks">8.4 Physical constraints and mechanism-informed networks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-knowledge-injection-to-explainable-reasoning">8.5 From knowledge injection to explainable reasoning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplement-semantic-loss-probabilistic-logic-programming-and-differentiable-theorem-proving">8.6 Supplement: semantic loss, probabilistic logic programming, and differentiable theorem proving</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-loss">8.6.1 Semantic loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-logic-programming">8.6.2 Probabilistic logic programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differentiable-theorem-proving">8.6.3 Differentiable theorem proving</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-and-learnable-rule-weights">8.6.4 Attention and learnable rule weights</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#study-questions">Study questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Earlier parts fixed the neuro-symbolic taxonomy and examined prior symbolic representations such as the knowledge graph (SkyKG). This chapter enters the core technical territory of neuro-symbolic fusion—how discrete, structured knowledge and rules are <strong>injected</strong> into continuous, gradient-trained deep neural networks.</p>
+<p>We systematically present basic paradigms of <strong>constrained learning</strong>: turning logical propositions into continuous losses, posterior regularization, and hard physical constraints. Together they underpin safety-critical settings such as low-altitude traffic, where outputs must follow not only empirical distributions but physical law and operational regulation.</p>
+<section id="logic-rules-as-loss-functions">
+<h1>8.1 Logic rules as loss functions<a class="headerlink" href="#logic-rules-as-loss-functions" title="Link to this heading">#</a></h1>
+<p>The most direct injection route is to map discrete logic rules (propositional or first-order predicate logic) to differentiable continuous functions and add them as penalty (regularization) terms to the total loss.</p>
+<p>The central difficulty is that classical Boolean logic lives on <span class="math notranslate nohighlight">\(\{0, 1\}\)</span>, which blocks gradient descent. <strong>Fuzzy logic</strong> or <strong>real-valued logic</strong> is required—for example T-norms as used in Logic Tensor Networks (LTN).</p>
+<p>Under the Lukasiewicz T-norm, basic connectives relax to continuous operators on <span class="math notranslate nohighlight">\([0,1]\)</span> (let <span class="math notranslate nohighlight">\(a, b \in [0,1]\)</span> denote probability or confidence that propositions hold):</p>
+<ul class="simple">
+<li><p><strong>Negation (<span class="math notranslate nohighlight">\(\neg a\)</span>):</strong> <span class="math notranslate nohighlight">\(1 - a\)</span></p></li>
+<li><p><strong>Conjunction (<span class="math notranslate nohighlight">\(a \land b\)</span>):</strong> <span class="math notranslate nohighlight">\(\max(0, a + b - 1)\)</span></p></li>
+<li><p><strong>Disjunction (<span class="math notranslate nohighlight">\(a \lor b\)</span>):</strong> <span class="math notranslate nohighlight">\(\min(1, a + b)\)</span></p></li>
+<li><p><strong>Implication (<span class="math notranslate nohighlight">\(a \Rightarrow b\)</span>):</strong> <span class="math notranslate nohighlight">\(\min(1, 1 - a + b)\)</span></p></li>
+</ul>
+<p>In low-altitude traffic, suppose a safety rule <span class="math notranslate nohighlight">\(\phi\)</span>: “If a UAV is in a congested grid (<span class="math notranslate nohighlight">\(P\)</span>) and hovering (<span class="math notranslate nohighlight">\(Q\)</span>), the system must raise a high-severity alert (<span class="math notranslate nohighlight">\(R\)</span>).” Formally, <span class="math notranslate nohighlight">\(\forall x (P(x) \land Q(x) \Rightarrow R(x))\)</span>.
+The network outputs probabilities for <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(Q\)</span>, and <span class="math notranslate nohighlight">\(R\)</span>. We measure violation of the rule and define a rule loss <span class="math notranslate nohighlight">\(L_{rule}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[L_{rule} = 1 - \frac{1}{N} \sum_{i=1}^{N} \text{truth\_value}(\phi_i)\]</div>
+<p>Jointly optimizing <span class="math notranslate nohighlight">\(L_{total} = L_{data} + \lambda L_{rule}\)</span> fits observations while enforcing traffic-control logic.</p>
+</section>
+<section id="constrained-optimization-and-posterior-regularization">
+<h1>8.2 Constrained optimization and posterior regularization<a class="headerlink" href="#constrained-optimization-and-posterior-regularization" title="Link to this heading">#</a></h1>
+<p>Loss-based injection bakes rules into training. <strong>Posterior regularization (PR)</strong> instead constrains the model’s output distribution (the posterior) from a probabilistic inference viewpoint.</p>
+<p>Let the neural network define a parametric conditional <span class="math notranslate nohighlight">\(P_\theta(Y|X)\)</span> that may violate known domain rules. Knowledge graphs or business rules induce a “feasible family” <span class="math notranslate nohighlight">\(\mathcal{Q}\)</span>. PR seeks a target <span class="math notranslate nohighlight">\(Q(Y|X)\)</span> in <span class="math notranslate nohighlight">\(\mathcal{Q}\)</span> that stays close to <span class="math notranslate nohighlight">\(P_\theta\)</span>.</p>
+<p>A typical objective minimizes data log-loss plus KL divergence:</p>
+<div class="math notranslate nohighlight">
+\[\min_{\theta, Q \in \mathcal{Q}} \left[ L_{data}(\theta) + \lambda D_{KL}(Q || P_\theta) \right]\]</div>
+<p>In practice, alternating optimization akin to EM is common:</p>
+<ol class="arabic simple">
+<li><p><strong>E-step (projection):</strong> Fix <span class="math notranslate nohighlight">\(\theta\)</span>; find <span class="math notranslate nohighlight">\(Q\)</span> satisfying rules and closest to the current network output.</p></li>
+<li><p><strong>M-step (update):</strong> Fix <span class="math notranslate nohighlight">\(Q\)</span>; use it as soft labels and update <span class="math notranslate nohighlight">\(\theta\)</span> by backpropagation.</p></li>
+</ol>
+<p>For UAM path planning, PR can keep multi-UAV trajectory distributions <span class="math notranslate nohighlight">\(P_\theta\)</span> inside a non-overlapping feasible set <span class="math notranslate nohighlight">\(\mathcal{Q}\)</span>, strengthening zero-shot safety margins.</p>
+</section>
+<section id="co-training-rules-and-neural-models">
+<h1>8.3 Co-training rules and neural models<a class="headerlink" href="#co-training-rules-and-neural-models" title="Link to this heading">#</a></h1>
+<p>Loss formulation and PR require compiling rules into differentiable math. For complex, non-differentiable external engines (e.g., graph reasoners), <strong>co-training</strong>—often teacher–student—is appropriate.</p>
+<ul class="simple">
+<li><p><strong>Teacher (knowledge-led):</strong> Integrates logic engines and KG reasoning; too slow for online inference but offline supplies logically tight pseudo-labels or soft rule constraints.</p></li>
+<li><p><strong>Student (perception-led):</strong> A lightweight network (GNN or Transformer) on raw sensing.</p></li>
+</ul>
+<p>During training, the Teacher audits and corrects the Student. The Student fits labels and the Teacher’s inferred distribution. At deployment (e.g., edge nodes for low altitude), only the fast Student runs—matching Part 7’s real-time demands while <strong>distilling</strong> symbolic knowledge into parameters.</p>
+</section>
+<section id="physical-constraints-and-mechanism-informed-networks">
+<h1>8.4 Physical constraints and mechanism-informed networks<a class="headerlink" href="#physical-constraints-and-mechanism-informed-networks" title="Link to this heading">#</a></h1>
+<p>For low-altitude traffic and autonomous driving, paramount “knowledge” is Newtonian mechanics, aerodynamics, and kinodynamics. Embedding such mechanisms yields <strong>physics-informed neural networks (PINNs)</strong>.</p>
+<p>In the neuro-symbolic view, physical laws are a special class of symbolic rules. Aircraft motion satisfies PDE-governed dynamics. Automatic differentiation on network outputs yields temporal and spatial derivatives to test physical plausibility.</p>
+<p>Let the governing equation be <span class="math notranslate nohighlight">\(\mathcal{F}(u(t, x)) = 0\)</span> with neural state <span class="math notranslate nohighlight">\(u\)</span>. The physics residual enters the loss:</p>
+<div class="math notranslate nohighlight">
+\[L_{physics} = \frac{1}{N_{p}} \sum_{i=1}^{N_{p}} \|\mathcal{F}(u(t_i, x_i))\|^2\]</div>
+<p>For UAM trajectory prediction, adding residual terms for dynamics beside MSE removes “teleportation” or impossible turns common in naive Seq2Seq models, enforcing dynamically executable trajectories.</p>
+</section>
+<section id="from-knowledge-injection-to-explainable-reasoning">
+<h1>8.5 From knowledge injection to explainable reasoning<a class="headerlink" href="#from-knowledge-injection-to-explainable-reasoning" title="Link to this heading">#</a></h1>
+<p>Injection aims to constrain nets for OOD robustness and safety. One-way symbolic-to-neural injection also enables <strong>constraint-based explainability</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Concept alignment:</strong> Concept bottleneck models (CBMs) force intermediate concepts aligned to the domain KG (e.g., “distance below safety threshold,” “opposing velocity vectors”) before final risk predictions.</p></li>
+<li><p><strong>Attribution:</strong> When a specific rule loss <span class="math notranslate nohighlight">\(L_{rule\_k}\)</span> binds or fires, decisions can be attributed to that symbolic rule.</p></li>
+</ol>
+<p>Networks become not only safer but more <strong>self-aware</strong> of why they are safe—foundational for the next chapter on KG-driven explainable risk reasoning in the static-cognition thread.</p>
+</section>
+<section id="supplement-semantic-loss-probabilistic-logic-programming-and-differentiable-theorem-proving">
+<h1>8.6 Supplement: semantic loss, probabilistic logic programming, and differentiable theorem proving<a class="headerlink" href="#supplement-semantic-loss-probabilistic-logic-programming-and-differentiable-theorem-proving" title="Link to this heading">#</a></h1>
+<p>The preceding sections centered on T-norm relaxation, PR, and physics residuals. The injection landscape is richer. This supplement sketches advanced methods that sharpen theory or expressiveness.</p>
+<section id="semantic-loss">
+<h2>8.6.1 Semantic loss<a class="headerlink" href="#semantic-loss" title="Link to this heading">#</a></h2>
+<p>T-norm losses are intuitive but approximate: T-norm choice changes gradients, and faithfulness to complex formulas can suffer. <strong>Semantic loss</strong> (Xu et al., 2018) takes a different path.</p>
+<p>Given propositional constraint <span class="math notranslate nohighlight">\(\alpha\)</span>, compute the total probability—under independent Bernoullis <span class="math notranslate nohighlight">\(p_1,\dots,p_n\)</span>—that <span class="math notranslate nohighlight">\(\alpha\)</span> holds:</p>
+<div class="math notranslate nohighlight">
+\[P(\alpha) = \sum_{\mathbf{x} \models \alpha} \prod_{i=1}^{n} p_i^{x_i}(1-p_i)^{1-x_i}\]</div>
+<p>Semantic loss is <span class="math notranslate nohighlight">\(L_{sem} = -\log P(\alpha)\)</span>, minimized at zero iff the joint distribution satisfies <span class="math notranslate nohighlight">\(\alpha\)</span>. <strong>Weighted model counting (WMC)</strong> on compiled representations (OBDD, SDD) makes this tractable. Compared with T-norms, semantic loss is exact for propositional logic and independent of a particular norm. It excels with mutual-exclusion constraints in multi-label settings and consistency in semi-supervised learning.</p>
+</section>
+<section id="probabilistic-logic-programming">
+<h2>8.6.2 Probabilistic logic programming<a class="headerlink" href="#probabilistic-logic-programming" title="Link to this heading">#</a></h2>
+<p>Embedding neural nets in logic programs enables end-to-end perception plus symbolic reasoning. <strong>DeepProbLog</strong> uses <strong>neural predicates</strong>: nets map raw inputs (e.g., images) to discrete distributions (e.g., digit classes); ProbLog’s engine combines them with rules. Inference is arithmetic-circuit evaluation, so gradients flow to net parameters.</p>
+<p><strong>NeurASP</strong> couples nets with answer set programming (ASP), leveraging nonmonotonic reasoning for defaults, exceptions, and constraint satisfaction, widening logical expressiveness.</p>
+</section>
+<section id="differentiable-theorem-proving">
+<h2>8.6.3 Differentiable theorem proving<a class="headerlink" href="#differentiable-theorem-proving" title="Link to this heading">#</a></h2>
+<p>Classical provers (e.g., Prolog with unification and backtracking) are discrete. <strong>Differentiable theorem proving</strong> replaces exact symbol matching with vector similarity. <strong>Neural theorem provers (NTPs)</strong> embed constants and predicates densely, substitute cosine similarity for unification, and use differentiable backward chaining to score queries—yielding an end-to-end differentiable graph that learns embeddings while rules guide proof paths.</p>
+</section>
+<section id="attention-and-learnable-rule-weights">
+<h2>8.6.4 Attention and learnable rule weights<a class="headerlink" href="#attention-and-learnable-rule-weights" title="Link to this heading">#</a></h2>
+<p>Not all rules matter equally in every context. <strong>Attention</strong> in GNNs and Transformers can weight candidate rules or logic paths dynamically, focusing relevant subsets. This <strong>soft selection</strong> complements the fixed <span class="math notranslate nohighlight">\(\lambda\)</span> weighting in §8.1 and supports automated rule management and context adaptation.</p>
+<p>Together: semantic loss improves theoretical fidelity; probabilistic logic programming unifies perception and inference; differentiable proving folds classical logic into gradient optimization; attention learns when rules apply—pushing neuro-symbolic fusion from “simple constraints” toward <strong>deep integration</strong>.</p>
+</section>
+</section>
+<section id="chapter-summary">
+<h1>Chapter summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>This chapter surveyed knowledge injection and constrained learning—how symbolic knowledge enters continuous optimization. Logic-as-loss maps rules via fuzzy/real-valued relaxations into training objectives. Posterior regularization constrains output distributions, not only parameters. Co-training shows teacher–student and external engines distilling symbolic knowledge. Physics-informed nets encode scientific and engineering bounds as priors. Finally, injection improves safety and generalization while enabling concept alignment, rule attribution, and structured explanation.</p>
+</section>
+<section id="key-concepts">
+<h1>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Logic as differentiable loss: Mapping symbolic rules to trainable penalty terms.</p></li>
+<li><p>Posterior regularization: Constraining output distributions, not only parameters.</p></li>
+<li><p>Co-training: Mutual correction between rule-led and neural models during training.</p></li>
+<li><p>Physics-informed neural networks: Embedding PDE or mechanism residuals in training.</p></li>
+<li><p>Explainable constrained learning: Safety plus concept alignment and rule-level attribution.</p></li>
+</ul>
+</section>
+<section id="study-questions">
+<h1>Study questions<a class="headerlink" href="#study-questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Compared with post-hoc rule checking, what are the trade-offs of writing rules directly into the loss?</p></li>
+<li><p>Why is posterior regularization well suited to “outputs must lie in a feasible set”?</p></li>
+<li><p>In low-altitude settings, which knowledge fits physical constraints versus logical rules?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p>“Minimum separation in low-altitude conflict prediction”: train a purely data-driven trajectory model, then inject minimum-separation rules as logic loss and turn-radius limits as physics residuals; compare OOD behavior and explainability.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 8-1: Three injection paths—before training, during training, after inference.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure8-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 8-2: Relationships among rule loss, posterior regularization, and co-training.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure8-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 8-3: Coupling data loss and mechanism loss in constraint networks.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure8-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Total loss: <span class="math notranslate nohighlight">\(\mathcal{L}_{\mathrm{total}} = \mathcal{L}_{\mathrm{data}} + \lambda\,\mathcal{L}_{\mathrm{rule}}\)</span></p></li>
+<li><p>Posterior regularization: <span class="math notranslate nohighlight">\(\min_{\theta,\, Q \in \mathcal{Q}} \left[\mathcal{L}_{\mathrm{data}}(\theta) + \lambda\,D_{\mathrm{KL}}(Q || P_\theta)\right]\)</span></p></li>
+<li><p>Physics residual: <span class="math notranslate nohighlight">\(\mathcal{L}_{\mathrm{physics}} = \frac{1}{N_p}\sum_{i}\|F(u(t_i, x_i))\|^2\)</span></p></li>
+<li><p>Theme: encoding rules and mechanisms in the optimization objective.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Xu, J., Zhang, Z., Friedman, T., Liang, Y., &amp; Van den Broeck, G. (2018). A Semantic Loss Function for Deep Learning with Symbolic Knowledge. <em>Proceedings of the 35th International Conference on Machine Learning</em> (ICML).</p></li>
+<li><p>Raissi, M., Perdikaris, P., &amp; Karniadakis, G. E. (2019). Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations. <em>Journal of Computational Physics</em>, 378, 686–707.</p></li>
+<li><p>Hu, Z., Ma, X., Liu, Z., Hovy, E., &amp; Xing, E. (2016). Harnessing Deep Neural Networks with Logic Rules. <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics</em> (ACL).</p></li>
+<li><p>Hinton, G., Vinyals, O., &amp; Dean, J. (2015). Distilling the Knowledge in a Neural Network. <em>arXiv preprint arXiv:1503.02531</em>.</p></li>
+<li><p>Serafini, L., &amp; Garcez, A. d. (2016). Logic Tensor Networks: Deep Learning and Logical Reasoning from Data and Knowledge. <em>arXiv preprint arXiv:1606.04422</em>.</p></li>
+<li><p>Ganchev, K., Graça, J., Gillenwater, J., &amp; Taskar, B. (2010). Posterior Regularization for Structured Latent Variable Models. <em>Journal of Machine Learning Research</em>, 11, 2001–2049.</p></li>
+<li><p>Manhaeve, R., Dumancic, S., Kimmig, A., Demeester, T., &amp; De Raedt, L. (2018). DeepProbLog: Neural Probabilistic Logic Programming. <em>Advances in Neural Information Processing Systems</em> (NeurIPS).</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">9.1 SPARQL queries and deterministic evidence extraction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8.1 Logic rules as loss functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#constrained-optimization-and-posterior-regularization">8.2 Constrained optimization and posterior regularization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#co-training-rules-and-neural-models">8.3 Co-training rules and neural models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-constraints-and-mechanism-informed-networks">8.4 Physical constraints and mechanism-informed networks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-knowledge-injection-to-explainable-reasoning">8.5 From knowledge injection to explainable reasoning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplement-semantic-loss-probabilistic-logic-programming-and-differentiable-theorem-proving">8.6 Supplement: semantic loss, probabilistic logic programming, and differentiable theorem proving</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-loss">8.6.1 Semantic loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-logic-programming">8.6.2 Probabilistic logic programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differentiable-theorem-proving">8.6.3 Differentiable theorem proving</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attention-and-learnable-rule-weights">8.6.4 Attention and learnable rule weights</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#study-questions">Study questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

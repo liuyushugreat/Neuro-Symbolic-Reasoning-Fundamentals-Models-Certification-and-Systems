@@ -1,0 +1,1036 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>17.1 Layers of Explainability: Local, Rule-Based, Causal &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="18.1 Complexity in Symbolic, Graph, and LLM Reasoning" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html" />
+    <link rel="prev" title="16.1 Failure Modes in Online Inference" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>17.1 Layers of Explainability: Local, Rule-Based, Causal</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#faithfulness-sufficiency-and-comprehensibility">17.2 Faithfulness, Sufficiency, and Comprehensibility</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#audit-trail-design-for-neuro-symbolic-systems">17.3 Audit Trail Design for Neuro-Symbolic Systems</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-human-regulators-use-explanations-and-certificates">17.4 How Human Regulators Use Explanations and Certificates</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces-to-aviation-adas-safety-standards">17.5 Interfaces to Aviation / ADAS Safety Standards</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-model-trustworthiness-to-governance-trustworthiness">17.6 From Model Trustworthiness to Governance Trustworthiness</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case Study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure Suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula Index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Chapters 15–16 used conformal prediction and statistical monitoring to attach formal statistical assurance to neuro-symbolic systems. Machine-readable intervals and divergence scores do not by themselves earn societal trust. In safety-critical UAM and autonomous driving, when the system refuses takeoff or commands emergency avoidance, human overseers need explanations aligned with professional judgment and, after incidents, a complete evidentiary chain.</p>
+<p>This chapter completes the “Trustworthy Certification” arc: <strong>quantitative evaluation of explainability</strong>, <strong>airworthiness-style machine audit logs</strong>, and <strong>interfaces between AI and human regulators</strong>—from <strong>model-scale</strong> trust to <strong>sociotechnical</strong> governance trust.</p>
+<section id="layers-of-explainability-local-rule-based-causal">
+<h1>17.1 Layers of Explainability: Local, Rule-Based, Causal<a class="headerlink" href="#layers-of-explainability-local-rule-based-causal" title="Link to this heading">#</a></h1>
+<p>Explainability is not one-dimensional. For neuro-symbolic systems we need a <strong>layered</strong> account for different stakeholders:</p>
+<ol class="arabic simple">
+<li><p><strong>Local perceptual explanation (System 1):</strong> For neural modules—e.g., GAT attention or saliency maps: “When issuing the collision alert, the model focused on the two opposing UAVs in grid cell 3A.” Intuitive but not logically tight.</p></li>
+<li><p><strong>Symbolic rule-based explanation (System 2):</strong> A distinctive neuro-symbolic strength: cite SkyKG paths and regulations—e.g., “Takeoff denied per CCAR-XXX: payload class (hazardous) may not traverse residential graph nodes under current gusts (force 7).”</p></li>
+<li><p><strong>Causal and counterfactual explanation:</strong> Answers “what if”—e.g., “If UAV A had not hovered but continued, conformal trajectory tubes overlap UAV B’s by 85%; physical collision in ~3 s.” Critical for post-incident review and regulatory confidence-building.</p></li>
+</ol>
+</section>
+<section id="faithfulness-sufficiency-and-comprehensibility">
+<h1>17.2 Faithfulness, Sufficiency, and Comprehensibility<a class="headerlink" href="#faithfulness-sufficiency-and-comprehensibility" title="Link to this heading">#</a></h1>
+<p>Three widely used criteria for evaluating explanations (e.g., dual-channel outputs in Chapter 10):</p>
+<ul class="simple">
+<li><p><strong>Faithfulness / fidelity:</strong> The explanation must reflect what actually drove the decision, not post-hoc rationalization. If the system claims rule A, ablating A should change the decision. For LLM text, check <strong>hallucination</strong> against retrieved graph facts.</p></li>
+<li><p><strong>Sufficiency:</strong> Evidence and logic must <strong>support</strong> the conclusion—“obstacle detected” alone is insufficient; need type, range, time-to-collision, and legality of the maneuver.</p></li>
+<li><p><strong>Comprehensibility:</strong> Match <strong>cognitive load</strong> to the role—controllers need sub-second icons/alerts; investigators need full graph traces and probability curves.</p></li>
+</ul>
+</section>
+<section id="audit-trail-design-for-neuro-symbolic-systems">
+<h1>17.3 Audit Trail Design for Neuro-Symbolic Systems<a class="headerlink" href="#audit-trail-design-for-neuro-symbolic-systems" title="Link to this heading">#</a></h1>
+<p>Classical logs record APIs, memory, and error codes. For KG- and neural-driven low-altitude systems we need <strong>semantic audit trails</strong>.</p>
+<p>A competent neuro-symbolic audit record (ideally <strong>tamper-evident</strong>, e.g., on a ledger) should include:</p>
+<ol class="arabic simple">
+<li><p><strong>Input snapshot:</strong> Local slice of the temporal KG at decision time plus hashes of raw multi-sensor inputs.</p></li>
+<li><p><strong>Neural representation and confidence:</strong> Summary of neural outputs at that step plus <strong>conformal-calibrated</strong> intervals (e.g., “route tube radius 15 m, coverage guarantee 99.9%”).</p></li>
+<li><p><strong>Symbolic reasoning chain:</strong> IDs of fired rules, graph retrieval paths (e.g., SPARQL logs), conflict-resolution trace.</p></li>
+<li><p><strong>Model and knowledge versions:</strong> GNN checkpoint version and ontology/version tags so post-hoc audits use consistent baselines.</p></li>
+</ol>
+<p>This <strong>neural + symbolic</strong> dual trail lets investigators distinguish <strong>perception failure</strong> from <strong>knowledge / rule failure</strong>.</p>
+</section>
+<section id="how-human-regulators-use-explanations-and-certificates">
+<h1>17.4 How Human Regulators Use Explanations and Certificates<a class="headerlink" href="#how-human-regulators-use-explanations-and-certificates" title="Link to this heading">#</a></h1>
+<p>Explanations and certificates are consumed by humans—airspace managers, remote pilots, regulators—raising <strong>trust calibration</strong>:</p>
+<ul class="simple">
+<li><p><strong>Avoid automation bias:</strong> After long success, overseers may rubber-stamp. UIs presenting high-risk compliance certificates should force <strong>active acknowledgment</strong> of key causal risk points.</p></li>
+<li><p><strong>Handle degradation:</strong> When Chapter 16’s monitors detect <strong>severe drift</strong> and conformal sets become too wide for useful avoidance, the system <strong>revokes</strong> “high-confidence certificates.” The UI must clearly signal downgrade from “AI decision mode” to <strong>conservative rule hold</strong> and demand human takeover.</p></li>
+</ul>
+</section>
+<section id="interfaces-to-aviation-adas-safety-standards">
+<h1>17.5 Interfaces to Aviation / ADAS Safety Standards<a class="headerlink" href="#interfaces-to-aviation-adas-safety-standards" title="Link to this heading">#</a></h1>
+<p>Scaling neuro-symbolic AI in low-altitude traffic must align with frameworks such as <strong>DO-178C</strong> and <strong>SOTIF / ISO 21448</strong>—where neuro-symbolic design helps.</p>
+<ul class="simple">
+<li><p><strong>DO-178C (airborne software):</strong> Pure deep learning’s opacity and huge state space struggle at high criticality levels. Neuro-symbolic <strong>symbolic rule layers (RBox)</strong> built from deterministic logic can map to high- and low-level requirements and undergo <strong>formal verification</strong>.</p></li>
+<li><p><strong>SOTIF (safety of the intended functionality):</strong> Emphasizes unknowns outside the operational design domain (ODD). Conformal prediction and concept-drift mechanisms can trigger explicit degradation when encountering <strong>unknown-unsafe</strong> situations—consistent with SOTIF’s safety loop.</p></li>
+</ul>
+<p>KG-backed audit logs can be packaged as <strong>certification artifacts</strong> for authorities, shortening evidence cycles for new AI subsystems.</p>
+</section>
+<section id="from-model-trustworthiness-to-governance-trustworthiness">
+<h1>17.6 From Model Trustworthiness to Governance Trustworthiness<a class="headerlink" href="#from-model-trustworthiness-to-governance-trustworthiness" title="Link to this heading">#</a></h1>
+<p><strong>Model trustworthiness</strong> is an engineering and mathematical question—robustness, accuracy, theoretical bounds. At city scale, with vast fleets carrying logistics, mobility, and emergency missions, we need <strong>governance trustworthiness</strong>—a <strong>sociotechnical</strong> blend of technology, institutions, people, and environment.</p>
+<p>Neuro-symbolic AI bridges:</p>
+<ul class="simple">
+<li><p><strong>Connectionism (neural nets):</strong> Rich perception of the physical world and massive dynamic data—<strong>efficiency</strong> of governance.</p></li>
+<li><p><strong>Symbolism (KG + rules):</strong> Explicit law, ethics, and physical safety floors—<strong>bottom lines</strong> of governance.</p></li>
+<li><p><strong>Explanation and audit interfaces:</strong> Prevent black-box decisions from sidelining human oversight—<strong>legitimacy</strong> of governance.</p></li>
+</ul>
+<p>The “Trustworthy Certification” narrative is now complete: knowledge substrate, dynamic reasoning, calibration, and audit-oriented design form a coherent algorithmic stack. Part VI (system foundations) lifts the view to engineering: deploying this stack on city-scale cloud–edge architectures and operational low-altitude governance engines.</p>
+</section>
+<section id="chapter-summary">
+<h1>Chapter Summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>This chapter ties explainability evaluation, audit trails, and regulatory interfaces to the move from technical to governance trust: layered explanations (local, rule-based, causal); faithfulness, sufficiency, comprehensibility; semantic logs linking inputs, neural outputs, rules, and versions; human trust calibration and degradation signaling; alignment with DO-178C and SOTIF; and governance trustworthiness as the overarching goal.</p>
+</section>
+<section id="key-concepts">
+<h1>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>Multi-layer explanation:</strong> Perception, rules, and causal/counterfactual views.</p></li>
+<li><p><strong>Faithfulness:</strong> Whether explanations reflect true decision drivers.</p></li>
+<li><p><strong>Audit trail:</strong> Tamper-evident record of inputs, inference, versions, and actions.</p></li>
+<li><p><strong>Trust calibration:</strong> Appropriate—not excessive—human reliance on automation.</p></li>
+<li><p><strong>Governance trustworthiness:</strong> Sociotechnical trust across tech, policy, people, and environment.</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why should one system offer local, rule-based, and causal explanations together?</p></li>
+<li><p>Why must neuro-symbolic audit logs capture both neural and symbolic layers?</p></li>
+<li><p>In moving from model to governance trust, what becomes the primary object of evaluation?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case Study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p><strong>Post-hoc audit of an emergency return command:</strong> Reconstruct a full semantic trail from input snapshots, graph retrieval paths, GNN risk scores, rule hits, and final control—supporting investigation and accountability.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure Suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 17-1: Three layers—local, rule-based, counterfactual.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure17-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 17-2: Data structure of neuro-symbolic audit logs.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure17-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 17-3: How regulators, operators, and executors consume explanations and certificates.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure17-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula Index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>This chapter is criteria- and interface-focused; no core derivations.</p></li>
+<li><p>Index dimensions: faithfulness, sufficiency, comprehensibility; log quadruple—input, model, rules, action.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Arrieta, A. B., et al. (2020). Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI. <em>Information Fusion</em>, 58, 82–115.</p></li>
+<li><p>Jacovi, A., &amp; Goldberg, Y. (2020). Towards Faithfully Interpretable NLP Systems: A Survey. <em>Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics</em> (ACL).</p></li>
+<li><p>Molnar, C. (2020). <em>Interpretable Machine Learning: A Guide for Making Black Box Models Explainable</em> (2nd ed.).</p></li>
+<li><p>RTCA (2011). <em>DO-178C: Software Considerations in Airborne Systems and Equipment Certification</em>.</p></li>
+<li><p>ISO (2022). <em>ISO 21448: Road Vehicles — Safety of the Intended Functionality (SOTIF)</em>.</p></li>
+<li><p>Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016). “Why Should I Trust You?”: Explaining the Predictions of Any Classifier. <em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em> (KDD).</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">16.1 Failure Modes in Online Inference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#faithfulness-sufficiency-and-comprehensibility">17.2 Faithfulness, Sufficiency, and Comprehensibility</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#audit-trail-design-for-neuro-symbolic-systems">17.3 Audit Trail Design for Neuro-Symbolic Systems</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-human-regulators-use-explanations-and-certificates">17.4 How Human Regulators Use Explanations and Certificates</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces-to-aviation-adas-safety-standards">17.5 Interfaces to Aviation / ADAS Safety Standards</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-model-trustworthiness-to-governance-trustworthiness">17.6 From Model Trustworthiness to Governance Trustworthiness</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case Study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure Suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula Index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

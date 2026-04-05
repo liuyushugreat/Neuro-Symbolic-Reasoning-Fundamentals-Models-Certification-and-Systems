@@ -1,0 +1,1078 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.1 Propositional logic and first-order predicate logic &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html" />
+    <link rel="prev" title="1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.1 Propositional logic and first-order predicate logic</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2.1 Propositional logic and first-order predicate logic</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-constraints-and-reasoning-chains">2.2 Rules, constraints, and reasoning chains</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-chaining-backward-chaining-and-resolution">2.3 Forward chaining, backward chaining, and resolution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-logic-and-ontology-languages-foundations">2.4 Description logic and ontology languages: foundations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertain-logic-and-fuzzy-logic-an-introduction">2.5 Uncertain logic and fuzzy logic: an introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-formal-logic-to-engineering-rule-systems">2.6 From formal logic to engineering rule systems</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplement-logic-programming-horn-clauses-and-modern-symbolic-reasoning-tools">2.7 Supplement: logic programming, Horn clauses, and modern symbolic reasoning tools</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">Discussion questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>If the previous chapter mainly answered <em>why</em> AI must move from symbolic–connectionist opposition toward neuro-symbolic reconstruction, this chapter answers <em>why</em>, in the renewed neuro-symbolic era, <strong>formal logic, rule systems, and automated reasoning</strong> remain unavoidable theoretical foundations. Whether one later uses knowledge graphs, graph neural networks, differentiable logic, probabilistic logic programming, or neuro-symbolic frameworks coupling large language models with external solvers, whenever a system must <strong>explicitly</strong> express concepts, relations, constraints, reasoning chains, and auditable grounds, it returns to <strong>logical representation and rule-based inference</strong>.</p>
+<p>On the surface, the deep learning era has accustomed many researchers to vectors, tensors, and parameters; yet on questions of rule consistency, concept hierarchies, causal dependence, institutional constraint, and accountability, continuous representations do not automatically replace formalization. In safety-critical systems a model must not only “output a result” but “state grounds, show process, verify consistency, and delimit boundaries”—which requires a <strong>logical language</strong> for objects, attributes, relations, and rules in the world, plus <strong>controllable inference</strong> from known facts to new conclusions.</p>
+<p>This chapter pursues that goal. It introduces propositional logic and first-order predicate logic as a clear, compositional knowledge framework; discusses rules, constraints, and reasoning chains and how engineering knowledge systems grow from simple logical forms to executable rule structure; presents forward chaining, backward chaining, and resolution as classical automated reasoning mechanisms; builds on description logic and ontology languages for concept hierarchies, relational constraints, and semantic consistency; introduces uncertain and fuzzy logic to explain why real knowledge is often poorly captured by pure Boolean logic; and closes with an engineering view of how formal logic becomes rule engines, knowledge bases, business decision systems, and structural resource in modern neuro-symbolic stacks.</p>
+<p>The chapter does not aim to train pure logicians. It aims to establish a key idea: neuro-symbolic AI is “symbolic” not because it borrows a few logical terms but because core capabilities—<strong>knowledge expression, rule constraint, explanation generation, inference control, certification auditing</strong>—rest on formal logic and its engineering variants. Without this base, later discussion of KGs, ontologies, neural constraint learning, differentiable inference, probabilistic logic programming, and certification-grade reasoning loses solid footing.</p>
+<section id="propositional-logic-and-first-order-predicate-logic">
+<h1>2.1 Propositional logic and first-order predicate logic<a class="headerlink" href="#propositional-logic-and-first-order-predicate-logic" title="Link to this heading">#</a></h1>
+<p>Formal logic is among the earliest and most central theoretical bases of symbolic AI. Its importance is not that it exhausts real-world complexity but that it supplies a <strong>strict, clear, compositional</strong> expressive framework—turning knowledge from vague natural-language statements into <strong>machine-operable, verifiable, inferable</strong> formal objects. From a logical viewpoint, knowledge is not only <em>what is said</em> but <em>in what structure it is expressed</em> and <em>what conclusions follow under which rules</em>. For all later neuro-symbolic methods, this formal expressive power is foundational.</p>
+<p><strong>Propositional logic</strong> is the simplest logical system. It treats a whole statement as a <strong>proposition</strong> and cares only whether that proposition is true or false, not internal structure. For example, “Aircraft A entered a no-fly zone,” “Weather is severe,” “There is conflict risk” can each be atomic propositions. Propositional logic is structurally simple and semantically clear, suited to basic facts and Boolean combinations. Through conjunction, disjunction, negation, implication, and biconditional, richer formulas are built. If <span class="math notranslate nohighlight">\(P\)</span> means “aircraft entered no-fly zone” and <span class="math notranslate nohighlight">\(Q\)</span> means “system raises alarm,” then <span class="math notranslate nohighlight">\(P \rightarrow Q\)</span> means “if the aircraft entered the no-fly zone, the system raises an alarm.”</p>
+<p>Basic semantics rests on <strong>truth values</strong>. Each proposition is true or false under an interpretation; compound truth is determined by components and connectives. Conjunction <span class="math notranslate nohighlight">\(P \land Q\)</span> is true only if both are true; disjunction <span class="math notranslate nohighlight">\(P \lor Q\)</span> if at least one is true; implication <span class="math notranslate nohighlight">\(P \rightarrow Q\)</span> is false only when <span class="math notranslate nohighlight">\(P\)</span> is true and <span class="math notranslate nohighlight">\(Q\)</span> is false, true otherwise. Though abstract, this removes dependence on tone, rhetoric, or implicit context: formulas have <strong>strict truth conditions</strong>.</p>
+<p>Propositional logic suits simple rules but is <strong>expressively limited</strong>: it cannot analyze internal objects, attributes, and relations. “All UAS must obey airspace rules” and “Some UAS violated rules” become two separate propositions with no internal structure for “UAS,” “obey,” or “airspace rules.” Propositional logic expresses <strong>how facts combine</strong>, not <strong>what objects and relations facts are made of</strong>.</p>
+<p><strong>First-order predicate logic</strong> extends the language with individuals, variables, predicates, functions, and quantifiers. Knowledge decomposes into “who has what property,” “who stands in what relation to whom,” and “which rules hold universally or existentially.” For example, let <span class="math notranslate nohighlight">\(UAV(x)\)</span> mean “<span class="math notranslate nohighlight">\(x\)</span> is a UAS” and <span class="math notranslate nohighlight">\(MustFollow(x,r)\)</span> mean “<span class="math notranslate nohighlight">\(x\)</span> must follow rule <span class="math notranslate nohighlight">\(r\)</span>.” Then “all UAS must follow airspace rules” becomes:
+$<span class="math notranslate nohighlight">\(
+\forall x \, (UAV(x) \rightarrow MustFollow(x, AirspaceRule))
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\forall x<span class="math notranslate nohighlight">\( is universal quantification. “There exists a UAS on an emergency mission” becomes:
+\)</span><span class="math notranslate nohighlight">\(
+\exists x \, (UAV(x) \land EmergencyMission(x))
+\)</span><span class="math notranslate nohighlight">\(
+with \)</span>\exists x$ for existential quantification.</p>
+<p>First-order logic <strong>qualitatively</strong> strengthens representation: universal and existential laws without per-object rules; relations via predicates and variables (e.g. <span class="math notranslate nohighlight">\(ConflictRisk(A,B)\)</span>); compositional structure over classes, attributes, relations, and rule schemes—central for KGs, ontologies, and rule reasoning.</p>
+<p>In applications, propositional logic is a pedagogical entry for rule structure, Boolean conditions, and basic inference; first-order logic is a natural base for <strong>domain knowledge</strong> organizing objects, relations, and general rules. Many early expert systems, though not always written in standard logical syntax, mirrored these structures in spirit.</p>
+<p>Greater expressiveness brings <strong>harder inference</strong>. Propositional logic is relatively decidable with truth tables and standard algorithms; first-order logic is generally more complex and may not decide in finite steps. Automated reasoning algorithms, restricted description logics, and layered engineering rule systems all seek <strong>balance between expressiveness and computability</strong>.</p>
+<p>From a neuro-symbolic viewpoint, propositional and first-order logic are not mere history but the <strong>semantic substrate</strong> of many modern methods—rules as losses, KG relations as learnable embeddings, LM outputs aligned with external solvers. The standing question remains: <strong>in what form is knowledge expressed, and how do rules constrain inference?</strong> Without logical grounding, designs slide toward vague empirical patching. Learning these logics is not reviving vintage expert systems but mastering, in a modern AI setting, the basic language of <strong>how explicit knowledge is possible</strong>.</p>
+</section>
+<section id="rules-constraints-and-reasoning-chains">
+<h1>2.2 Rules, constraints, and reasoning chains<a class="headerlink" href="#rules-constraints-and-reasoning-chains" title="Link to this heading">#</a></h1>
+<p>If logic supplies a <strong>language</strong> for knowledge, <strong>rule systems</strong> supply <strong>executable structure</strong>. In many tasks knowledge appears not as isolated propositions but as “if certain conditions hold, conclude or require something” or “under some circumstances the system must respect a limit.” That is the core of rules and constraints. Symbolic AI entered engineering less through abstract logic alone than through <strong>rule organization</strong> and <strong>traceable reasoning chains</strong> on top of it.</p>
+<p>A <strong>rule</strong> is structured knowledge from conditions to conclusions. The most common form is a production rule: <strong>IF</strong> condition <strong>THEN</strong> conclusion—e.g. “if aircraft enters no-fly zone, trigger high-risk alert”; “if weather above threshold and battery below threshold, forbid continuing the mission.” Rules are intuitive and maintainable by domain experts. Many business systems use production-style knowledge even when not written as pure logic; the essence still tracks logical implication.</p>
+<p>Rules differ from bare formulas in emphasizing an <strong>operational</strong> reading: logic asks whether a proposition holds under an interpretation; rule systems further ask <strong>what judgment or action fires when conditions are detected</strong>. Rules can represent knowledge and <strong>drive control flow</strong>—well suited to operational decisions, risk assessment, workflow, and compliance.</p>
+<p>Closely related are <strong>constraints</strong>. Rules often say <strong>what can be inferred</strong>; constraints say <strong>what must not be violated</strong> or <strong>what boundaries must hold</strong>—e.g. “density of aircraft in a corridor at any time ≤ threshold”; “emergency missions outrank ordinary logistics”; “paths must not cross no-fly zones.” Constraints often encode <strong>safety envelopes, regulatory red lines, or physical limits</strong>. Good average behavior means little if key constraints are broken.</p>
+<p>In knowledge organization, rules and constraints interleave: constraints can be encoded as rules (“if path crosses no-fly zone, mark noncompliant”); rules can be read as <strong>soft</strong> constraints guiding judgment. Together they form a knowledge layer: rules <strong>derive</strong> conclusions and trigger processes; constraints <strong>define</strong> admissible and forbidden regions. Neuro-symbolic “rule injection,” “constraint learning,” and “compliance checking” sit on this layer.</p>
+<p>With rules and constraints comes the <strong>reasoning chain</strong>: from initial facts, through repeated rule matching and intermediate conclusions, to a final judgment or decision—e.g. detect abnormal position → infer high-risk airspace → combine mission type and weather → raise conflict risk → trigger rerouting priority. Each step depends on prior facts or conclusions, forming a chain. That chain is not only an internal computation path but the <strong>source of interpretability and auditability</strong>—supporting answers to “why this decision” by tracing the chain.</p>
+<p>Reasoning chains matter in three ways. First, <strong>structured explanation</strong>: unlike black boxes that output only scores or labels, rule-driven chains show which conditions fired, which rules activated, and how conclusions compounded. Second, <strong>error localization</strong>: wrong outputs trace to mis-identified conditions, badly designed rules, or biased intermediate steps. Third, <strong>compliance auditing</strong>: regulated domains need not only results but <strong>processes consistent with rules and policy</strong>.</p>
+<p>Chains also bring <strong>complexity</strong>. Real rule networks are often branching, layered, possibly cyclic or <strong>conflicting</strong>. Different rules may support the same conclusion; constraints may tension—e.g. “emergency priority” vs. “no crossing no-fly zones.” Rule systems need <strong>hierarchy, priority, default strategies, and conflict resolution</strong>—not mere lists of clauses.</p>
+<p>For neuro-symbolic AI, rules and constraints are the <strong>interface</strong> between symbolic knowledge and statistical learning: rules as prior knowledge constraining output space; as regularizers in training; as <strong>post-hoc validators</strong> screening or correcting model outputs. Rule systems are not only legacy expert systems but <strong>living knowledge organization</strong> in hybrid architectures.</p>
+<p>Moving from formal logic to rules, constraints, and chains is <strong>knowledge engineering</strong> of logic: logic gives strict semantics; rules give executable structure; constraints define admissible space; chains turn static storage into <strong>dynamic judgment</strong>. Automated reasoning, description-logic concept constraints, probabilistic logic, and engineering rule engines all extend this frame.</p>
+</section>
+<section id="forward-chaining-backward-chaining-and-resolution">
+<h1>2.3 Forward chaining, backward chaining, and resolution<a class="headerlink" href="#forward-chaining-backward-chaining-and-resolution" title="Link to this heading">#</a></h1>
+<p>Given logical expressions and rule structure, a core question remains: <strong>how to derive new conclusions automatically from known facts and rules</strong>. That is the task of <strong>automated reasoning</strong>—not naively “applying rules” but choosing inference direction, organizing intermediates, controlling search, and reaching conclusions. Classical symbolic AI became complete knowledge systems largely through <strong>forward chaining, backward chaining, and resolution</strong>.</p>
+<p><strong>Forward chaining</strong> is <strong>data-driven</strong> reasoning from facts. The system checks the current fact base, finds rules whose premises are satisfied, adds their conclusions as new facts, and repeats until quiescence or a goal is reached. Example: facts “A in restricted area,” “restricted area + low visibility raises risk,” and “low visibility now” forward-chain to “A in restricted state” then “A’s risk level elevated.”</p>
+<p>Forward chaining fits <strong>streaming updates and event-driven</strong> settings naturally: new facts incrementally extend conclusions without full restart—useful in dynamic airspace monitoring where position, weather, and mission state continuously trigger downstream judgments. Its downside: with many rules and a specific goal, it may derive <strong>many irrelevant intermediates</strong>, increasing search cost.</p>
+<p><strong>Backward chaining</strong> is <strong>goal-driven</strong>: to test a goal, find rules that conclude it, treat their premises as new subgoals, recurse until facts support subgoals or search fails. Example: to test “high conflict risk for A,” find rules concluding that risk, then check premises such as path crossing, relative distance below threshold, priority conflict.</p>
+<p>Backward chaining suits <strong>goal-focused, query-style</strong> tasks—QA, diagnosis, rule query. It explores only what supports the goal, avoiding the proliferation of forward chaining. Logic programming and many diagnostic expert systems rely on it. It can be weaker for continuous streams of dynamic data than forward chaining, and deep rule nets may blow up recursive subgoal search.</p>
+<p>Forward and backward chaining are two <strong>control strategies</strong>: from the known vs. from the goal. Real systems often <strong>combine</strong> them—e.g. forward maintenance of live intermediate facts, backward verification or explanation for specific queries or alerts. Hybrid neuro-symbolic paths often mirror this: continuous data-driven state plus targeted rule queries and explanation tracebacks.</p>
+<p><strong>Resolution</strong> is another pillar, built on <strong>clausal</strong> forms in propositional and first-order logic. The idea is to <strong>resolve complementary literals</strong> to produce new clauses, iterating toward the <strong>empty clause</strong> to show unsatisfiability—hence that a conclusion follows from the KB (refutation completeness intuition). It is less “step along IF–THEN rules” than <strong>normalize KB and negated goal to clauses and apply one resolution rule</strong> uniformly.</p>
+<p>Example sketch: from “all emergency aircraft have high priority” and “A is emergency,” to prove “A has high priority,” assume the negation, clausify, resolve until empty clause—showing the goal is entailed. Compared with chaining, resolution is a unified <strong>proof mechanism</strong> with strong theoretical properties.</p>
+<p>Resolution underpins <strong>automated theorem proving</strong>, logic programming, and consistency checking. In first-order logic it pairs with <strong>unification</strong>: finding substitutions to match expressions—e.g. <span class="math notranslate nohighlight">\(Conflict(x,y)\)</span> with <span class="math notranslate nohighlight">\(Conflict(A,B)\)</span> via <span class="math notranslate nohighlight">\(x{=}A, y{=}B\)</span>. Unification lets rule application generalize beyond ground constants and deeply influenced logic programming and symbolic frameworks.</p>
+<p>Resolution is not always the most convenient <strong>engineering</strong> mechanism: theoretically unified but potentially heavy in large dynamic settings; less intuitive than rule chains to practitioners. Many deployed systems favor forward/backward chaining for runtime and reserve resolution for consistency checks, formal proof, or offline verification. Differentiable or probabilistic rule treatments often borrow <strong>unification-style matching and conclusion derivation</strong> without literal classical resolution.</p>
+<p>Together, these mechanisms represent <strong>propagation and event response</strong> (forward), <strong>goal-driven explanation</strong> (backward), and <strong>formal proof and consistency</strong> (resolution)—the technical base of classical symbolic inference and the conceptual source for rule control, solver calls, explainable chains, and formal verification in neuro-symbolic systems.</p>
+</section>
+<section id="description-logic-and-ontology-languages-foundations">
+<h1>2.4 Description logic and ontology languages: foundations<a class="headerlink" href="#description-logic-and-ontology-languages-foundations" title="Link to this heading">#</a></h1>
+<p>Propositional and first-order logic are powerful, yet large-scale knowledge engineering soon faced a practical issue: first-order logic is <strong>too general</strong>, inference can be hard, and modeling freedom too high for standardized, efficient reasoning. For <strong>concept hierarchies, class membership, attribute restrictions, relational constraints, and instance classification</strong>, an intermediate logic is needed—expressive enough for structural knowledge yet <strong>computationally tractable</strong>. <strong>Description logics (DLs)</strong> grew in that gap.</p>
+<p>DLs are a family of restricted, structured formalisms for <strong>concepts, roles (relations), and individuals</strong>. “Concepts” approximate classes of objects; “roles” are binary relations; “individuals” are instances. In low-altitude settings, “UAS,” “emergency aircraft,” “no-fly zone,” “high-priority mission” may be concepts; “located in,” “executes,” “constrained by,” “in conflict with” may be roles; specific aircraft, missions, zones are individuals. DL aims at <strong>inferable semantic structure</strong> over these elements.</p>
+<p>DL excels at <strong>concept hierarchies and constraints</strong>—e.g. emergency aircraft subclass of aircraft; aircraft on emergency missions usually high priority; objects in no-fly zones may not be legally crossed by paths. Natural language alone is ambiguous; full first-order encodings are heavy to manage at scale; DL systematizes these common patterns.</p>
+<p>Structurally, DL often separates <strong>terminological (TBox)</strong> and <strong>assertional (ABox)</strong> layers. TBox defines concepts and roles generally—e.g. “emergency aircraft = aircraft executing emergency missions.” ABox asserts instances—“A is emergency aircraft,” “A is in corridor C.” Reasoners combine universal and particular knowledge—e.g. if TBox says all emergency aircraft are high-priority and ABox says A is emergency, infer A is high-priority.</p>
+<p>A central DL idea is <strong>concept constructors</strong>: intersection, union, complement; existential and universal role restrictions; cardinality bounds. Example: “high-risk aircraft” as “aircraft in restricted airspace with low battery”; “compliant path” requiring all traversed cells are not no-fly; “monitored aircraft” as “linked to at least one supervisory node.” Such expressions pervade KGs, ontologies, and rule systems.</p>
+<p><strong>Ontology languages</strong> standardize knowledge representation on top of DL ideas. An ontology is not merely a taxonomy or glossary but a <strong>formal semantic architecture</strong> for a domain: how concepts are defined, how they relate, which constraints must hold, what is derivable. It answers not only “what terms exist” but <strong>how meaning and inference are structured</strong>.</p>
+<p>In modern practice, <strong>RDF, RDFS, and OWL</strong> anchor the Semantic Web. RDF uses <strong>subject–predicate–object</strong> triples as the basic frame. RDFS adds classes, subclasses, properties. OWL adds richer DL-style constructs—e.g. <code class="docutils literal notranslate"><span class="pre">EmergencyUAV</span></code> subclass of <code class="docutils literal notranslate"><span class="pre">UAV</span></code>, <code class="docutils literal notranslate"><span class="pre">hasPriority</span></code> as a property, <code class="docutils literal notranslate"><span class="pre">HighRiskZone</span></code> disjoint from <code class="docutils literal notranslate"><span class="pre">SafeZone</span></code>, roles transitive or symmetric.</p>
+<p>DL and ontology languages lift domain knowledge from <strong>scattered rules</strong> to <strong>structured semantics</strong>. Rule systems excel at “if–then” but not always at <strong>classification and layering</strong>; DL and ontologies fill that layer. Together, systems answer not only “did a rule fire” but “what class an object belongs to,” “what constraints apply to a class,” “whether relations inherit or exclude”—foundational for KG construction, semantic retrieval, rule matching, and neuro-symbolic reasoning.</p>
+<p>DL is not a trivial weakening of first-order logic but a <strong>deliberate trade</strong>: some expressive freedom for better decidability, standards, and engineering fit—hence a natural language base for <strong>knowledge-base construction</strong>. Later chapters on low-altitude ontologies, unified KG representation, and rule templates lean heavily on DL and OWL.</p>
+</section>
+<section id="uncertain-logic-and-fuzzy-logic-an-introduction">
+<h1>2.5 Uncertain logic and fuzzy logic: an introduction<a class="headerlink" href="#uncertain-logic-and-fuzzy-logic-an-introduction" title="Link to this heading">#</a></h1>
+<p>So far, propositional logic, first-order logic, rule systems, and DL largely assume <strong>bivalent</strong> knowledge: true/false, premise satisfied or not, constraint holds or fails. Real knowledge is often <strong>probabilistic, incomplete, fuzzy, conflicting, or context-dependent</strong>—e.g. “weather is poor,” “path risk is elevated,” “targets are relatively close,” “sensor state is unstable.” Pure Boolean logic can become rigid, brittle, or unable to cover real complexity.</p>
+<p>Symbolic reasoning therefore extended toward <strong>uncertain</strong> and <strong>fuzzy</strong> logic. <strong>Uncertain logic</strong> handles <strong>incompleteness and uncertainty</strong>—when truth is not definite and we need “possibly true,” “credibility of conclusion,” etc. <strong>Fuzzy logic</strong> handles <strong>graded concept boundaries</strong>—properties holding to a <strong>degree</strong> rather than absolutely—e.g. “distance between aircraft is small” as continuous membership.</p>
+<p><strong>Uncertain logic</strong> responds to missing information, noisy sensing, open-world randomness, and conflicting or weighted sources. Strict deduction remains useful but insufficient without ways to say conclusions are <strong>provisionally</strong> credible under current evidence. Frameworks include probabilistic logic, Bayesian networks, Dempster–Shafer theory, default logic, nonmonotonic logic—different forms sharing the goal of reasoning under <strong>incomplete, revisable, weighted</strong> evidence.</p>
+<p><strong>Nonmonotonic logic</strong> is especially important. Classical logic is <strong>monotonic</strong>: added knowledge never retracts prior conclusions. Real reasoning often <strong>revises</strong>—e.g. “path A feasible” until new weather revokes it. Default and nonmonotonic logics capture “accept by default unless defeated,” essential in open worlds where information is rarely complete and static.</p>
+<p><strong>Fuzzy logic</strong> targets <strong>vague boundaries</strong>. Classically an object is in or out of a set; fuzzily it has <strong>membership degree</strong> in <span class="math notranslate nohighlight">\([0,1]\)</span>—e.g. relation to a hazard zone as “0.8 inside”; weather along a continuum of severity. <strong>Membership functions</strong> map states to degrees; operations generalize intersection, union, complement. Rules become “if proximity is high and speed is large, raise risk degree”—common in control, risk, and decision support where rules are inherently graded and experiential.</p>
+<p>Uncertain vs. fuzzy logic address different questions: uncertainty is <strong>epistemic</strong> (what we know about truth); fuzziness is <strong>semantic</strong> (how crisp the concept is). “Is it raining?” under bad sensors is uncertain; “strong wind” may be fuzzy. Real systems often <strong>combine</strong> probability, fuzziness, and rules.</p>
+<p>For neuro-symbolic AI, these extensions <strong>bridge continuous learners and symbolic rules</strong>. Deep outputs are rarely hard Booleans but probabilities, similarities, confidences, or embeddings; symbol-only bivalence couples poorly. Fuzzy and probabilistic layers let rules stay <strong>structural</strong> while admitting continuous and uncertain evidence—underlying many differentiable reasoning frameworks, logic tensor networks, neural theorem provers, and probabilistic logic programs.</p>
+<p>Learning uncertain and fuzzy logic is not abandoning classical logic but seeing that real knowledge systems balance <strong>rigor and flexible expression</strong>: classical logic supplies <strong>skeleton</strong>; uncertainty and fuzziness supply <strong>open-world and graded</strong> behavior—an important transition toward modern hybrid inference.</p>
+</section>
+<section id="from-formal-logic-to-engineering-rule-systems">
+<h1>2.6 From formal logic to engineering rule systems<a class="headerlink" href="#from-formal-logic-to-engineering-rule-systems" title="Link to this heading">#</a></h1>
+<p>This chapter has covered formal logic, rule structure, automated reasoning, description logic, and uncertainty extensions. A natural question remains: <strong>how do these abstractions enter real engineering systems</strong>? Formal logic is not confined to textbooks; it permeates expert systems, business rule engines, KG platforms, compliance systems, risk frameworks, and modern neuro-symbolic stacks. “From formal logic to engineering rule systems” does not mean copying math symbols into code wholesale but translating <strong>expressive power, rule thinking, constraint control, and inference structure</strong> into <strong>maintainable, executable, scalable</strong> design.</p>
+<p>Engineering rule systems begin with <strong>structuring domain knowledge</strong>—initially in regulations, manuals, expert practice, oversight requirements, incidents, workflows. Such knowledge is not machine-ready; it needs concept extraction, relation organization, rule consolidation, and conflict analysis—<strong>knowledge engineering</strong> in the deep sense: not only “entering rules” but answering what core objects exist, how they relate, which rules are hard vs. soft, which apply generally vs. with exceptions, how conflicts resolve—decisions that <strong>determine system quality</strong>.</p>
+<p>Implementation typically layers <strong>knowledge storage</strong> (facts, rules, terminology, metadata), <strong>inference execution</strong> (forward/backward chaining, constraint checks, conflict resolution, conclusion generation), <strong>explanation and audit</strong> (rule traces, chains, accountability), and <strong>interfaces</strong> (data ingest, business integration, queries). An engineering rule system is <strong>architecture for knowledge-driven decision</strong>, not a single rule file.</p>
+<p>Compared with textbook logic, engineering must handle <strong>scale</strong> (thousands of rules, multi-level concepts), <strong>conflict</strong> (priority, exceptions, human review), <strong>performance</strong> (real-time latency), and <strong>maintenance</strong> (evolving policy and operations)—often using <strong>restricted</strong> subsets: production rules, decision tables, constraint templates, domain-specific languages; RDF/OWL/SHACL/SPARQL on KG platforms. Logic undergoes <strong>formal abstraction → restricted expression → platform implementation</strong>—preserving core ideas in forms closer to development and business collaboration.</p>
+<p>In modern AI, rule systems have <strong>not</strong> been sidelined by deep learning. They act as <strong>safety rails</strong> filtering illegal outputs, checking hard constraints, and supplying explanatory grounds; as <strong>external knowledge</strong> coupled with KGs, retrieval, and solvers. In low-altitude traffic, state recognition, trajectory prediction, and risk scoring may be neural; no-fly rules, priority constraints, compliance checks, and explanation chains fit <strong>rule systems</strong>. The relation is <strong>division of labor</strong>, not replacement.</p>
+<p>Neuro-symbolic AI is, in part, <strong>fusion of engineering rule systems with modern learning</strong>. Historically rules and statistics sat in different stacks; today they increasingly form <strong>layered systems</strong>: rules as priors before training, constraints during training, validators after inference; neural nets cover perception, high-dimensional representation, and pattern induction where rules are weak. Formal logic is no longer “the sole engine of all reasoning” but a <strong>critical structural resource</strong> in complex systems.</p>
+<p>For this book’s line, the transition from logic to engineering rules is essential: <strong>knowledge bases</strong> need ontologies and rule templates; <strong>static reasoning</strong> needs queryable rules and chains; <strong>dynamic reasoning</strong> needs constraint screening and event semantics; <strong>certification</strong> needs auditable logical grounds; <strong>deployment</strong> needs <strong>layered coordination</strong> of rule services and model services. Engineering rule systems are the <strong>bridge</strong> embedding logic in real governance and decision-making.</p>
+<p>The upshot: formal logic’s value is not building intelligence from logic alone but supplying <strong>explicit knowledge skeletons, rule control, and auditable inference structure</strong> for engineering systems that turn logic from theory into <strong>governable, operational</strong> capability—avoiding both “logic is obsolete theory” and “rules are just nested if-statements.” Logic and rules in modern AI are <strong>deeper and more foundational</strong> than those caricatures suggest.</p>
+</section>
+<section id="supplement-logic-programming-horn-clauses-and-modern-symbolic-reasoning-tools">
+<h1>2.7 Supplement: logic programming, Horn clauses, and modern symbolic reasoning tools<a class="headerlink" href="#supplement-logic-programming-horn-clauses-and-modern-symbolic-reasoning-tools" title="Link to this heading">#</a></h1>
+<p>Earlier sections centered classical symbolic concepts; this supplement sketches <strong>branches</strong> important in automated reasoning research and implementation—rooted in classical logic yet advancing efficiency, modeling flexibility, and engineering fit—so readers can later place neuro-symbolic tools in context.</p>
+<p><strong>Horn clauses and logic programming.</strong> Resolution works on clausal form, but full first-order clause sets are often heavy. <strong>Horn clauses</strong>—clauses with <strong>at most one positive literal</strong>—retain substantial expressiveness while improving computational behavior. They naturally encode “several premises jointly imply one conclusion,” the dominant pattern of domain knowledge. <strong>Logic programming</strong> treats execution as <strong>automatic proof</strong> of logical goals. <strong>Prolog</strong> uses SLD resolution, combining backward chaining and unification so programmers write clauses and the engine searches proofs. Prolog has limits on big data and complex control flow, but its “declare what holds, let the engine infer” paradigm shaped later tools. <strong>Datalog</strong> is a function-free fragment of Prolog with guaranteed termination and controlled complexity—suited to <strong>KG query, relational reasoning, and deductive databases</strong>. Many KG reasoners and rule-mining tools implement <strong>Datalog-style</strong> semantics.</p>
+<p><strong>Answer set programming (ASP).</strong> Classical logic programming is often monotonic; real systems need <strong>defaults, exceptions, and constraint satisfaction</strong>. <strong>ASP</strong> encodes problems as rules and integrity constraints; solvers compute <strong>stable models (answer sets)</strong>—each a consistent solution. Unlike classical LP, ASP supports <strong>negation as failure</strong>, default reasoning, and constraint propagation—elegant for “hold by default unless defeated.” <strong>Clingo</strong>-style solvers are used in combinatorial optimization, scheduling, diagnosis, and consistency verification. For safety-critical systems, ASP can <strong>enumerate</strong> admissible states under explicit constraints—valuable for conflict detection and compliance review.</p>
+<p><strong>SAT and SMT solvers.</strong> Another influential line is <strong>Boolean satisfiability (SAT)</strong> and <strong>satisfiability modulo theories (SMT)</strong>. SAT asks whether a propositional formula is satisfiable; though NP-complete, modern solvers with conflict-driven clause learning handle <strong>millions of variables</strong> in practice. <strong>SMT</strong> extends SAT with theories—integers, reals, arrays, bit-vectors; <strong>Z3</strong> is a flagship solver. SAT/SMT are central in <strong>software and hardware verification, program analysis, protocol checking</strong>. In neuro-symbolic stacks they can <strong>verify</strong> neural outputs against constraints or check embedded logical specs during training. Recent work couples <strong>LLMs with SMT</strong>: language models for understanding and formalization, solvers for <strong>strict logical adjudication</strong>—a typical neuro-symbolic pattern at the verification interface.</p>
+<p><strong>Differentiable logic programming.</strong> Classical inference is <strong>discrete and non-differentiable</strong>, blocking end-to-end gradient training. <strong>Differentiable logic</strong> aims to embed inference in differentiable computation. <strong>DeepProbLog</strong> extends probabilistic logic programming (ProbLog) with <strong>neural predicates</strong>, letting parts of rules be defined by nets while preserving probabilistic semantics for end-to-end training. <strong>NeurASP</strong> couples ASP answer-set semantics with neural perception while keeping logical constraints intact. The shared goal: rules participate in <strong>learning and optimization</strong>, not only as external supervision—important in safety-critical neuro-symbolic settings where domain rules should move from <strong>external oversight to internal integration</strong> while retaining interpretable structure.</p>
+<p>From Horn clauses and logic programming through ASP and SAT/SMT to differentiable logic, these tools form a <strong>spectrum</strong> of modern symbolic machinery—different strategies and use cases, shared trend: symbolic reasoning is not frozen history but <strong>evolving</strong> resource for efficient, flexible <strong>coupling with neural methods</strong>. Later chapters on KG reasoning, constraint embedding, certification, and integration revisit these ideas.</p>
+</section>
+<section id="chapter-summary">
+<h1>Chapter summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>This chapter surveyed <strong>symbolic logic, rule systems, and automated reasoning</strong> as the formal base of neuro-symbolic AI. Propositional and first-order logic supply languages from Boolean facts to object–relation–quantifier structure, organizing knowledge as inferable formal objects. Rules, constraints, and chains turn abstract logic into <strong>executable</strong> structure for interpretable judgment under conditions and boundaries. Forward chaining, backward chaining, and resolution illustrate <strong>data-driven, goal-driven, and proof-oriented</strong> control. Description logic and ontology languages balance expressiveness and computability for <strong>concepts, constraints, and consistency</strong>. Uncertain and fuzzy logic extend classical logic for <strong>incomplete knowledge, graded boundaries, and open worlds</strong>. Finally, the engineering view shows how logic becomes rule engines, KG platforms, compliance systems, and structural resource in neuro-symbolic hybrids.</p>
+<p>The goal is not to leave readers in a historical symbolic frame but to see that <strong>modern neuro-symbolic AI inherits and reconstructs</strong> logical representation, rule control, and automated inference. Later material on KGs, ontology modeling, constraint learning, differentiable inference, probabilistic logic programming, certification, and deployment will <strong>return</strong> to these foundations. The next chapter turns to <strong>knowledge graphs and domain knowledge representation</strong>—how to build a unified semantic base for complex real domains on top of formal logic and engineering rules.</p>
+</section>
+<section id="key-concepts">
+<h1>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>Propositional logic</strong>: logic of whole-proposition truth values.</p></li>
+<li><p><strong>First-order predicate logic</strong>: logic with individuals, predicates, and quantifiers for objects, attributes, and relations.</p></li>
+<li><p><strong>Rules and constraints</strong>: structured knowledge for “what can be inferred” vs. “what must not be violated.”</p></li>
+<li><p><strong>Forward and backward chaining</strong>: classic data-driven vs. goal-driven inference strategies.</p></li>
+<li><p><strong>Description logic</strong>: DL family balancing expressiveness and decidability, underpinning ontology languages.</p></li>
+</ul>
+</section>
+<section id="discussion-questions">
+<h1>Discussion questions<a class="headerlink" href="#discussion-questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>What is the core expressive difference between propositional and first-order logic?</p></li>
+<li><p>Why do rule systems often deploy more easily in engineering than raw logical formulas alone?</p></li>
+<li><p>In neuro-symbolic systems, which tasks suit forward chaining, backward chaining, and resolution respectively?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p><strong>Low-altitude flight-permit auto-review</strong>: express basic Boolean conditions in propositional logic; express “all aircraft meeting specific conditions” in first-order logic; demonstrate forward or backward chaining from a fact base to conclusions such as “cleared for takeoff,” “manual review required,” or “operation forbidden.”</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 2-1: Comparing expressive power of propositional vs. first-order logic.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure2-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 2-2: Relations among rules, constraints, and reasoning chains.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure2-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 2-3: Contrasting workflows for forward chaining, backward chaining, and resolution.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure2-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Propositional implication: <span class="math notranslate nohighlight">\(P \rightarrow Q\)</span></p></li>
+<li><p>Universal example: <span class="math notranslate nohighlight">\(\forall x\,(\mathrm{UAV}(x) \rightarrow \mathrm{MustFollow}(x, \mathrm{AirspaceRule}))\)</span></p></li>
+<li><p>Existential example: <span class="math notranslate nohighlight">\(\exists x\,(\mathrm{UAV}(x) \wedge \mathrm{EmergencyMission}(x))\)</span></p></li>
+<li><p>Note: formulas emphasize logical expressions; later chapters compile these into graph rules and differentiable constraints.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Robinson, J. A. (1965). A Machine-Oriented Logic Based on the Resolution Principle. <em>Journal of the ACM</em>, 12(1), 23–41.</p></li>
+<li><p>Baader, F., Calvanese, D., McGuinness, D. L., Nardi, D., &amp; Patel-Schneider, P. F. (Eds.). (2003). <em>The Description Logic Handbook: Theory, Implementation, and Applications</em>. Cambridge University Press.</p></li>
+<li><p>Zadeh, L. A. (1965). Fuzzy Sets. <em>Information and Control</em>, 8(3), 338–353.</p></li>
+<li><p>Kowalski, R. (1979). <em>Logic for Problem Solving</em>. North-Holland.</p></li>
+<li><p>Reiter, R. (1980). A Logic for Default Reasoning. <em>Artificial Intelligence</em>, 13(1–2), 81–132.</p></li>
+<li><p>Russell, S., &amp; Norvig, P. (2021). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson.</p></li>
+<li><p>Gelfond, M., &amp; Lifschitz, V. (1988). The Stable Model Semantics for Logic Programming. <em>Proceedings of the 5th International Conference on Logic Programming</em>, 1070–1080.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2.1 Propositional logic and first-order predicate logic</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-constraints-and-reasoning-chains">2.2 Rules, constraints, and reasoning chains</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-chaining-backward-chaining-and-resolution">2.3 Forward chaining, backward chaining, and resolution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#description-logic-and-ontology-languages-foundations">2.4 Description logic and ontology languages: foundations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertain-logic-and-fuzzy-logic-an-introduction">2.5 Uncertain logic and fuzzy logic: an introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-formal-logic-to-engineering-rule-systems">2.6 From formal logic to engineering rule systems</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplement-logic-programming-horn-clauses-and-modern-symbolic-reasoning-tools">2.7 Supplement: logic programming, Horn clauses, and modern symbolic reasoning tools</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">Discussion questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

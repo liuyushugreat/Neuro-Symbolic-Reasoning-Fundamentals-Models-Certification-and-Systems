@@ -1,0 +1,1069 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>20.1 Spatiotemporal-Aware Graph Partitioning &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html" />
+    <link rel="prev" title="19.1 Roles of Edge vs. Cloud Inference" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>20.1 Spatiotemporal-Aware Graph Partitioning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#subgraph-cuts-boundary-coordination-and-cross-region-conflict-propagation">20.2 Subgraph Cuts, Boundary Coordination, and Cross-Region Conflict Propagation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelization-mechanisms-for-graph-inference-engines">20.3 Parallelization Mechanisms for Graph Inference Engines</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-balancing-for-large-scale-conflict-detection">20.4 Load Balancing for Large-Scale Conflict Detection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#throughput-and-fault-tolerance-at-thousand-uav-city-scale">20.5 Throughput and Fault Tolerance at Thousand-UAV City Scale</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#skygrid-from-research-prototype-to-engineering-substrate">20.6 SkyGrid: From Research Prototype to Engineering Substrate</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case Study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure Suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula Index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>The preceding chapters addressed the compute gap for neuro-symbolic reasoning in large systems and the basic organization of distributed inference under cloud–edge collaboration. At true city-scale low-altitude traffic, a deeper engineering question appears: even capable graph and neuro-symbolic models stall without <strong>spatiotemporal graph partitioning</strong> and <strong>high-concurrency inference engines</strong>. The problem is not a “small graph scaled up” but a <strong>large dynamic spatiotemporal graph</strong> driven by high-rate state updates, concurrent multi-agent interaction, local dense coupling, and cross-region propagation. The system must not only <strong>reason</strong> but <strong>reason at scale—fast and stably</strong>.</p>
+<p>Traditional single-machine graph stacks face three pressures: <strong>exploding graph scale</strong> as vehicles, airspace nodes, tasks, and rules grow together; <strong>highly uneven load</strong> concentrated in corridors, bottlenecks, and dense task zones; and <strong>non-local propagation</strong>—local deconfliction and flow shifts perturb neighbors and beyond. City-scale dynamic graph reasoning is therefore about <strong>partitioning without breaking validity</strong>, <strong>coherent boundaries</strong>, and <strong>controlled throughput</strong>.</p>
+<p>This chapter focuses on the critical step from research prototype to urban engineering substrate: <strong>spatiotemporal-aware partitioning</strong>, <strong>high-concurrency graph inference</strong>, and <strong>system-level throughput and resilience</strong>. We discuss why low-altitude graphs need more than static topology cuts—<strong>spatial proximity</strong>, <strong>temporal coupling</strong>, and <strong>risk propagation</strong> must co-design partitioning; how <strong>subgraph cuts</strong>, <strong>boundary coordination</strong>, and <strong>cross-region conflict propagation</strong> balance local autonomy and global consistency; how engines <strong>parallelize</strong> neuro-symbolic inference via layered batching, multi-queue scheduling, and asynchronous events; how <strong>structural load balancing</strong> addresses hotspot bursts beyond average capacity; how <strong>throughput and fault tolerance</strong> behave under thousand-UAV stress and unreliable infrastructure; and how <strong>SkyGrid</strong> names a city-scale neuro-symbolic substrate evolving from prototype to sustainable infrastructure.</p>
+<p>This chapter is not mere implementation trivia—it is the bridge from methods to deployable capability. Without it, KG foundations, dynamic models, and certification remain lab-scale; with it, neuro-symbolic systems can approach urban low-altitude governance.</p>
+<section id="spatiotemporal-aware-graph-partitioning">
+<h1>20.1 Spatiotemporal-Aware Graph Partitioning<a class="headerlink" href="#spatiotemporal-aware-graph-partitioning" title="Link to this heading">#</a></h1>
+<p>At city scale, <strong>partitioning is unavoidable</strong>: whole-graph maintenance and inference on one node breaks on memory, latency, and scheduling—whether for GNN message passing, relational rule search, or risk propagation. The first design question is <strong>how to cut the graph</strong>.</p>
+<p>Low-altitude traffic partitioning is <strong>not</strong> classical static graph partitioning aimed only at min-cut or balanced counts. Nodes and edges are <strong>spatiotemporal entities</strong> with physical location, temporal evolution, and risk coupling. Adjacency moves over time; corridor load fluctuates; conflict risk clusters locally. Purely topological balance can be graph-theoretically neat yet <strong>operationally wrong</strong>.</p>
+<p><strong>Spatiotemporal-aware partitioning</strong> uses three signals:</p>
+<ol class="arabic simple">
+<li><p><strong>Spatial proximity:</strong> Strongly geo-neighboring vehicles, corridors, vertiports, and supervisory nodes interact often and should co-reside in a local subgraph when possible.</p></li>
+<li><p><strong>Temporal coupling:</strong> Entities may be logically tied across moderate spatial distance—same corridor wave, dependent task chains, tightly scheduled groups. They are <strong>high-coupling units</strong> and should not be split only because map distance is large.</p></li>
+<li><p><strong>Risk propagation:</strong> Some regions are quiet until fault, then risk spreads quickly; potential propagation paths belong in partition design.</p></li>
+</ol>
+<p>Goals: keep <strong>intra-partition</strong> load real-time-feasible; <strong>minimize cutting</strong> high-frequency conflict and priority edges; <strong>globally balance</strong> load so a few hotspots do not dominate.</p>
+<p>A common pitfall is <strong>rigid grids or administrative borders</strong>: traffic follows <strong>missions, corridors, and dispatch logic</strong>, not static tiles. Good partitions follow <strong>operational structure</strong>—flows, events, and rules—not just maps.</p>
+<p>Neuro-symbolically, graphs also carry <strong>semantics</strong>: task types, priorities, risk tags, regulatory constraints, evidence. Rules may span regions; high-priority missions may be multi-region; evidence chains may need multi-subgraph state. Partitioning must respect <strong>knowledge and rule attachment</strong>, not only adjacency matrices.</p>
+<p>Spatiotemporal partitioning is thus <strong>cross-layer</strong>: space, time, risk, and knowledge jointly define local autonomy units and global coordination seams. Later sections on boundaries and cross-region effects presuppose this framing.</p>
+</section>
+<section id="subgraph-cuts-boundary-coordination-and-cross-region-conflict-propagation">
+<h1>20.2 Subgraph Cuts, Boundary Coordination, and Cross-Region Conflict Propagation<a class="headerlink" href="#subgraph-cuts-boundary-coordination-and-cross-region-conflict-propagation" title="Link to this heading">#</a></h1>
+<p>Given partitioning, three coupled problems remain: <strong>how to cut subgraphs</strong>, <strong>how to coordinate boundaries</strong>, and <strong>how to monitor/control cross-region propagation</strong>. Otherwise partitioning becomes an optimization that <strong>breaks global reasoning consistency</strong>.</p>
+<p><strong>Subgraph cuts</strong> seek not perfect mathematical balance but <strong>tractable local compute</strong>, <strong>preserved critical relations</strong>, and <strong>bounded cross-partition traffic</strong>. Ideal local subgraphs cluster spatially and operationally coherent traffic, minimize high-frequency cross-boundary interaction, align local rules/tasks, and match node compute budgets. In practice, cuts often follow <strong>corridor clusters</strong>, <strong>vertiport groups</strong>, <strong>task bundles</strong>, or <strong>high-traffic cells</strong>—not arbitrary grids.</p>
+<p><strong>Boundaries</strong> are inevitable: vehicles cross partitions; tasks span regions; risk does not stop at lines. <strong>Boundary coordination</strong> means when multiple subgraphs share actors, time windows, or propagation channels, <strong>local consistency</strong> must be strong enough to avoid “each partition locally correct, globally inconsistent.” Example: handoff from partition A to B—if B updates late, B’s risk and capacity use <strong>stale</strong> state and <strong>seams</strong> appear.</p>
+<p><strong>Overlap buffers:</strong> neighbors should not meet at a razor line alone; <strong>buffer zones</strong> along critical corridors and handoff nodes maintain <strong>dual visibility</strong> or <strong>high-rate synchronized state</strong>—trading modest redundant compute for <strong>seam stability</strong>.</p>
+<p><strong>Cross-region conflict propagation:</strong> congestion, local avoidance, or priority insertions reroute flow and capacity beyond the originating cell. Treating conflict as purely local risks <strong>local success, global degradation</strong>. Risk moves on <strong>relation graphs</strong>, not administrative tiles.</p>
+<p>Mitigations: escalate <strong>high-risk boundary events</strong> to fast peer broadcast and optional <strong>upper-tier coordinators</strong>; maintain <strong>boundary risk summaries</strong> (density, critical edges, priority inflow, buffer headroom) with thresholds that <strong>promote cross-partition collaboration</strong>. Cross-region risk is a <strong>first-class</strong> architectural object, not an edge case.</p>
+<p>Neuro-symbolically, boundaries also carry <strong>priority, task attributes, and explanation continuity</strong>—e.g., emergency missions must not “reset” semantics at borders; audit evidence must not fragment. Coordination must sync <strong>numeric state and necessary knowledge/rule context</strong>.</p>
+<p>Together, <strong>cuts + boundaries + propagation</strong> define the <strong>true performance envelope</strong> of partitioned city graphs: pretty average load with broken seams is useless; hyper-efficient locals that ignore propagation are unsafe. Viable designs pair <strong>local autonomy</strong> with <strong>ordered cross-partition coupling</strong>.</p>
+</section>
+<section id="parallelization-mechanisms-for-graph-inference-engines">
+<h1>20.3 Parallelization Mechanisms for Graph Inference Engines<a class="headerlink" href="#parallelization-mechanisms-for-graph-inference-engines" title="Link to this heading">#</a></h1>
+<p>Partitioning alone does not yield concurrency; <strong>parallel execution</strong> inside and across partitions sets throughput and tail latency ceilings. City-scale neuro-symbolic parallelization is not “more threads on a batch job” but <strong>dynamic updates</strong>, <strong>relational propagation</strong>, <strong>rule checks</strong>, and <strong>event triggers</strong> co-scheduled.</p>
+<p>Graph inference is <strong>dependency-rich</strong>: GNN layers depend on neighbors; rules depend on local subgraph state; risk estimates may chain across rounds. Still, much work <strong>can</strong> run in parallel: identify <strong>intra-subgraph</strong> batchable work, <strong>asynchronous boundary buffers</strong>, and <strong>coordinator-serialized</strong> global steps.</p>
+<p>Typical <strong>three-level</strong> parallelism:</p>
+<ol class="arabic simple">
+<li><p><strong>Intra-subgraph:</strong> Parallel per-node updates, edge scoring, risk feature extraction, rule pre-screens—often batched or multi-queued once subgraphs are well formed.</p></li>
+<li><p><strong>Inter-subgraph:</strong> Independent partitions on different machines; sync on <strong>boundary summaries</strong> and <strong>critical events</strong> only.</p></li>
+<li><p><strong>Asynchronous coordination:</strong> Cross-region propagation, global capacity monitors, and priority tasks via <strong>event-driven</strong> messaging without <strong>global barriers every round</strong>.</p></li>
+</ol>
+<p><strong>Dynamic graphs</strong> demand <strong>incremental / local recomputation:</strong> only nodes, edges, and subgraphs <strong>touched</strong> by new events re-enter the inference pipeline—avoid perpetual full-graph recomputation under event storms.</p>
+<p><strong>Priority scheduling:</strong> Not all tasks share urgency—boundary high-risk conflicts, emergency-related updates, capacity-critical signals should <strong>preempt</strong> background refresh via priority queues, multi-level schedulers, and <strong>event preemption</strong>.</p>
+<p><strong>Neuro-symbolic hybrid pipelines:</strong> GNN vector updates parallelize well; discrete rule checks and evidence logging are spikier. A <strong>mixed parallel pipeline</strong> separates <strong>numeric</strong> high-frequency layers from <strong>symbolic</strong> layers triggered by events, coupled through a light event API—parallelism without serializing the whole stack on rules.</p>
+<p><strong>Elastic scaling:</strong> Peaks (rush hour, weather, surges) require <strong>container scheduling</strong>, <strong>resource pools</strong>, and <strong>migration</strong> so hotspot partitions can temporarily <strong>grow</strong> parallel capacity.</p>
+<p>Parallelization is thus <strong>systems design</strong> for dynamic graphs, event streams, and hybrid neuro-symbolic stages—not a single kernel tweak.</p>
+</section>
+<section id="load-balancing-for-large-scale-conflict-detection">
+<h1>20.4 Load Balancing for Large-Scale Conflict Detection<a class="headerlink" href="#load-balancing-for-large-scale-conflict-detection" title="Link to this heading">#</a></h1>
+<p>Even with parallelism, <strong>skew</strong> dominates: risk and compute concentrate in <strong>hotspot subgraphs</strong>—dense corridors, central cores, emergency channels, <strong>boundary bands</strong> (double duty: local + sync + propagation). City-scale challenge is <strong>burst handling</strong>, not average FLOPs.</p>
+<p><strong>Structural load-aware balancing</strong> must weigh <strong>compute</strong>, <strong>graph coupling</strong>, and <strong>cross-partition cost</strong>—naïve equal CPU splits can <strong>raise</strong> communication and worsen latency.</p>
+<p>Conflict-detection load sources: <strong>combinatorial neighbor growth</strong> in dense airspace; <strong>boundary overload</strong>; <strong>priority events</strong> triggering wide local recomputation; <strong>certification/explanation</strong> overhead on high-severity cases.</p>
+<p><strong>Layers of balancing:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Static pre-balance:</strong> Use history, predicted hotspots, and traffic forecasts when sizing partitions and provisioning—<strong>know the heat map before deploy</strong>.</p></li>
+<li><p><strong>Dynamic migration:</strong> Near-threshold partitions <strong>split</strong> subgraphs, <strong>offload</strong> secondary work, <strong>boost</strong> concurrency, or <strong>shift buffer compute</strong> to neighbors.</p></li>
+<li><p><strong>Priority-aware scheduling:</strong> Guarantee <strong>high-risk / high-propagation / high-priority</strong> paths first; defer low-priority background refresh.</p></li>
+</ol>
+<p>Neuro-symbolically, balance <strong>GNN load</strong> <strong>and</strong> <strong>rule/certification</strong> load—hotspots trigger more rules, explanations, and assurance wrapping; balancing only FLOPs leaves <strong>logic bottlenecks</strong>.</p>
+<p><strong>Predictive balancing:</strong> Reactive migration after saturation is late; predict short-term hotspots from calendars, boundary signals, density trends—<strong>pre-warm</strong> caches, widen buffers, or temporarily <strong>reshape</strong> partition responsibility.</p>
+<p>The goal is not equal busyness everywhere but <strong>timely response for priority risk</strong> while <strong>preventing hotspots from throttling the whole city</strong>.</p>
+</section>
+<section id="throughput-and-fault-tolerance-at-thousand-uav-city-scale">
+<h1>20.5 Throughput and Fault Tolerance at Thousand-UAV City Scale<a class="headerlink" href="#throughput-and-fault-tolerance-at-thousand-uav-city-scale" title="Link to this heading">#</a></h1>
+<p>Partitioning, parallelism, and balancing ultimately serve <strong>throughput</strong> (sustained events, conflict checks, rules, wrapping) and <strong>fault tolerance</strong> (node loss, jitter, lossy links, bad local data) under <strong>safety-critical</strong> expectations.</p>
+<p><strong>Throughput:</strong> Not sparse occasional telemetry but <strong>continuous fused streams</strong>—position updates, trajectory refresh, relation edits, task changes, rules, weather, certification—possibly <strong>tens of thousands of structured events per second</strong> with <strong>cascading</strong> local inference. Benchmark <strong>peak</strong> and <strong>tail latency</strong>, not averages only: a few seconds of overload delaying critical conflict checks is unacceptable. Design <strong>headroom</strong>, <strong>priority preemption</strong>, and <strong>graceful degradation</strong> so <strong>safety-critical paths</strong> survive peaks.</p>
+<p><strong>Fault tolerance:</strong> Assume <strong>restarts</strong>, <strong>edge outages</strong>, <strong>delay spikes</strong>, <strong>drops</strong>, <strong>cache corruption</strong>, <strong>brief bad sensors</strong>. Goals: <strong>scope</strong> impact, <strong>isolate</strong> faults, <strong>preserve</strong> critical functions, <strong>recover</strong> consistency gradually.</p>
+<p><strong>Four resilience themes:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>State redundancy</strong> for boundary slices, hot corridors, and priority contexts.</p></li>
+<li><p><strong>Compute redundancy</strong>—standby edges or cloud takeover for failed locals.</p></li>
+<li><p><strong>Message resilience</strong>—retries, acknowledgments, backup paths for cross-partition and alerts.</p></li>
+<li><p><strong>Policy-level degradation</strong>—tighter human oversight, larger buffers, reduced autonomy when inference health drops.</p></li>
+</ol>
+<p>Throughput and resilience <strong>tension</strong>: more redundancy costs bandwidth and sync; the right pattern is <strong>safety-first elasticity</strong>—high throughput in the nominal case; <strong>allowed</strong> throughput drop in distress if <strong>core safety monitoring, rules, and logging</strong> persist.</p>
+<p>Evaluation should pair QPS with <strong>critical-path latency</strong>, <strong>tail under peak</strong>, <strong>boundary sync success</strong>, <strong>recovery time</strong>, and <strong>minimal safe capability in degraded mode</strong>.</p>
+</section>
+<section id="skygrid-from-research-prototype-to-engineering-substrate">
+<h1>20.6 SkyGrid: From Research Prototype to Engineering Substrate<a class="headerlink" href="#skygrid-from-research-prototype-to-engineering-substrate" title="Link to this heading">#</a></h1>
+<p>The preceding sections argue that city-scale low-altitude neuro-symbolic systems need a <strong>unified substrate</strong>—not a loose collection of strong models—integrating <strong>knowledge</strong>, <strong>dynamic graph inference</strong>, <strong>rules</strong>, <strong>certification</strong>, and <strong>distributed execution</strong>. <strong>SkyGrid</strong> names that <strong>urban neuro-symbolic infrastructure</strong>.</p>
+<p>As a prototype, SkyGrid may only test whether partitioning and cloud–edge collaboration support large-scale traffic reasoning. As <strong>engineering substrate</strong>, it must:</p>
+<ol class="arabic simple">
+<li><p><strong>Orchestrate unified state</strong> across multi-source spatiotemporal graphs, KG objects, and boundary summaries.</p></li>
+<li><p><strong>Execute inference</strong> by scheduling dynamic models, rules, and certification across edge and cloud.</p></li>
+<li><p><strong>Expose control and governance</strong> interfaces with consistent risk, explanation, and certification outputs.</p></li>
+<li><p><strong>Run elastically</strong> under peaks, faults, cross-region effects, and system-wide degradation policies.</p></li>
+</ol>
+<p>Architecturally, <strong>SkyGrid</strong> stacks: <strong>edge</strong> local subgraphs and near-field conflict; <strong>regional</strong> coordinators for buffers, cross-region summaries, and load reshaping; <strong>cloud</strong> global KG consistency, rule releases, certification model governance, and city resource scheduling—matching <strong>time, space, and accountability scales</strong> to the right tier.</p>
+<p><strong>Platformization:</strong> Capabilities become <strong>reusable services</strong>—static risk for approval; dynamic conflict for real-time dispatch; certification for high-severity events; KG maintenance shared across roles—not a one-off paper pipeline.</p>
+<p><strong>Long-term evolution:</strong> Real bases face <strong>ontology updates</strong>, <strong>rule versions</strong>, <strong>model upgrades</strong>, <strong>load drift</strong>, and <strong>new mission types</strong>. SkyGrid must support <strong>modularity</strong>, <strong>versioning</strong>, <strong>canary rollout</strong>, and <strong>runtime observability</strong> so models and policy evolve without freezing the platform.</p>
+<p>SkyGrid <strong>threads the book</strong>: knowledge substrate (Part II), static cognition (Part III), dynamic collaboration (Part IV), certification (Part V)—without such a base, pieces do not compose; with it, they form a chain from sensing to risk, rules to certification, edge to governance.</p>
+<p>Methodologically, SkyGrid embodies <strong>substrate-first</strong> thinking for complex governance: the ceiling is often set by whether the base can carry <strong>state flow</strong>, <strong>inference flow</strong>, <strong>evidence flow</strong>, and <strong>assurance flow</strong>—not a single model’s accuracy alone.</p>
+</section>
+<section id="chapter-summary">
+<h1>Chapter Summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>This chapter addressed <strong>spatiotemporal graph partitioning</strong> and <strong>high-concurrency inference engines</strong> for city-scale deployment: graphs as <strong>spatiotemporal–risk</strong> objects, not static topology; <strong>subgraph cuts</strong> with <strong>buffers</strong> and <strong>cross-region propagation</strong> control; <strong>layered asynchronous</strong> parallel pipelines for dynamic hybrid neuro-symbolic workloads; <strong>structural</strong> load balancing for hotspots and certification overhead; <strong>throughput and resilience</strong> under thousand-UAV stress; and <strong>SkyGrid</strong> as the integrated engineering substrate from prototype to urban platform.</p>
+<p>The step is from “method exists” to “system can carry it.” Part VI now continues to <strong>platformization</strong>—how the substrate becomes multi-role interfaces and a <strong>governance closed loop</strong> (Chapter 21).</p>
+</section>
+<section id="key-concepts">
+<h1>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>Spatiotemporal-aware partitioning:</strong> Cuts that respect space, time coupling, and risk propagation.</p></li>
+<li><p><strong>Boundary buffer:</strong> Overlapped computation near seams to reduce discontinuity and coordination failure.</p></li>
+<li><p><strong>Mixed parallel pipeline:</strong> Layered parallel numeric graph steps with event-triggered symbolic stages.</p></li>
+<li><p><strong>Structural load-aware balancing:</strong> Scheduling that respects compute, coupling, and cross-partition cost.</p></li>
+<li><p><strong>SkyGrid:</strong> City-scale substrate integrating knowledge, reasoning, certification, and operations.</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why are simple administrative or grid partitions inadequate for low-altitude traffic graphs?</p></li>
+<li><p>How does “parallel graph inference” here differ from classical batch parallel processing?</p></li>
+<li><p>Why does average compute splitting fail when hotspot regions spike?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case Study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p><strong>Downtown hotspot corridor overload:</strong> rush-hour risk-edge explosion; the system uses <strong>hotspot prediction</strong>, <strong>buffer expansion</strong>, and <strong>subgraph task migration</strong> to stabilize latency—illustrating joint <strong>partitioning, parallelism, and balancing</strong>.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure Suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 20-1: Principles of spatiotemporal-aware partitioning.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure20-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 20-2: Boundary buffers and cross-region propagation paths.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure20-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 20-3: Multi-queue scheduling and elastic scaling in high-concurrency engines.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure20-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula Index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Engineering mechanisms and scheduling; no core derivations.</p></li>
+<li><p>Index: partition objectives, boundary coordination, incremental recomputation, structural balancing, throughput vs. fault tolerance.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Karypis, G., &amp; Kumar, V. (1998). A Fast and High Quality Multilevel Scheme for Partitioning Irregular Graphs. <em>SIAM Journal on Scientific Computing</em>, 20(1), 359–392.</p></li>
+<li><p>Gonzalez, J. E., Low, Y., Gu, H., Bickson, D., &amp; Guestrin, C. (2012). PowerGraph: Distributed Graph-Parallel Computation on Natural Graphs. <em>Proceedings of the 10th USENIX Symposium on Operating Systems Design and Implementation</em> (OSDI).</p></li>
+<li><p>Malewicz, G., Austern, M. H., Bik, A. J. C., Dehnert, J. C., Horn, I., Leiser, N., &amp; Czajkowski, G. (2010). Pregel: A System for Large-Scale Graph Processing. <em>Proceedings of ACM SIGMOD</em>.</p></li>
+<li><p>Low, Y., Gonzalez, J. E., Kyrola, A., Bickson, D., Guestrin, C., &amp; Hellerstein, J. M. (2012). Distributed GraphLab: A Framework for Machine Learning and Data Mining in the Cloud. <em>Proceedings of the VLDB Endowment</em>, 5(8), 716–727.</p></li>
+<li><p>Stanton, I., &amp; Kliot, G. (2012). Streaming Graph Partitioning for Large Distributed Graphs. <em>Proceedings of the 18th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em> (KDD).</p></li>
+<li><p>Yu, B., Yin, H., &amp; Zhu, Z. (2018). Spatio-Temporal Graph Convolutional Networks: A Deep Learning Framework for Traffic Flow Forecasting. <em>Proceedings of the 27th International Joint Conference on Artificial Intelligence</em> (IJCAI).</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">19.1 Roles of Edge vs. Cloud Inference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#subgraph-cuts-boundary-coordination-and-cross-region-conflict-propagation">20.2 Subgraph Cuts, Boundary Coordination, and Cross-Region Conflict Propagation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelization-mechanisms-for-graph-inference-engines">20.3 Parallelization Mechanisms for Graph Inference Engines</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-balancing-for-large-scale-conflict-detection">20.4 Load Balancing for Large-Scale Conflict Detection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#throughput-and-fault-tolerance-at-thousand-uav-city-scale">20.5 Throughput and Fault Tolerance at Thousand-UAV City Scale</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#skygrid-from-research-prototype-to-engineering-substrate">20.6 SkyGrid: From Research Prototype to Engineering Substrate</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case Study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure Suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula Index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1097 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>15.1 Types of Uncertainty: Epistemic vs. Aleatoric &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="16.1 Failure Modes in Online Inference" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html" />
+    <link rel="prev" title="14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>15.1 Types of Uncertainty: Epistemic vs. Aleatoric</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#why-probability-outputs-are-not-trustworthy-confidence">15.2 Why Probability Outputs Are Not Trustworthy Confidence</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-conformal-prediction">15.3 Basics of Conformal Prediction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conformal-methods-for-classification-regression-and-set-prediction">15.4 Conformal Methods for Classification, Regression, and Set Prediction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conformal-calibration-for-graph-and-temporal-models">15.5 Conformal Calibration for Graph and Temporal Models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#designing-conformal-scores-for-neuro-symbolic-outputs">15.6 Designing Conformal Scores for Neuro-Symbolic Outputs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-prediction-intervals-and-coverage-guarantees">15.7 Risk Prediction Intervals and Coverage Guarantees</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplement-conditional-cp-classical-calibration-bayes-and-engineering-challenges">15.8 Supplement: Conditional CP, Classical Calibration, Bayes, and Engineering Challenges</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-conformal-prediction">15.8.1 Conditional conformal prediction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-calibration-methods">15.8.2 Classical calibration methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-approaches-to-uncertainty">15.8.3 Bayesian approaches to uncertainty</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engineering-challenges-for-cp">15.8.4 Engineering challenges for CP</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case Study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure Suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula Index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>The previous chapter dissected the trustworthiness crisis of neuro-symbolic systems in safety-critical settings and clarified that explainability is not certifiability. To qualify for airworthiness or deployment, we must move from classical <strong>point prediction</strong> to interval prediction with rigorous statistical guarantees. This chapter introduces <strong>conformal prediction (CP)</strong> and systematically discusses calibrating model uncertainty so that black-box or gray-box outputs carry mathematically valid coverage guarantees.</p>
+<section id="types-of-uncertainty-epistemic-vs-aleatoric">
+<h1>15.1 Types of Uncertainty: Epistemic vs. Aleatoric<a class="headerlink" href="#types-of-uncertainty-epistemic-vs-aleatoric" title="Link to this heading">#</a></h1>
+<p>Before calibrating outputs, we separate two sources of uncertainty:</p>
+<ul class="simple">
+<li><p><strong>Aleatoric uncertainty (data uncertainty):</strong> Inherent, irreducible noise in the physical world—e.g., sensor error (ADS-B, radar), sudden wind shear in low-altitude traffic. This is an intrinsic property of the system and <strong>cannot be removed by more training data</strong>.</p></li>
+<li><p><strong>Epistemic uncertainty (model uncertainty):</strong> The model “does not know enough” about the observed scene—e.g., it trained only on multirotor UAVs and then sees a novel eVTOL. Lacking data, it cannot be sure of its prediction. This uncertainty <strong>can be reduced by more relevant data or richer prior knowledge in the graph</strong>.</p></li>
+</ul>
+<p>In neuro-symbolic systems, symbolic rules often handle cases with clear epistemic boundaries; uncontrollable aleatoric noise and unknown blind spots require probabilistic methods to quantify and isolate.</p>
+</section>
+<section id="why-probability-outputs-are-not-trustworthy-confidence">
+<h1>15.2 Why Probability Outputs Are Not Trustworthy Confidence<a class="headerlink" href="#why-probability-outputs-are-not-trustworthy-confidence" title="Link to this heading">#</a></h1>
+<p>In deep learning, Softmax outputs are often read as probabilities: “collision probability 0.99” feels highly confident. Modern networks, however, are widely <strong>overconfident</strong>.</p>
+<p>Large capacity plus techniques such as batch normalization and weight decay encourages overfitting to labels: even when wrong, Softmax values are often near <span class="math notranslate nohighlight">\(1.0\)</span>. Empirical accuracy and reported probabilities decouple (<strong>miscalibration</strong>).</p>
+<p>In low-altitude collision avoidance, feeding such uncalibrated “pseudo-probabilities” into a symbolic decision engine is dangerous. We need to turn “what the model thinks is confidence” into <strong>reliably calibrated</strong> confidence.</p>
+</section>
+<section id="basics-of-conformal-prediction">
+<h1>15.3 Basics of Conformal Prediction<a class="headerlink" href="#basics-of-conformal-prediction" title="Link to this heading">#</a></h1>
+<p><strong>Conformal prediction (CP)</strong> is a distribution-free method that, without assuming a specific model form or data law, yields <strong>valid prediction sets or intervals</strong> for arbitrary predictors.</p>
+<p>Its main assumption is <strong>exchangeability</strong>: train and test data are drawn from the same distribution (in the usual i.i.d. setting, exchangeability holds).</p>
+<p>Basic pipeline (<strong>split conformal prediction</strong>):</p>
+<ol class="arabic simple">
+<li><p><strong>Calibration set:</strong> Hold out an independent calibration set <span class="math notranslate nohighlight">\(D_{cal} = \{(X_i, Y_i)\}_{i=1}^n\)</span> unseen by the fitted model.</p></li>
+<li><p><strong>Nonconformity score:</strong> Define <span class="math notranslate nohighlight">\(s(X, Y)\)</span> measuring how “strange” the pair is—higher means worse agreement with the model.</p></li>
+<li><p><strong>Quantile:</strong> Compute scores on the calibration set, sort ascending, take the <span class="math notranslate nohighlight">\(\lceil (n+1)(1-\alpha) \rceil\)</span>-th as threshold <span class="math notranslate nohighlight">\(\hat{q}\)</span>, where <span class="math notranslate nohighlight">\(\alpha\)</span> is the tolerated error rate (e.g., <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span> for 95% confidence).</p></li>
+<li><p><strong>Prediction set:</strong> For test <span class="math notranslate nohighlight">\(X_{test}\)</span>, try candidate labels <span class="math notranslate nohighlight">\(y\)</span>; include <span class="math notranslate nohighlight">\(y\)</span> in <span class="math notranslate nohighlight">\(C(X_{test})\)</span> if <span class="math notranslate nohighlight">\(s(X_{test}, y) \le \hat{q}\)</span>.</p></li>
+</ol>
+<p>Conformal prediction guarantees <span class="math notranslate nohighlight">\(P(Y_{test} \in C(X_{test})) \ge 1 - \alpha\)</span>.</p>
+</section>
+<section id="conformal-methods-for-classification-regression-and-set-prediction">
+<h1>15.4 Conformal Methods for Classification, Regression, and Set Prediction<a class="headerlink" href="#conformal-methods-for-classification-regression-and-set-prediction" title="Link to this heading">#</a></h1>
+<p>CP adapts to different tasks:</p>
+<ul class="simple">
+<li><p><strong>Classification (e.g., risk levels):</strong> Often <span class="math notranslate nohighlight">\(s(x, y) = 1 - \hat{\pi}_y(x)\)</span> with <span class="math notranslate nohighlight">\(\hat{\pi}_y(x)\)</span> the model’s class probability. For very small <span class="math notranslate nohighlight">\(\alpha\)</span> (e.g., <span class="math notranslate nohighlight">\(0.01\)</span>), CP may return a <strong>prediction set</strong> such as <code class="docutils literal notranslate"><span class="pre">{safe,</span> <span class="pre">caution}</span></code>—acknowledging ambiguity and forcing worst-case conservative action.</p></li>
+<li><p><strong>Regression (e.g., continuous trajectories):</strong> Often <span class="math notranslate nohighlight">\(s(x, y) = |y - \hat{y}(x)|\)</span>. After calibration, output is a <strong>prediction interval</strong> <span class="math notranslate nohighlight">\([\hat{y}(x) - \hat{q}, \hat{y}(x) + \hat{q}]\)</span>—the envelope planners must respect.</p></li>
+</ul>
+</section>
+<section id="conformal-calibration-for-graph-and-temporal-models">
+<h1>15.5 Conformal Calibration for Graph and Temporal Models<a class="headerlink" href="#conformal-calibration-for-graph-and-temporal-models" title="Link to this heading">#</a></h1>
+<p>In dynamic low-altitude collaboration (Part IV of this book), GNNs and temporal knowledge graphs (TKGs) strain classical exchangeability:</p>
+<ol class="arabic simple">
+<li><p><strong>Graph structure breaks spatial independence:</strong> Neighbor UAVs interact via message passing; predictions are dependent. <strong>Network conformal prediction</strong> reweights quantiles using local topology.</p></li>
+<li><p><strong>Time series break temporal independence:</strong> Trajectories are autocorrelated and subject to <strong>concept drift</strong>. <strong>Adaptive / sequential conformal prediction</strong> updates calibration and <span class="math notranslate nohighlight">\(\hat{q}\)</span> online from recent windows.</p></li>
+</ol>
+</section>
+<section id="designing-conformal-scores-for-neuro-symbolic-outputs">
+<h1>15.6 Designing Conformal Scores for Neuro-Symbolic Outputs<a class="headerlink" href="#designing-conformal-scores-for-neuro-symbolic-outputs" title="Link to this heading">#</a></h1>
+<p>Neuro-symbolic systems fuse prior knowledge and rules. The nonconformity score <span class="math notranslate nohighlight">\(s(X, Y)\)</span> should reflect both neural scores and SkyKG constraints.</p>
+<p>A <strong>composite conformal score with symbolic penalty</strong>:</p>
+<div class="math notranslate nohighlight">
+\[s(x, y) = s_{neural}(x, y) + \lambda \cdot P_{symbolic}(x, y)\]</div>
+<p>Here <span class="math notranslate nohighlight">\(s_{neural}\)</span> measures neural uncertainty; <span class="math notranslate nohighlight">\(P_{symbolic}\)</span> is large if candidate <span class="math notranslate nohighlight">\(y\)</span> violates hard physical rules or high-priority regulations in the graph (e.g., trajectory through a no-fly zone). Predictions that grossly violate domain knowledge are pushed out of the conformal set.</p>
+</section>
+<section id="risk-prediction-intervals-and-coverage-guarantees">
+<h1>15.7 Risk Prediction Intervals and Coverage Guarantees<a class="headerlink" href="#risk-prediction-intervals-and-coverage-guarantees" title="Link to this heading">#</a></h1>
+<p>CP moves neuro-symbolic systems from empiricism to formal statements. For UAM safety, CP provides <strong>marginal coverage</strong>:</p>
+<div class="math notranslate nohighlight">
+\[P(Y_{test} \in \hat{C}(X_{test})) \ge 1 - \alpha\]</div>
+<p>If airworthiness requires miss rate below <span class="math notranslate nohighlight">\(10^{-4}\)</span>, set <span class="math notranslate nohighlight">\(\alpha = 10^{-4}\)</span>. Tighter safety yields wider sets in ambiguous scenes and more conservative avoidance—but the statistical promise is explicit.</p>
+<p>CP supplies a quantifiable “confidence certificate” and aligns outputs with aviation-style assurance discussions (e.g., DO-178C analogues). Chapter 16 turns to online drift monitoring.</p>
+</section>
+<section id="supplement-conditional-cp-classical-calibration-bayes-and-engineering-challenges">
+<h1>15.8 Supplement: Conditional CP, Classical Calibration, Bayes, and Engineering Challenges<a class="headerlink" href="#supplement-conditional-cp-classical-calibration-bayes-and-engineering-challenges" title="Link to this heading">#</a></h1>
+<section id="conditional-conformal-prediction">
+<h2>15.8.1 Conditional conformal prediction<a class="headerlink" href="#conditional-conformal-prediction" title="Link to this heading">#</a></h2>
+<p>Standard CP gives <strong>marginal coverage</strong> <span class="math notranslate nohighlight">\(P(Y \in \hat{C}(X)) \ge 1 - \alpha\)</span> averaged over <span class="math notranslate nohighlight">\(X\)</span>. That can hide local under-coverage (e.g., rare weather) while being overly conservative in easy regimes.</p>
+<p><strong>Conditional conformal prediction</strong> targets finer guarantees:</p>
+<div class="math notranslate nohighlight">
+\[P(Y \in \hat{C}(X) \mid X \in \mathcal{G}_k) \ge 1 - \alpha, \quad \forall k\]</div>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><strong>Mondrian conformal prediction:</strong> Partition inputs (e.g., vehicle type, airspace class); run CP separately per group with thresholds <span class="math notranslate nohighlight">\(\hat{q}_k\)</span>.</p></li>
+<li><p><strong>Localized CP:</strong> Weight calibration points by proximity to the test point for local adaptation.</p></li>
+</ul>
+<p>For safety-critical certification, <strong>worst-case subpopulations</strong> matter more than global averages.</p>
+</section>
+<section id="classical-calibration-methods">
+<h2>15.8.2 Classical calibration methods<a class="headerlink" href="#classical-calibration-methods" title="Link to this heading">#</a></h2>
+<p>Post-hoc calibration alternatives include:</p>
+<ul class="simple">
+<li><p><strong>Temperature scaling:</strong> Divide logits by learned scalar <span class="math notranslate nohighlight">\(T\)</span> before Softmax.</p></li>
+<li><p><strong>Platt scaling:</strong> Fit <span class="math notranslate nohighlight">\(\sigma(aZ + b)\)</span> on logits.</p></li>
+<li><p><strong>Isotonic regression:</strong> Nonparametric monotone mapping when data are ample.</p></li>
+</ul>
+<p>These improve <strong>expected calibration error (ECE)</strong> but only retune point probabilities—they lack <strong>finite-sample coverage guarantees</strong> like CP. In strict certification, treat them as adjuncts, not replacements.</p>
+</section>
+<section id="bayesian-approaches-to-uncertainty">
+<h2>15.8.3 Bayesian approaches to uncertainty<a class="headerlink" href="#bayesian-approaches-to-uncertainty" title="Link to this heading">#</a></h2>
+<p>Bayes tracks epistemic uncertainty via <span class="math notranslate nohighlight">\(p(\theta \mid D)\)</span>. Examples: <strong>BNNs</strong>, <strong>MC Dropout</strong>, <strong>deep ensembles</strong> (spread as uncertainty).</p>
+<p>Priors and approximations matter; cost is high. CP needs only <strong>exchangeability</strong> and is distribution-free—often more actionable and auditable for certified safety engineering.</p>
+</section>
+<section id="engineering-challenges-for-cp">
+<h2>15.8.4 Engineering challenges for CP<a class="headerlink" href="#engineering-challenges-for-cp" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Calibration set size:</strong> Extreme coverage (<span class="math notranslate nohighlight">\(1 - \alpha = 0.9999\)</span>) may need very large calibration data.</p></li>
+<li><p><strong>Cost of prediction sets:</strong> Enumerating candidates in huge label or trajectory spaces may require pruning or approximation.</p></li>
+<li><p><strong>Coverage vs. set size:</strong> Stricter coverage widens intervals or sets; balance “sufficient coverage” with operational decisiveness.</p></li>
+</ol>
+</section>
+</section>
+<section id="chapter-summary">
+<h1>Chapter Summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>This chapter connects conformal prediction and uncertainty calibration: how neuro-symbolic systems turn empirical probabilities into trustworthy statistical bounds. We distinguished aleatoric vs. epistemic uncertainty; showed Softmax is not calibrated trust; described calibration sets, nonconformity scores, and quantile thresholds for sets/intervals; extended to graphs and time via network and adaptive CP; and unified neural and rule violations via composite scores for certifiable risk intervals.</p>
+</section>
+<section id="key-concepts">
+<h1>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>Uncertainty calibration:</strong> Aligning stated confidence with true error rates.</p></li>
+<li><p><strong>Conformal prediction:</strong> Distribution-free coverage for arbitrary predictors.</p></li>
+<li><p><strong>Nonconformity score:</strong> Core measure of prediction strangeness.</p></li>
+<li><p><strong>Prediction set / interval:</strong> Typical CP outputs for classification vs. regression.</p></li>
+<li><p><strong>Composite conformal score:</strong> Joint neural deviation and symbolic rule violation.</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why should calibrated probabilities precede safety-critical decisions?</p></li>
+<li><p>How do graph and temporal models challenge classical CP assumptions?</p></li>
+<li><p>What does adding a rule penalty to the conformal score buy in neuro-symbolic systems?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case Study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p><strong>Multi-vehicle conflict interval calibration:</strong> the same risk predictor gives sharp but unreliable point probabilities before calibration; after CP, risk sets or safe envelopes illustrate the trade-off between statistical coverage and operational conservatism.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure Suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 15-1: Flow from train/calibration/test in split conformal prediction.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure15-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 15-2: Prediction sets vs. prediction intervals.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure15-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 15-3: Effect of symbolic penalty on conformal score boundaries.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure15-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula Index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Nonconformity score: <span class="math notranslate nohighlight">\(s(X, Y)\)</span></p></li>
+<li><p>Quantile threshold: <span class="math notranslate nohighlight">\(\hat{q} = \mathrm{quantile}(s_1, \ldots, s_n,\; 1 - \alpha)\)</span></p></li>
+<li><p>Coverage: <span class="math notranslate nohighlight">\(P(Y_{\mathrm{test}} \in \hat{C}(X_{\mathrm{test}})) \ge 1 - \alpha\)</span></p></li>
+<li><p>Composite score: <span class="math notranslate nohighlight">\(s(x, y) = s_{\mathrm{neural}}(x, y) + \lambda\,P_{\mathrm{symbolic}}(x, y)\)</span></p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Vovk, V., Gammerman, A., &amp; Shafer, G. (2005). <em>Algorithmic Learning in a Random World</em>. Springer.</p></li>
+<li><p>Romano, Y., Patterson, E., &amp; Candès, E. (2019). Conformalized Quantile Regression. <em>Advances in Neural Information Processing Systems</em> (NeurIPS).</p></li>
+<li><p>Angelopoulos, A. N., &amp; Bates, S. (2023). Conformal Prediction: A Gentle Introduction. <em>Foundations and Trends in Machine Learning</em>, 16(4), 494–591.</p></li>
+<li><p>Papadopoulos, H., Proedrou, K., Vovk, V., &amp; Gammerman, A. (2002). Inductive Confidence Machines for Regression. <em>Proceedings of the European Conference on Machine Learning</em> (ECML).</p></li>
+<li><p>Guo, C., Pleiss, G., Sun, Y., &amp; Weinberger, K. Q. (2017). On Calibration of Modern Neural Networks. <em>Proceedings of the 34th International Conference on Machine Learning</em> (ICML).</p></li>
+<li><p>Barber, R. F., Candès, E. J., Ramdas, A., &amp; Tibshirani, R. J. (2023). Conformal Prediction Beyond Exchangeability. <em>Annals of Statistics</em>, 51(2), 816–845.</p></li>
+<li><p>Lei, J., G’Sell, M., Rinaldo, A., Tibshirani, R. J., &amp; Wasserman, L. (2018). Distribution-Free Predictive Inference for Regression. <em>Journal of the American Statistical Association</em>, 113(523), 1094–1111.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">16.1 Failure Modes in Online Inference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#why-probability-outputs-are-not-trustworthy-confidence">15.2 Why Probability Outputs Are Not Trustworthy Confidence</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-conformal-prediction">15.3 Basics of Conformal Prediction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conformal-methods-for-classification-regression-and-set-prediction">15.4 Conformal Methods for Classification, Regression, and Set Prediction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conformal-calibration-for-graph-and-temporal-models">15.5 Conformal Calibration for Graph and Temporal Models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#designing-conformal-scores-for-neuro-symbolic-outputs">15.6 Designing Conformal Scores for Neuro-Symbolic Outputs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-prediction-intervals-and-coverage-guarantees">15.7 Risk Prediction Intervals and Coverage Guarantees</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplement-conditional-cp-classical-calibration-bayes-and-engineering-challenges">15.8 Supplement: Conditional CP, Classical Calibration, Bayes, and Engineering Challenges</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-conformal-prediction">15.8.1 Conditional conformal prediction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-calibration-methods">15.8.2 Classical calibration methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-approaches-to-uncertainty">15.8.3 Bayesian approaches to uncertainty</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engineering-challenges-for-cp">15.8.4 Engineering challenges for CP</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case Study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure Suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula Index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

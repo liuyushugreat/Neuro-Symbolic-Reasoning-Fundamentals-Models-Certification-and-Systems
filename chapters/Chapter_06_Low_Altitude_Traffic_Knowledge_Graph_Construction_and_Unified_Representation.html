@@ -1,0 +1,1046 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6.1 Ontology layering: concept layer, instance layer, rule layer &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html" />
+    <link rel="prev" title="5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>6.1 Ontology layering: concept layer, instance layer, rule layer</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#entityrelation-patterns-and-attribute-modeling">6.2 Entity–relation patterns and attribute modeling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unified-expression-of-static-knowledge-dynamic-state-and-certification-objects">6.3 Unified expression of static knowledge, dynamic state, and certification objects</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-rule-constraints-logical-rules-soft-constraints-conflict-resolution">6.4 Encoding rule constraints: logical rules, soft constraints, conflict resolution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-construction-pipeline-acquisition-cleaning-mapping-fusion-updating">6.5 Graph construction pipeline: acquisition, cleaning, mapping, fusion, updating</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-source-data-ingestion-telemetry-maps-weather-policy-and-operation-logs">6.6 Multi-source data ingestion: telemetry, maps, weather, policy, and operation logs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-unified-knowledge-base-supports-later-models">6.7 How the unified knowledge base supports later models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">Discussion questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>After the domain abstractions of Chapter 5, this chapter turns to <strong>engineering</strong>: <strong>how knowledge is organized, represented, and maintained</strong>. It presents the layered ontology architecture of the low-altitude traffic knowledge graph (<strong>SkyKG</strong>), unified representation of static and dynamic elements, multi-source ingestion, and symbolic encoding of rules—supplying a <strong>runnable unified knowledge base</strong> for later neuro-symbolic reasoning.</p>
+<section id="ontology-layering-concept-layer-instance-layer-rule-layer">
+<h1>6.1 Ontology layering: concept layer, instance layer, rule layer<a class="headerlink" href="#ontology-layering-concept-layer-instance-layer-rule-layer" title="Link to this heading">#</a></h1>
+<p>To ensure strict logical reasoning and good extensibility, SkyKG uses a <strong>top-down three-layer ontology</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Concept layer (TBox):</strong> the graph <strong>skeleton</strong> or meta-schema. Using OWL and related Semantic Web languages, define UAM <strong>classes</strong>, <strong>properties</strong>, and <strong>taxonomies</strong>—e.g. <code class="docutils literal notranslate"><span class="pre">Aircraft</span></code> superclass with subclasses <code class="docutils literal notranslate"><span class="pre">MultiRotorUAV</span></code> and <code class="docutils literal notranslate"><span class="pre">eVTOL</span></code>, with disjointness or equivalence axioms where needed.</p></li>
+<li><p><strong>Instance layer (ABox):</strong> the graph <strong>body</strong>—concrete entities <strong>instantiating</strong> TBox classes—e.g. individual <code class="docutils literal notranslate"><span class="pre">SF-X01</span></code> as an instance of <code class="docutils literal notranslate"><span class="pre">MultiRotorUAV</span></code>. ABox scale is typically large and grows with operations.</p></li>
+<li><p><strong>Rule layer (RBox / RuleBox):</strong> the graph <strong>norms</strong>—beyond classical TBox/ABox alone, a dedicated <strong>logical rule base</strong> constraining entity behavior and relations—e.g. SWRL rules such as “if two UAS occupy the same minimum-separation cell simultaneously, raise a conflict alert.”</p></li>
+</ol>
+</section>
+<section id="entityrelation-patterns-and-attribute-modeling">
+<h1>6.2 Entity–relation patterns and attribute modeling<a class="headerlink" href="#entityrelation-patterns-and-attribute-modeling" title="Link to this heading">#</a></h1>
+<p>Under the concept layer, <strong>schema design</strong> refines core entity <strong>relations</strong> and <strong>attributes</strong>.</p>
+<ul class="simple">
+<li><p><strong>Spatial topology relations</strong> among grids, waypoints, and pads—e.g. <code class="docutils literal notranslate"><span class="pre">adjacent_to</span></code>, <code class="docutils literal notranslate"><span class="pre">intersects</span></code>, <code class="docutils literal notranslate"><span class="pre">contains</span></code>.</p></li>
+<li><p><strong>Spatiotemporal occupancy relations</strong> between aircraft and resources—e.g. <code class="docutils literal notranslate"><span class="pre">currently_occupies</span></code>, <code class="docutils literal notranslate"><span class="pre">plans_to_cross</span></code>.</p></li>
+<li><p><strong>Management and affiliation relations</strong>—e.g. <code class="docutils literal notranslate"><span class="pre">operated_by</span></code>, <code class="docutils literal notranslate"><span class="pre">controlled_by</span></code>.</p></li>
+<li><p><strong>Attribute constraint models:</strong> distinguish <strong>static</strong> attributes (max takeoff weight, ceiling limits) from <strong>dynamic</strong> attributes (real-time battery, wind).</p></li>
+</ul>
+</section>
+<section id="unified-expression-of-static-knowledge-dynamic-state-and-certification-objects">
+<h1>6.3 Unified expression of static knowledge, dynamic state, and certification objects<a class="headerlink" href="#unified-expression-of-static-knowledge-dynamic-state-and-certification-objects" title="Link to this heading">#</a></h1>
+<p>Urban low-altitude traffic is <strong>highly dynamic</strong> and <strong>safety-critical</strong>. SkyKG must host three heterogeneous kinds of information in <strong>one</strong> graph framework:</p>
+<ol class="arabic simple">
+<li><p><strong>Static background knowledge:</strong> building layouts, fixed route topology, weather station locations—<strong>rarely</strong> updated; forms the base map.</p></li>
+<li><p><strong>High-rate dynamic state:</strong> real-time 4D tracks (lon, lat, alt, time), sudden weather changes—to avoid write storms, often use <strong>property graphs</strong> or <strong>TKG</strong> patterns with <strong>timestamps</strong> on edges or attributes as metadata for <strong>temporal evolution</strong>.</p></li>
+<li><p><strong>Certification objects and credentials:</strong> core to trustworthy governance. High-stakes inferences or entity states link to <strong>certificate</strong> objects recording <strong>data provenance</strong>, <strong>model version</strong> used to compute the state, <strong>confidence intervals</strong>, and <strong>compliance flags</strong>—<strong>graph-native audit trails</strong>.</p></li>
+</ol>
+</section>
+<section id="encoding-rule-constraints-logical-rules-soft-constraints-conflict-resolution">
+<h1>6.4 Encoding rule constraints: logical rules, soft constraints, conflict resolution<a class="headerlink" href="#encoding-rule-constraints-logical-rules-soft-constraints-conflict-resolution" title="Link to this heading">#</a></h1>
+<p>Turning natural-language aviation regulations (e.g. CAAC <strong>CCAR</strong>-class material) into <strong>executable</strong> graph constraints is key to <strong>calibratable</strong> reasoning.</p>
+<ul class="simple">
+<li><p><strong>Hard constraints:</strong> encode in first-order fragments or <strong>Datalog</strong>-style rules for <strong>non-negotiable</strong> safety floors—e.g. “no unapproved entry into core no-fly volumes.” Used for <strong>consistency checking</strong>; violating nodes/edges are <strong>blocked</strong> and <strong>alerted</strong>.</p></li>
+<li><p><strong>Soft constraints:</strong> non-fatal optima—e.g. “avoid prolonged hover over residential areas at night for noise”—via <strong>Markov logic networks (MLN)</strong> or <strong>probabilistic soft logic (PSL)</strong> with <strong>weights</strong>.</p></li>
+<li><p><strong>Conflict resolution:</strong> when rules clash (e.g. <strong>shortest path</strong> vs. <strong>temporary airspace control</strong>), the ontology embeds a <strong>priority graph</strong> with <strong>meta-rules</strong> so lower-priority rules are <strong>suppressed</strong>, preserving <strong>deterministic</strong> inference channels.</p></li>
+</ul>
+</section>
+<section id="graph-construction-pipeline-acquisition-cleaning-mapping-fusion-updating">
+<h1>6.5 Graph construction pipeline: acquisition, cleaning, mapping, fusion, updating<a class="headerlink" href="#graph-construction-pipeline-acquisition-cleaning-mapping-fusion-updating" title="Link to this heading">#</a></h1>
+<p>SkyKG engineering follows a standard <strong>data-governance</strong> pipeline specialized for low altitude:</p>
+<ol class="arabic simple">
+<li><p><strong>Ingestion and cleaning:</strong> remove drift-corrupted track points; repair missing registration metadata.</p></li>
+<li><p><strong>Ontology mapping:</strong> R2RML-style mappings from relational flight-plan tables to classes/properties; <strong>IE</strong> models extracting rule triples from PDF regulations.</p></li>
+<li><p><strong>Knowledge fusion:</strong> <strong>entity alignment</strong>—e.g. merge radar “unknown target A” with UTM-reported “UAS X” via <strong>spatiotemporal trajectory similarity</strong> into one node.</p></li>
+<li><p><strong>Continuous updating:</strong> <strong>batch</strong> refresh (daily/weekly) for infrastructure plus <strong>streaming</strong> (millisecond-scale) for aircraft state—keeping the graph aligned with a <strong>digital twin</strong> of the physical world.</p></li>
+</ol>
+</section>
+<section id="multi-source-data-ingestion-telemetry-maps-weather-policy-and-operation-logs">
+<h1>6.6 Multi-source data ingestion: telemetry, maps, weather, policy, and operation logs<a class="headerlink" href="#multi-source-data-ingestion-telemetry-maps-weather-policy-and-operation-logs" title="Link to this heading">#</a></h1>
+<p>A unified base must break <strong>data silos</strong>. SkyKG integrates five core families:</p>
+<ul class="simple">
+<li><p><strong>Telemetry:</strong> high-rate streams (ADS-B, 5G/satellite messages) for <strong>dynamic</strong> aircraft attributes.</p></li>
+<li><p><strong>Maps and GIS:</strong> vector data (GeoJSON), BIM, as <strong>spatial</strong> nodes and grid-topology edges.</p></li>
+<li><p><strong>Meteorology:</strong> dynamic fields (wind, precipitation forecasts) as <strong>environmental</strong> attributes on spatiotemporal nodes.</p></li>
+<li><p><strong>Policy and regulation:</strong> unstructured text parsed by LLMs or expert workflows into <strong>RBox</strong> rules.</p></li>
+<li><p><strong>Operation logs:</strong> historical dispatch and incident records as <strong>event-graph</strong> subnets for <strong>causal</strong> analysis and risk tracing.</p></li>
+</ul>
+</section>
+<section id="how-the-unified-knowledge-base-supports-later-models">
+<h1>6.7 How the unified knowledge base supports later models<a class="headerlink" href="#how-the-unified-knowledge-base-supports-later-models" title="Link to this heading">#</a></h1>
+<p>SkyKG is not merely a static graph database but the <strong>oxygen supply</strong> for the book’s neuro-symbolic stack:</p>
+<ol class="arabic simple">
+<li><p><strong>Static cognition (Part III):</strong> deterministic domain knowledge and hard rules let LLMs use <strong>GraphRAG</strong> to produce <strong>grounded</strong>, less <strong>hallucinated</strong> safety assessments.</p></li>
+<li><p><strong>Dynamic coordination (Part IV):</strong> spatial topology and temporal evolution feed <strong>GNN</strong> computational graphs, equipping multi-UAS coordination models with <strong>physical constraints</strong> and <strong>global situational structure</strong>.</p></li>
+<li><p><strong>Trustworthy certification (Part V):</strong> pervasive <strong>certification objects</strong> and <strong>audit tags</strong> give <strong>conformal prediction</strong> and statistical certification a <strong>structured</strong> substrate—recalibrating and reinterpreting “black-box” outputs in <strong>symbol space</strong>.</p></li>
+</ol>
+<p>From the next chapter onward, the book enters <strong>algorithmic models</strong>—how structured symbolic knowledge <strong>couples</strong> with state-of-the-art deep learning into <strong>deployable</strong> neuro-symbolic inference.</p>
+</section>
+<section id="chapter-summary">
+<h1>Chapter summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>This chapter covered <strong>construction and unified representation</strong> of the low-altitude traffic KG: <strong>TBox / ABox / RuleBox</strong> layering; entity–relation and attribute patterns; <strong>unified</strong> treatment of static knowledge, dynamic state, and certification objects; <strong>hard/soft</strong> rules and conflict resolution; the <strong>acquire–clean–map–fuse–update</strong> pipeline; <strong>multi-source</strong> ingestion; and how SkyKG <strong>feeds</strong> static cognition, dynamic graph reasoning, and certification—not a passive store but a <strong>central platform</strong> for what follows.</p>
+</section>
+<section id="key-concepts">
+<h1>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>Three-layer ontology:</strong> concept, instance, and rule layers jointly organizing the KG.</p></li>
+<li><p><strong>Unified representation:</strong> co-locating static knowledge, dynamic state, and certification objects in one graph idiom.</p></li>
+<li><p><strong>Rule constraint encoding:</strong> turning regulations, soft constraints, and priorities into machine-executable structure.</p></li>
+<li><p><strong>Knowledge fusion:</strong> mapping, aligning, and merging heterogeneous sources into one graph.</p></li>
+<li><p><strong>SkyKG:</strong> unified semantic base and support platform for trustworthy low-altitude governance.</p></li>
+</ul>
+</section>
+<section id="discussion-questions">
+<h1>Discussion questions<a class="headerlink" href="#discussion-questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why should static knowledge, dynamic state, and certification objects share one expressive framework?</p></li>
+<li><p>How should hard and soft constraints divide labor in implementation?</p></li>
+<li><p>If TBox, RBox, and ABox evolve at different rates, how can overall consistency be preserved?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p><strong>City-wide temporary no-fly notice:</strong> extract rules from policy text; map to airspace nodes, time windows, and affected missions; refresh <strong>edge</strong> subgraphs—illustrating synchronized <strong>rule encoding</strong> and <strong>instance</strong> updates.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 6-1: SkyKG three-layer architecture (TBox, ABox, RuleBox).</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure6-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 6-2: Unified expression of static knowledge, dynamic state, and certification objects.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure6-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 6-3: Multi-source acquisition, mapping, fusion, and update pipeline.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure6-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>This chapter focuses on graph engineering and representation frameworks; no new core derivations.</p></li>
+<li><p>Indexed terms: <code class="docutils literal notranslate"><span class="pre">TBox</span> <span class="pre">/</span> <span class="pre">ABox</span> <span class="pre">/</span> <span class="pre">RuleBox</span></code>, static knowledge, dynamic state, certification objects.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Hogan, A., et al. (2021). Knowledge Graphs. <em>ACM Computing Surveys</em>, 54(4), Article 71.</p></li>
+<li><p>Noy, N. F., &amp; McGuinness, D. L. (2001). Ontology Development 101: A Guide to Creating Your First Ontology. <em>Stanford Knowledge Systems Laboratory Technical Report KSL-01-05</em>.</p></li>
+<li><p>Berners-Lee, T., Hendler, J., &amp; Lassila, O. (2001). The Semantic Web. <em>Scientific American</em>, 284(5), 34–43.</p></li>
+<li><p>Dong, X., et al. (2014). Knowledge Vault: A Web-Scale Approach to Probabilistic Knowledge Fusion. <em>Proceedings of the 20th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em> (KDD).</p></li>
+<li><p>Paulheim, H. (2017). Knowledge Graph Refinement: A Survey of Approaches and Evaluation Methods. <em>Semantic Web</em>, 8(3), 489–508.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#entityrelation-patterns-and-attribute-modeling">6.2 Entity–relation patterns and attribute modeling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unified-expression-of-static-knowledge-dynamic-state-and-certification-objects">6.3 Unified expression of static knowledge, dynamic state, and certification objects</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-rule-constraints-logical-rules-soft-constraints-conflict-resolution">6.4 Encoding rule constraints: logical rules, soft constraints, conflict resolution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-construction-pipeline-acquisition-cleaning-mapping-fusion-updating">6.5 Graph construction pipeline: acquisition, cleaning, mapping, fusion, updating</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-source-data-ingestion-telemetry-maps-weather-policy-and-operation-logs">6.6 Multi-source data ingestion: telemetry, maps, weather, policy, and operation logs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-unified-knowledge-base-supports-later-models">6.7 How the unified knowledge base supports later models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">Discussion questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

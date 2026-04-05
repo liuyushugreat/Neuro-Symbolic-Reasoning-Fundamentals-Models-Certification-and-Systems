@@ -1,0 +1,1078 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.1 Logic rules as loss functions" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html" />
+    <link rel="prev" title="6.1 Ontology layering: concept layer, instance layer, rule layer" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-three-layer-integration-depth-taxonomy-symbolic-dominant-hybrid-pipeline-deeply-fused">7.2 A three-layer integration-depth taxonomy: symbolic-dominant / hybrid-pipeline / deeply-fused</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-1-rule-led-knowledge-augmented-systems">7.3 Layer 1: Rule-led knowledge-augmented systems</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-2-kg-retrieval-augmentation-language-model-pipelines">7.4 Layer 2: KG + retrieval augmentation + language-model pipelines</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-3-deeply-fused-models-running-directly-on-kg-tkg">7.5 Layer 3: Deeply fused models running directly on KG / TKG</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-paths-explainability-real-time-performance-scalability-certification-readiness">7.6 Comparing the three paths: explainability, real-time performance, scalability, certification readiness</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#book-wide-technical-thread-and-chapter-mapping">7.7 Book-wide technical thread and chapter mapping</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#study-questions">Study questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>After the preceding chapters discussed symbolic and connectionist approaches separately, this chapter focuses on how the two are fused. Centered on the question of how different types of neuro-symbolic systems are distinguished and selected, we first review a classic classification spectrum, then propose a three-layer integration-depth taxonomy oriented to low-altitude traffic engineering practice, establishing a technical roadmap for the model design and system deployment developed later in the book.</p>
+<section id="classical-taxonomies-henry-kautzs-neuro-symbolic-spectrum">
+<h1>7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum<a class="headerlink" href="#classical-taxonomies-henry-kautzs-neuro-symbolic-spectrum" title="Link to this heading">#</a></h1>
+<p>Any taxonomy of neuro-symbolic systems must engage the classic six-mode spectrum proposed by AI pioneer Henry Kautz in 2020. Kautz partitions combinations of neural networks and symbolic systems according to their joint structure into six basic patterns:</p>
+<ol class="arabic simple">
+<li><p><strong>Symbolic Neuro symbolic:</strong> Neural networks serve as perceptual/decoding modules at input and output; symbolic reasoning sits in the middle.</p></li>
+<li><p><strong>Symbolic[Neuro]:</strong> Symbolic systems dominate; neural networks are invoked for specific pattern-recognition subtasks (e.g., AlphaGo’s search tree calling a value network).</p></li>
+<li><p><strong>Neuro|Symbolic:</strong> Neural networks extract features from unstructured data, map them to discrete symbols, and hand them to a symbolic engine (pipeline architecture).</p></li>
+<li><p><strong>Neuro:Symbolic <span class="math notranslate nohighlight">\(\rightarrow\)</span> Neuro:</strong> Symbolic rules act as prior knowledge compiled into initial weights or training objectives; at run time the system is still a pure neural network.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\text{Neuro}_{\text{Symbolic}}\)</span>:</strong> The neural architecture itself embodies symbolic processing (e.g., neural tensor networks, differentiable logic solvers).</p></li>
+<li><p><strong>Neuro[Symbolic]:</strong> Neural networks dominate; internal symbolic solvers are called when combinatorial explosion makes purely neural handling infeasible.</p></li>
+</ol>
+<p>Kautz’s spectrum is theoretically very complete. For the concrete, large-scale engineering of trustworthy low-altitude traffic governance, however, we need a framework that foregrounds <strong>systems engineering, integration depth, and certification readiness</strong>.</p>
+</section>
+<section id="a-three-layer-integration-depth-taxonomy-symbolic-dominant-hybrid-pipeline-deeply-fused">
+<h1>7.2 A three-layer integration-depth taxonomy: symbolic-dominant / hybrid-pipeline / deeply-fused<a class="headerlink" href="#a-three-layer-integration-depth-taxonomy-symbolic-dominant-hybrid-pipeline-deeply-fused" title="Link to this heading">#</a></h1>
+<p>Guided by system architecture and computational-graph coupling in deployed systems, this chapter adopts a “three-layer integration-depth taxonomy” for low-altitude traffic governance. Layers 1–3 order neuro-symbolic fusion from loose to tight:</p>
+<ul class="simple">
+<li><p><strong>Layer 1 (Symbolic-dominant):</strong> Rule-led, knowledge-augmented systems.</p></li>
+<li><p><strong>Layer 2 (Hybrid-pipeline):</strong> Hybrid pipelines (typically KG + RAG + LLM).</p></li>
+<li><p><strong>Layer 3 (Deeply-fused):</strong> Deep fusion (joint computation directly on graph and tensor spaces).</p></li>
+</ul>
+<p>These layers are not ranked as universally better or worse; they align with different business settings in low-altitude traffic that impose distinct latency and explainability requirements.</p>
+</section>
+<section id="layer-1-rule-led-knowledge-augmented-systems">
+<h1>7.3 Layer 1: Rule-led knowledge-augmented systems<a class="headerlink" href="#layer-1-rule-led-knowledge-augmented-systems" title="Link to this heading">#</a></h1>
+<p>In Layer 1, classical symbolic logic engines (e.g., rule engines, solvers) fully control control and decision flows. Deep learning models act only as peripheral “perceptors” or “soft sensors.”</p>
+<ul class="simple">
+<li><p><strong>Mechanism:</strong> Neural networks (e.g., computer vision) process radar or imagery and emit discrete facts (e.g., “unknown UAV detected at coordinates (x,y)”). Facts become RDF triples injected into a knowledge graph. A graph-based reasoner then performs deterministic deductive reasoning against preset CCAR aviation regulations.</p></li>
+<li><p><strong>Use cases:</strong> Static flight-plan approval or airspace-admission checks where safety demands are extreme, rules are crisp, and tolerance for error is zero.</p></li>
+<li><p><strong>Limitations:</strong> “Perception error propagation.” If the neural front end misclassifies, the symbolic core cannot correct or adapt via gradient backpropagation, so robustness is comparatively weak.</p></li>
+</ul>
+</section>
+<section id="layer-2-kg-retrieval-augmentation-language-model-pipelines">
+<h1>7.4 Layer 2: KG + retrieval augmentation + language-model pipelines<a class="headerlink" href="#layer-2-kg-retrieval-augmentation-language-model-pipelines" title="Link to this heading">#</a></h1>
+<p>Layer 2 follows the rise of large language models (LLMs) with a loosely coupled pipeline architecture.</p>
+<ul class="simple">
+<li><p><strong>Mechanism:</strong> The LLM acts as the cognitive hub. For complex traffic risk assessment, the model first pulls ontology knowledge, rule constraints, and historical events from SkyKG via graph retrieval (GraphRAG) or SPARQL. Under those structured-evidence constraints (prompt engineering), the LLM performs semantic completion, chain reasoning, and produces human-readable explanation reports.</p></li>
+<li><p><strong>Use cases:</strong> Offline accident-report analysis, interactive regulatory Q&amp;A for UAV pilots, non–real-time macro traffic assessment.</p></li>
+<li><p><strong>Strengths and limits:</strong> Explanations are excellent and can be narrated in natural language. LLM inference latency, token cost, and occasional “hallucination” make millisecond-level multi-UAV airborne deconfliction impractical.</p></li>
+</ul>
+</section>
+<section id="layer-3-deeply-fused-models-running-directly-on-kg-tkg">
+<h1>7.5 Layer 3: Deeply fused models running directly on KG / TKG<a class="headerlink" href="#layer-3-deeply-fused-models-running-directly-on-kg-tkg" title="Link to this heading">#</a></h1>
+<p>Layer 3 represents the deep fusion frontier of neuro-symbolic AI: symbols (nodes/edges/rules) and connections (tensors/weights/gradients) share a unified mathematical substrate.</p>
+<ul class="simple">
+<li><p><strong>Mechanism:</strong> Models run directly on temporal knowledge graph (TKG) structure. Symbolic rules become regularizers in the loss (logic as loss) or message-passing paths in graph neural networks (GNNs). End-to-end training learns data distributions while “hard coding” physical constraints.</p></li>
+<li><p><strong>Use cases:</strong> Real-time conflict detection in dense urban low-altitude traffic, swarm cooperative deconfliction, high-frequency time-varying flow prediction.</p></li>
+<li><p><strong>Strengths:</strong> Combines strong neural perception with millisecond inference and partial causal explainability grounded in graph structure.</p></li>
+</ul>
+</section>
+<section id="comparing-the-three-paths-explainability-real-time-performance-scalability-certification-readiness">
+<h1>7.6 Comparing the three paths: explainability, real-time performance, scalability, certification readiness<a class="headerlink" href="#comparing-the-three-paths-explainability-real-time-performance-scalability-certification-readiness" title="Link to this heading">#</a></h1>
+<p>To guide engineering choices, we compare the three paths along four dimensions critical to safety-critical systems:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Dimension</p></th>
+<th class="head text-left"><p>Layer 1 (symbolic-dominant)</p></th>
+<th class="head text-left"><p>Layer 2 (hybrid pipeline LLM+KG)</p></th>
+<th class="head text-left"><p>Layer 3 (deep fusion TKG+GNN)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Explainability</strong></p></td>
+<td class="text-left"><p><strong>Very high</strong> (strict causal deductive chains)</p></td>
+<td class="text-left"><p><strong>High</strong> (natural-language explanations with evidential support)</p></td>
+<td class="text-left"><p><strong>Moderate</strong> (local explanations via feature attribution and subgraph attention)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Real-time performance</strong></p></td>
+<td class="text-left"><p><strong>Low–medium</strong> (limited by combinatorial explosion in symbolic solvers)</p></td>
+<td class="text-left"><p><strong>Very low</strong> (autoregressive LLM latency)</p></td>
+<td class="text-left"><p><strong>Very high</strong> (single forward pass; streaming millisecond computation)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Scalability</strong></p></td>
+<td class="text-left"><p><strong>Low</strong> (heavy expert effort to author and maintain rules)</p></td>
+<td class="text-left"><p><strong>Medium–high</strong> (LLM generalization; open-domain text)</p></td>
+<td class="text-left"><p><strong>Very high</strong> (models migrate across city airspace scales)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Certification readiness</strong></p></td>
+<td class="text-left"><p><strong>High</strong> (white-box rules; natural fit to airworthiness norms)</p></td>
+<td class="text-left"><p><strong>Low</strong> (hard to formally verify text; hallucination risk)</p></td>
+<td class="text-left"><p><strong>Medium–high</strong> (needs statistical calibration such as conformal prediction for certification)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="book-wide-technical-thread-and-chapter-mapping">
+<h1>7.7 Book-wide technical thread and chapter mapping<a class="headerlink" href="#book-wide-technical-thread-and-chapter-mapping" title="Link to this heading">#</a></h1>
+<p>With this roadmap, the rest of the book’s structure becomes clear:</p>
+<ul class="simple">
+<li><p><strong>Part III (Static cognition):</strong> Focuses on <strong>Layer 2 (hybrid pipeline)</strong>—how SkyKG drives large models for highly explainable risk reasoning and compliance in static settings (Chapters 8–10).</p></li>
+<li><p><strong>Part IV (Dynamic coordination):</strong> Focuses on <strong>Layer 3 (deep fusion)</strong>—high-frequency dynamic environments requiring millisecond response; GNNs on TKGs for conflict detection and cooperative avoidance (Chapters 11–13).</p></li>
+<li><p><strong>Part V (Trustworthy certification):</strong> Addresses the Achilles’ heel of neuro-symbolic stacks: neural components bring certification challenges in both Layer 2 and Layer 3. Conformal prediction and distributional monitoring supply “airworthiness-grade” uncertainty for outputs (Chapters 14–17).</p></li>
+<li><p><strong>Part VI (Systems substrate):</strong> Consolidates algorithms into cloud–edge collaborative physical architectures (Chapters 18–21), bridging theory to city-scale low-altitude infrastructure.</p></li>
+</ul>
+<p>This mapping clarifies how later parts relate. We next enter the static-cognition domain of Layer 2 hybrid pipelines—basic paradigms of knowledge injection and explanation generation.</p>
+</section>
+<section id="chapter-summary">
+<h1>Chapter summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>This chapter framed the taxonomy and technical roadmap of neuro-symbolic systems—how fusion depth shapes understanding and selection. Henry Kautz’s classic spectrum gives theoretical coordinates for combining symbolic and neural components; for low-altitude traffic practice we introduced symbolic-dominant, hybrid-pipeline, and deeply-fused layers to characterize integration tightness and deployment profiles; rule-led systems, KG+RAG+LLM pipelines, and KG/TKG-native deep fusion map to high explainability, rich interaction, and high real-time performance, respectively; we compared explainability, real-time performance, scalability, and certification readiness; finally we mapped book parts onto this roadmap so later chapters follow a single systems evolution thread rather than isolated model sketches.</p>
+</section>
+<section id="key-concepts">
+<h1>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Neuro-symbolic spectrum: A taxonomy of how neural and symbolic methods are composed.</p></li>
+<li><p>Symbolic-dominant: Rules and knowledge engines at the core; neural modules at the periphery.</p></li>
+<li><p>Hybrid-pipeline: KG, retrieval, and language models cooperating in a mixed pipeline.</p></li>
+<li><p>Deeply-fused: Symbols woven directly into the neural computational graph.</p></li>
+<li><p>Certification readiness: How far a system is from auditability, provability, and high-responsibility workflows.</p></li>
+</ul>
+</section>
+<section id="study-questions">
+<h1>Study questions<a class="headerlink" href="#study-questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why can systems all called “neuro-symbolic” differ sharply in explainability and real-time performance?</p></li>
+<li><p>Which low-altitude traffic tasks fit Layer 2 better, and which fit Layer 3?</p></li>
+<li><p>If certification readiness is paramount, what architectural factors should dominate selection?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p>A “three implementations of one low-altitude task” case: the same risk judgment executed with a rule-led system, a KG+LLM hybrid, and a TKG+GNN deep fusion—contrasting explainability, latency, scalability, and certification preparation.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 7-1: Overview of Henry Kautz’s neuro-symbolic spectrum.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure7-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 7-2: Ladder diagram of the three-layer integration-depth taxonomy.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure7-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 7-3: Four-dimensional radar chart (explainability, real-time performance, scalability, certification readiness).</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure7-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>This chapter is taxonomy and comparison; there is no core mathematical derivation.</p></li>
+<li><p>Suggested indexed objects: <code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">Layer</span> <span class="pre">2</span> <span class="pre">/</span> <span class="pre">Layer</span> <span class="pre">3</span></code> and their typical system structures.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Kautz, H. (2022). The Third AI Summer: AAAI Robert S. Engelmore Memorial Lecture. <em>AI Magazine</em>, 43(1), 93–104.</p></li>
+<li><p>Garcez, A. d., &amp; Lamb, L. C. (2020). Neurosymbolic AI: The 3rd Wave. <em>arXiv preprint arXiv:2012.05876</em>.</p></li>
+<li><p>Garcez, A. d., Broda, K. B., &amp; Gabbay, D. M. (2002). <em>Neural-Symbolic Learning Systems: Foundations and Applications</em>. Springer.</p></li>
+<li><p>Marcus, G. (2020). The Next Decade in AI: Four Steps Towards Robust Artificial Intelligence. <em>arXiv preprint arXiv:2002.06177</em>.</p></li>
+<li><p>LeCun, Y., Bengio, Y., &amp; Hinton, G. (2015). Deep Learning. <em>Nature</em>, 521(7553), 436–444.</p></li>
+<li><p>Hamilton, W. L., Ying, R., &amp; Leskovec, J. (2017). Inductive Representation Learning on Large Graphs. <em>Advances in Neural Information Processing Systems</em> (NeurIPS).</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6.1 Ontology layering: concept layer, instance layer, rule layer</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">8.1 Logic rules as loss functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-three-layer-integration-depth-taxonomy-symbolic-dominant-hybrid-pipeline-deeply-fused">7.2 A three-layer integration-depth taxonomy: symbolic-dominant / hybrid-pipeline / deeply-fused</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-1-rule-led-knowledge-augmented-systems">7.3 Layer 1: Rule-led knowledge-augmented systems</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-2-kg-retrieval-augmentation-language-model-pipelines">7.4 Layer 2: KG + retrieval augmentation + language-model pipelines</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-3-deeply-fused-models-running-directly-on-kg-tkg">7.5 Layer 3: Deeply fused models running directly on KG / TKG</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-paths-explainability-real-time-performance-scalability-certification-readiness">7.6 Comparing the three paths: explainability, real-time performance, scalability, certification readiness</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#book-wide-technical-thread-and-chapter-mapping">7.7 Book-wide technical thread and chapter mapping</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#study-questions">Study questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

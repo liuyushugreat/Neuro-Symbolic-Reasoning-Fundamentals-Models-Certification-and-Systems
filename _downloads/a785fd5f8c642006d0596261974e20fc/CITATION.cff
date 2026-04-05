@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+title: "Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems"
+message: "If you use this open manuscript in research, teaching, or derivative work, please cite it as below."
+type: book
+version: "1.0"
+date-released: "2025-04-05"
+authors:
+  - family-names: "Liu"
+    given-names: "Yushu"
+    email: "yushuliu@outlook.com"
+    affiliation: "Tianjin University"
+    orcid: ""
+repository-code: "https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems"
+url: "https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems"
+abstract: >
+  An open English manuscript on neuro-symbolic reasoning covering formal logic,
+  knowledge graphs, graph neural networks, hybrid reasoning, conformal prediction,
+  certification-oriented trustworthy AI, and cloud-edge deployment for
+  safety-critical intelligent systems. Urban air mobility serves as the main
+  application scenario, but the methodology generalizes to autonomous driving,
+  medical AI, industrial control, and AI for Science.
+keywords:
+  - neuro-symbolic AI
+  - knowledge graph
+  - trustworthy AI
+  - conformal prediction
+  - urban air mobility
+  - safety-critical AI
+  - graph neural network
+  - certification
+  - explainable AI
+  - AI governance
+license: "CC-BY-NC-SA-4.0"
+preferred-citation:
+  type: book
+  title: "Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems"
+  authors:
+    - family-names: "Liu"
+      given-names: "Yushu"
+  year: 2025
+  publisher:
+    name: "GitHub open manuscript"
+  url: "https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems"

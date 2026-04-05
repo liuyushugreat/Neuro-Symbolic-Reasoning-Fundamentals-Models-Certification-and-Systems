@@ -1,0 +1,1446 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'TABLE_OF_CONTENTS';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapters/Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2FTABLE_OF_CONTENTS.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/TABLE_OF_CONTENTS.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><span class="xref myst"><em>Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems</em></span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-graphdriven-neuro-symbolic-reasoning-and-trustworthy-governance-in-low-altitude-traffic-theory-and-practice">— Knowledge graph–driven neuro-symbolic reasoning and trustworthy governance in low-altitude traffic: theory and practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-of-the-book">Scope of the book</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-from-the-two-peaks-dilemma-in-ai-to-the-third-path-of-neuro-symbolic-ai"><span class="xref myst">Introduction: From the two-peaks dilemma in AI to the third path of neuro-symbolic AI</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-objectives">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-1-the-evolution-fracture-and-reconstruction-of-ai"><span class="xref myst">Chapter 1: The evolution, fracture, and reconstruction of AI</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-foundationslogic-representation-and-learning"><span class="xref myst">Part I: Foundations—logic, representation, and learning</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-2-symbolic-logic-rule-systems-and-automated-reasoning"><span class="xref myst">Chapter 2: Symbolic logic, rule systems, and automated reasoning</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-3-knowledge-graphs-and-domain-knowledge-representation"><span class="xref myst">Chapter 3: Knowledge graphs and domain knowledge representation</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-4-deep-learning-graph-learning-and-neural-representation"><span class="xref myst">Chapter 4: Deep learning, graph learning, and neural representation</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-a-unified-knowledge-basedomain-modeling-for-low-altitude-traffic"><span class="xref myst">Part II: A unified knowledge base—domain modeling for low-altitude traffic</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-5-domain-knowledge-modeling-for-trustworthy-governance-in-low-altitude-traffic"><span class="xref myst">Chapter 5: Domain knowledge modeling for trustworthy governance in low-altitude traffic</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-6-low-altitude-traffic-knowledge-graph-construction-and-unified-representation"><span class="xref myst">Chapter 6: Low-altitude traffic knowledge graph construction and unified representation</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-7-taxonomy-and-technology-roadmap-for-neuro-symbolic-systems"><span class="xref myst">Chapter 7: Taxonomy and technology roadmap for neuro-symbolic systems</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-iii-static-cognitionknowledge-graphdriven-interpretable-risk-reasoning">Part III: Static cognition—knowledge graph–driven interpretable risk reasoning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-8-basic-paradigms-of-knowledge-injection-and-constrained-learning"><span class="xref myst">Chapter 8: Basic paradigms of knowledge injection and constrained learning</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-9-hybrid-neuro-symbolic-reasoning-driven-by-knowledge-graphs"><span class="xref myst">Chapter 9: Hybrid neuro-symbolic reasoning driven by knowledge graphs</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-10-designing-interpretable-risk-reasoning-frameworksfrom-skykg-to-a-general-methodology"><span class="xref myst">Chapter 10: Designing interpretable risk reasoning frameworks—from SkyKG to a general methodology</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-iv-dynamic-coordinationtemporal-knowledge-graphs-and-multi-agent-real-time-reasoning">Part IV: Dynamic coordination—temporal knowledge graphs and multi-agent real-time reasoning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-11-temporal-knowledge-graphs-and-dynamic-relational-reasoning"><span class="xref myst">Chapter 11: Temporal knowledge graphs and dynamic relational reasoning</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-12-graph-driven-multi-agent-conflict-detection-models"><span class="xref myst">Chapter 12: Graph-driven multi-agent conflict detection models</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-13-coordinated-de-confliction-and-decision-making-on-temporal-relational-graphs"><span class="xref myst">Chapter 13: Coordinated de-confliction and decision-making on temporal relational graphs</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-v-trustworthy-certificationcalibratable-provable-auditable-neuro-symbolic-reasoning">Part V: Trustworthy certification—calibratable, provable, auditable neuro-symbolic reasoning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-14-trustworthiness-issues-in-neuro-symbolic-systems"><span class="xref myst">Chapter 14: Trustworthiness issues in neuro-symbolic systems</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-15-conformal-prediction-and-uncertainty-calibration"><span class="xref myst">Chapter 15: Conformal prediction and uncertainty calibration</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-16-online-monitoring-distribution-shift-and-statistical-certification"><span class="xref myst">Chapter 16: Online monitoring, distribution shift, and statistical certification</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-17-interpretability-evaluation-audit-chains-and-regulatory-interfaces"><span class="xref myst">Chapter 17: Interpretability evaluation, audit chains, and regulatory interfaces</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-vi-system-foundationscity-scale-cloudedge-neuro-symbolic-reasoning-architecture">Part VI: System foundations—city-scale cloud–edge neuro-symbolic reasoning architecture</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-18-complexity-of-neuro-symbolic-reasoning-and-the-compute-gap"><span class="xref myst">Chapter 18: Complexity of neuro-symbolic reasoning and the compute gap</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-19-distributed-reasoning-systems-under-cloudedge-collaboration"><span class="xref myst">Chapter 19: Distributed reasoning systems under cloud–edge collaboration</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-20-spatiotemporal-graph-partitioning-and-high-concurrency-reasoning-engines"><span class="xref myst">Chapter 20: Spatiotemporal graph partitioning and high-concurrency reasoning engines</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-21-platform-realizationfrom-stacking-models-to-governance-closed-loops"><span class="xref myst">Chapter 21: Platform realization—from stacking models to governance closed loops</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-vii-frontierslarge-models-agents-and-ai-for-science">Part VII: Frontiers—large models, agents, and AI for Science</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-22-neuro-symbolic-ai-in-the-large-language-model-era"><span class="xref myst">Chapter 22: Neuro-symbolic AI in the large language model era</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-23-safety-critical-industry-applications"><span class="xref myst">Chapter 23: Safety-critical industry applications</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-24-neuro-symbolic-reasoning-in-ai-for-science"><span class="xref myst">Chapter 24: Neuro-symbolic reasoning in AI for Science</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-summary-and-future-research-roadmap">Closing: Summary and future research roadmap</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-25-the-future-of-neuro-symbolic-reasoningfrom-interpretability-toward-certification-governance-and-deployment"><span class="xref myst">Chapter 25: The future of neuro-symbolic reasoning—from interpretability toward certification, governance, and deployment</span></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendices-and-labs">Appendices and labs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-a-mathematical-logical-and-graph-learning-notation"><span class="xref myst">Appendix A: Mathematical, logical, and graph-learning notation</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-b-common-open-source-libraries-and-engineering-tools"><span class="xref myst">Appendix B: Common open-source libraries and engineering tools</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-c-course-labs-and-practice-projects"><span class="xref myst">Appendix C: Course labs and practice projects</span></a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="neuro-symbolic-reasoning-fundamentals-models-certification-and-systems">
+<h1><a class="reference internal" href="INTRODUCTION_EN.html"><span class="std std-doc"><em>Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems</em></span></a><a class="headerlink" href="#neuro-symbolic-reasoning-fundamentals-models-certification-and-systems" title="Link to this heading">#</a></h1>
+<section id="knowledge-graphdriven-neuro-symbolic-reasoning-and-trustworthy-governance-in-low-altitude-traffic-theory-and-practice">
+<h2>— Knowledge graph–driven neuro-symbolic reasoning and trustworthy governance in low-altitude traffic: theory and practice<a class="headerlink" href="#knowledge-graphdriven-neuro-symbolic-reasoning-and-trustworthy-governance-in-low-altitude-traffic-theory-and-practice" title="Link to this heading">#</a></h2>
+</section>
+<section id="scope-of-the-book">
+<h2>Scope of the book<a class="headerlink" href="#scope-of-the-book" title="Link to this heading">#</a></h2>
+<p><strong>Core objective:</strong> Using “knowledge graph–driven neuro-symbolic reasoning and trustworthy governance” as the main line, this book explains the full technical chain of neuro-symbolic AI—from foundational theory and key models through certification mechanisms to system deployment—and takes <strong>urban low-altitude traffic / UAM</strong> as the primary scenario to develop a unified methodology that is <strong>interpretable, calibratable, deployable, and governable</strong>.</p>
+<p>This book includes theoretical material related to the open-source project <a class="github reference external" href="https://github.com/liuyushugreat/SkyNetUamPlatform">liuyushugreat/SkyNetUamPlatform</a>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-from-the-two-peaks-dilemma-in-ai-to-the-third-path-of-neuro-symbolic-ai">
+<h1><a class="reference internal" href="chapters/Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html"><span class="std std-doc">Introduction: From the two-peaks dilemma in AI to the third path of neuro-symbolic AI</span></a><a class="headerlink" href="#introduction-from-the-two-peaks-dilemma-in-ai-to-the-third-path-of-neuro-symbolic-ai" title="Link to this heading">#</a></h1>
+<section id="core-objectives">
+<h2>Core objectives<a class="headerlink" href="#core-objectives" title="Link to this heading">#</a></h2>
+<p>Clarify the historical tension between symbolic and connectionist AI; explain why neuro-symbolic AI has again become central in safety-critical complex systems; and introduce <strong>trustworthy governance of low-altitude traffic</strong> as the overarching problem of the book.</p>
+<section id="chapter-1-the-evolution-fracture-and-reconstruction-of-ai">
+<h3><a class="reference internal" href="chapters/Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html"><span class="std std-doc">Chapter 1: The evolution, fracture, and reconstruction of AI</span></a><a class="headerlink" href="#chapter-1-the-evolution-fracture-and-reconstruction-of-ai" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</p></li>
+<li><p>1.2 The rise of connectionism: deep learning’s success and the black-box crisis</p></li>
+<li><p>1.3 The two-peaks dilemma: the long-standing split between strong perception and weak reasoning</p></li>
+<li><p>1.4 Lessons from cognitive science: complementary mechanisms of System 1 and System 2</p></li>
+<li><p>1.5 The proposal of neuro-symbolic AI: why unify perception, knowledge, reasoning, and decision-making</p></li>
+<li><p>1.6 Special requirements in safety-critical settings: explanation, certification, robustness, real time</p></li>
+<li><p>1.7 Low-altitude traffic / UAM: a representative challenge for neuro-symbolic AI</p></li>
+<li><p>1.8 Main line and technical closed loop of this book: knowledge base—reasoning models—trustworthy certification—system deployment</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-i-foundationslogic-representation-and-learning">
+<h1><a class="reference internal" href="chapters/Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html"><span class="std std-doc">Part I: Foundations—logic, representation, and learning</span></a><a class="headerlink" href="#part-i-foundationslogic-representation-and-learning" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Core objectives<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Equip readers from diverse backgrounds with foundations in logic, knowledge representation, deep learning, and graph learning, laying a shared base for later neuro-symbolic integration.</p>
+<section id="chapter-2-symbolic-logic-rule-systems-and-automated-reasoning">
+<h3><a class="reference internal" href="chapters/Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html"><span class="std std-doc">Chapter 2: Symbolic logic, rule systems, and automated reasoning</span></a><a class="headerlink" href="#chapter-2-symbolic-logic-rule-systems-and-automated-reasoning" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>2.1 Propositional logic and first-order predicate logic</p></li>
+<li><p>2.2 Rules, constraints, and reasoning chains</p></li>
+<li><p>2.3 Forward chaining, backward chaining, and resolution</p></li>
+<li><p>2.4 Description logic and ontology languages: foundations</p></li>
+<li><p>2.5 Uncertain logic and fuzzy logic: an introduction</p></li>
+<li><p>2.6 From formal logic to engineering rule systems</p></li>
+</ul>
+</section>
+<section id="chapter-3-knowledge-graphs-and-domain-knowledge-representation">
+<h3><a class="reference internal" href="chapters/Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html"><span class="std std-doc">Chapter 3: Knowledge graphs and domain knowledge representation</span></a><a class="headerlink" href="#chapter-3-knowledge-graphs-and-domain-knowledge-representation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</p></li>
+<li><p>3.2 RDF, OWL, SPARQL, and graph query languages</p></li>
+<li><p>3.3 Ontology construction: concept layer, relation layer, constraint layer</p></li>
+<li><p>3.4 Event graphs, scene graphs, and temporal knowledge graphs</p></li>
+<li><p>3.5 From multi-source heterogeneous data to unified knowledge representation</p></li>
+<li><p>3.6 Knowledge graph updating, alignment, and consistency maintenance</p></li>
+<li><p>3.7 From general KGs to domain-specific KGs</p></li>
+</ul>
+</section>
+<section id="chapter-4-deep-learning-graph-learning-and-neural-representation">
+<h3><a class="reference internal" href="chapters/Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html"><span class="std std-doc">Chapter 4: Deep learning, graph learning, and neural representation</span></a><a class="headerlink" href="#chapter-4-deep-learning-graph-learning-and-neural-representation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>4.1 Basic ideas of deep representation learning</p></li>
+<li><p>4.2 Inductive biases of neural networks and function approximation</p></li>
+<li><p>4.3 Graph neural networks: message passing, relational modeling, graph representation</p></li>
+<li><p>4.4 Transformer and attention mechanisms</p></li>
+<li><p>4.5 Temporal modeling and learning dynamical systems</p></li>
+<li><p>4.6 Limits of deep learning: OOD behavior, hallucination, catastrophic forgetting, fragility</p></li>
+<li><p>4.7 From deep models to constrained learning</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-ii-a-unified-knowledge-basedomain-modeling-for-low-altitude-traffic">
+<h1><a class="reference internal" href="chapters/Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html"><span class="std std-doc">Part II: A unified knowledge base—domain modeling for low-altitude traffic</span></a><a class="headerlink" href="#part-ii-a-unified-knowledge-basedomain-modeling-for-low-altitude-traffic" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>Core objectives<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Make explicit a pivotal chapter derived from the author’s dissertation work (Chapter 3): build the shared knowledge base for all subsequent models.</p>
+<section id="chapter-5-domain-knowledge-modeling-for-trustworthy-governance-in-low-altitude-traffic">
+<h3><a class="reference internal" href="chapters/Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html"><span class="std std-doc">Chapter 5: Domain knowledge modeling for trustworthy governance in low-altitude traffic</span></a><a class="headerlink" href="#chapter-5-domain-knowledge-modeling-for-trustworthy-governance-in-low-altitude-traffic" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</p></li>
+<li><p>5.2 Modeling risk objects: conflict, violation, failure, environmental disturbance</p></li>
+<li><p>5.3 Modeling rule objects: regulations, operational constraints, priority rules, safety boundaries</p></li>
+<li><p>5.4 Spatiotemporal objects: routes, corridors, windows, dynamic occupancy</p></li>
+<li><p>5.5 Scene semantic templates: logistics, inspection, emergency, air taxi</p></li>
+<li><p>5.6 Risk labels and design of explanation units</p></li>
+<li><p>5.7 From business language to knowledge language: unified semantic abstraction</p></li>
+</ul>
+</section>
+<section id="chapter-6-low-altitude-traffic-knowledge-graph-construction-and-unified-representation">
+<h3><a class="reference internal" href="chapters/Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html"><span class="std std-doc">Chapter 6: Low-altitude traffic knowledge graph construction and unified representation</span></a><a class="headerlink" href="#chapter-6-low-altitude-traffic-knowledge-graph-construction-and-unified-representation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>6.1 Ontology layering: concept layer, instance layer, rule layer</p></li>
+<li><p>6.2 Entity–relation patterns and attribute modeling</p></li>
+<li><p>6.3 Unified expression of static knowledge, dynamic state, and certification objects</p></li>
+<li><p>6.4 Encoding rule constraints: logical rules, soft constraints, conflict resolution</p></li>
+<li><p>6.5 Graph construction pipeline: acquisition, cleaning, mapping, fusion, updating</p></li>
+<li><p>6.6 Multi-source data ingestion: telemetry, maps, weather, policy, and operation logs</p></li>
+<li><p>6.7 How the unified knowledge base supports subsequent models</p></li>
+</ul>
+</section>
+<section id="chapter-7-taxonomy-and-technology-roadmap-for-neuro-symbolic-systems">
+<h3><a class="reference internal" href="chapters/Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html"><span class="std std-doc">Chapter 7: Taxonomy and technology roadmap for neuro-symbolic systems</span></a><a class="headerlink" href="#chapter-7-taxonomy-and-technology-roadmap-for-neuro-symbolic-systems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>7.1 Classical taxonomy: Henry Kautz’s neuro-symbolic spectrum</p></li>
+<li><p>7.2 A three-layer integration taxonomy: symbolic-dominant / hybrid-pipeline / deeply fused</p></li>
+<li><p>7.3 Layer 1: rule-dominant knowledge-augmented systems</p></li>
+<li><p>7.4 Layer 2: hybrid pipelines with KG + retrieval augmentation + language models</p></li>
+<li><p>7.5 Layer 3: deeply fused models running directly on KG / TKG</p></li>
+<li><p>7.6 Comparing the three paths: interpretability, real time, scalability, certification readiness</p></li>
+<li><p>7.7 Main technical line of the book and chapter mapping</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-iii-static-cognitionknowledge-graphdriven-interpretable-risk-reasoning">
+<h1>Part III: Static cognition—knowledge graph–driven interpretable risk reasoning<a class="headerlink" href="#part-iii-static-cognitionknowledge-graphdriven-interpretable-risk-reasoning" title="Link to this heading">#</a></h1>
+<section id="id3">
+<h2>Core objectives<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Explain how to build static interpretable reasoning frameworks with KG + RAG + LLM in settings that are rule-heavy, knowledge-dense, and demand very high interpretability.</p>
+<section id="chapter-8-basic-paradigms-of-knowledge-injection-and-constrained-learning">
+<h3><a class="reference internal" href="chapters/Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html"><span class="std std-doc">Chapter 8: Basic paradigms of knowledge injection and constrained learning</span></a><a class="headerlink" href="#chapter-8-basic-paradigms-of-knowledge-injection-and-constrained-learning" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>8.1 Loss-function formulations of logical rules</p></li>
+<li><p>8.2 Constrained optimization and posterior regularization</p></li>
+<li><p>8.3 Co-training of rules and neural models</p></li>
+<li><p>8.4 Physical and mechanistic constraint networks</p></li>
+<li><p>8.5 From knowledge injection to interpretable reasoning</p></li>
+</ul>
+</section>
+<section id="chapter-9-hybrid-neuro-symbolic-reasoning-driven-by-knowledge-graphs">
+<h3><a class="reference internal" href="chapters/Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html"><span class="std std-doc">Chapter 9: Hybrid neuro-symbolic reasoning driven by knowledge graphs</span></a><a class="headerlink" href="#chapter-9-hybrid-neuro-symbolic-reasoning-driven-by-knowledge-graphs" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>9.1 SPARQL queries and deterministic evidence extraction</p></li>
+<li><p>9.2 Semantic completion by LLMs and chain-style explanation generation</p></li>
+<li><p>9.3 Applicability and limits of RAG in rule-dense scenarios</p></li>
+<li><p>9.4 GraphRAG: from document retrieval to graph retrieval</p></li>
+<li><p>9.5 Coupling external solvers with language models</p></li>
+<li><p>9.6 From “being able to answer” to “answering with evidence”</p></li>
+</ul>
+</section>
+<section id="chapter-10-designing-interpretable-risk-reasoning-frameworksfrom-skykg-to-a-general-methodology">
+<h3><a class="reference internal" href="chapters/Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html"><span class="std std-doc">Chapter 10: Designing interpretable risk reasoning frameworks—from SkyKG to a general methodology</span></a><a class="headerlink" href="#chapter-10-designing-interpretable-risk-reasoning-frameworksfrom-skykg-to-a-general-methodology" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>10.1 Problem definition for static risk reasoning</p></li>
+<li><p>10.2 Coordinated organization of ontology + rules + retrieval indexes</p></li>
+<li><p>10.3 Dual-channel reasoning: rule-query channel and semantic generation channel</p></li>
+<li><p>10.4 Risk label outputs and explanation-chain generation</p></li>
+<li><p>10.5 Faithfulness evaluation: rule alignment, unsupported-claim rate, evidence coverage</p></li>
+<li><p>10.6 Strengths and boundaries of static single-body scenarios</p></li>
+<li><p>10.7 Why move from static cognition to dynamic coordination</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-iv-dynamic-coordinationtemporal-knowledge-graphs-and-multi-agent-real-time-reasoning">
+<h1>Part IV: Dynamic coordination—temporal knowledge graphs and multi-agent real-time reasoning<a class="headerlink" href="#part-iv-dynamic-coordinationtemporal-knowledge-graphs-and-multi-agent-real-time-reasoning" title="Link to this heading">#</a></h1>
+<section id="id4">
+<h2>Core objectives<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Focus on high-density, strongly time-varying, multi-agent interaction; explain how temporal KGs and graph neural networks support real-time conflict detection and coordinated de-confliction.</p>
+<section id="chapter-11-temporal-knowledge-graphs-and-dynamic-relational-reasoning">
+<h3><a class="reference internal" href="chapters/Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html"><span class="std std-doc">Chapter 11: Temporal knowledge graphs and dynamic relational reasoning</span></a><a class="headerlink" href="#chapter-11-temporal-knowledge-graphs-and-dynamic-relational-reasoning" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>11.1 From static KG to temporal KG</p></li>
+<li><p>11.2 Representing time, events, and state transitions</p></li>
+<li><p>11.3 Dynamic relations and time-varying edge weights</p></li>
+<li><p>11.4 Temporal logic and continuous-time modeling</p></li>
+<li><p>11.5 Event-driven reasoning and dynamic updates</p></li>
+<li><p>11.6 Applicability of dynamic graphs in traffic and flight systems</p></li>
+</ul>
+</section>
+<section id="chapter-12-graph-driven-multi-agent-conflict-detection-models">
+<h3><a class="reference internal" href="chapters/Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html"><span class="std std-doc">Chapter 12: Graph-driven multi-agent conflict detection models</span></a><a class="headerlink" href="#chapter-12-graph-driven-multi-agent-conflict-detection-models" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>12.1 Formalizing multi-UAV dynamic coordination</p></li>
+<li><p>12.2 Graph attention and relation-aware message passing</p></li>
+<li><p>12.3 Temporal encoding and stale-edge discounting</p></li>
+<li><p>12.4 Spatiotemporally coupled conflict prediction</p></li>
+<li><p>12.5 Real-time metrics: latency, throughput, stability</p></li>
+<li><p>12.6 Accuracy metrics: CDR, FAR, F1, and warning lead time</p></li>
+<li><p>12.7 From prediction to intervention: dynamic risk scores and priority ranking</p></li>
+</ul>
+</section>
+<section id="chapter-13-coordinated-de-confliction-and-decision-making-on-temporal-relational-graphs">
+<h3><a class="reference internal" href="chapters/Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html"><span class="std std-doc">Chapter 13: Coordinated de-confliction and decision-making on temporal relational graphs</span></a><a class="headerlink" href="#chapter-13-coordinated-de-confliction-and-decision-making-on-temporal-relational-graphs" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>13.1 Relationship between conflict detection and conflict resolution</p></li>
+<li><p>13.2 Generating avoidance strategies from paths and graph structure</p></li>
+<li><p>13.3 Role of reinforcement learning in graph-path reasoning</p></li>
+<li><p>13.4 Constraint-based coordinated de-confliction</p></li>
+<li><p>13.5 Local optimality vs. global safety envelopes</p></li>
+<li><p>13.6 From SkyFlow to a general dynamic reasoning framework</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-v-trustworthy-certificationcalibratable-provable-auditable-neuro-symbolic-reasoning">
+<h1>Part V: Trustworthy certification—calibratable, provable, auditable neuro-symbolic reasoning<a class="headerlink" href="#part-v-trustworthy-certificationcalibratable-provable-auditable-neuro-symbolic-reasoning" title="Link to this heading">#</a></h1>
+<section id="id5">
+<h2>Core objectives<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>Move “trustworthy AI” from loose discussion toward <strong>certification-grade trustworthy reasoning</strong>—the most dissertation-distinctive part of the book.</p>
+<section id="chapter-14-trustworthiness-issues-in-neuro-symbolic-systems">
+<h3><a class="reference internal" href="chapters/Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html"><span class="std std-doc">Chapter 14: Trustworthiness issues in neuro-symbolic systems</span></a><a class="headerlink" href="#chapter-14-trustworthiness-issues-in-neuro-symbolic-systems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>14.1 Why neuro-symbolic systems are still not inherently trustworthy</p></li>
+<li><p>14.2 Interpretability ≠ certifiability</p></li>
+<li><p>14.3 Black-box confidence and overconfidence</p></li>
+<li><p>14.4 Distribution shift, concept drift, and scenario transfer</p></li>
+<li><p>14.5 Special trustworthiness requirements in safety-critical systems</p></li>
+<li><p>14.6 From empirical performance to formal assurance</p></li>
+</ul>
+</section>
+<section id="chapter-15-conformal-prediction-and-uncertainty-calibration">
+<h3><a class="reference internal" href="chapters/Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html"><span class="std std-doc">Chapter 15: Conformal prediction and uncertainty calibration</span></a><a class="headerlink" href="#chapter-15-conformal-prediction-and-uncertainty-calibration" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>15.1 Types of uncertainty: epistemic vs. aleatoric</p></li>
+<li><p>15.2 Why probabilistic outputs are not the same as trustworthy confidence</p></li>
+<li><p>15.3 Basic principles of conformal prediction</p></li>
+<li><p>15.4 Conformal methods in classification, regression, and set prediction</p></li>
+<li><p>15.5 Conformal calibration for graph and temporal models</p></li>
+<li><p>15.6 Conformal scoring design for neuro-symbolic outputs</p></li>
+<li><p>15.7 Risk prediction intervals and coverage guarantees</p></li>
+</ul>
+</section>
+<section id="chapter-16-online-monitoring-distribution-shift-and-statistical-certification">
+<h3><a class="reference internal" href="chapters/Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html"><span class="std std-doc">Chapter 16: Online monitoring, distribution shift, and statistical certification</span></a><a class="headerlink" href="#chapter-16-online-monitoring-distribution-shift-and-statistical-certification" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>16.1 Failure modes in online inference</p></li>
+<li><p>16.2 Martingale methods and sequential consistency monitoring</p></li>
+<li><p>16.3 Concept drift and anomalous-distribution detection</p></li>
+<li><p>16.4 Trust scoring for static explanation chains</p></li>
+<li><p>16.5 Certification wrapping for dynamic conflict prediction</p></li>
+<li><p>16.6 From “interpretable output” to “certification-grade output”</p></li>
+<li><p>16.7 SkyCert: systematic design of a certification bridge</p></li>
+</ul>
+</section>
+<section id="chapter-17-interpretability-evaluation-audit-chains-and-regulatory-interfaces">
+<h3><a class="reference internal" href="chapters/Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html"><span class="std std-doc">Chapter 17: Interpretability evaluation, audit chains, and regulatory interfaces</span></a><a class="headerlink" href="#chapter-17-interpretability-evaluation-audit-chains-and-regulatory-interfaces" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>17.1 Layers of interpretability: local, rule-based, causal</p></li>
+<li><p>17.2 Evaluating faithfulness, sufficiency, and comprehensibility</p></li>
+<li><p>17.3 Audit log design for neuro-symbolic systems</p></li>
+<li><p>17.4 How human supervisors use explanations and certificates</p></li>
+<li><p>17.5 Interface issues with aviation / autonomous-driving safety standards</p></li>
+<li><p>17.6 From model trustworthiness to governance trustworthiness</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-vi-system-foundationscity-scale-cloudedge-neuro-symbolic-reasoning-architecture">
+<h1>Part VI: System foundations—city-scale cloud–edge neuro-symbolic reasoning architecture<a class="headerlink" href="#part-vi-system-foundationscity-scale-cloudedge-neuro-symbolic-reasoning-architecture" title="Link to this heading">#</a></h1>
+<section id="id6">
+<h2>Core objectives<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>Corresponding to SkyGrid: land all prior algorithms in city-scale systems engineering.</p>
+<section id="chapter-18-complexity-of-neuro-symbolic-reasoning-and-the-compute-gap">
+<h3><a class="reference internal" href="chapters/Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html"><span class="std std-doc">Chapter 18: Complexity of neuro-symbolic reasoning and the compute gap</span></a><a class="headerlink" href="#chapter-18-complexity-of-neuro-symbolic-reasoning-and-the-compute-gap" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>18.1 Sources of complexity in symbolic, graph, and large-model reasoning</p></li>
+<li><p>18.2 Latency constraints of real-time systems</p></li>
+<li><p>18.3 Concurrency pressure in city-scale low-altitude traffic</p></li>
+<li><p>18.4 From algorithmic optimality to deployable utility</p></li>
+<li><p>18.5 Necessity of layered deployment of the reasoning stack</p></li>
+</ul>
+</section>
+<section id="chapter-19-distributed-reasoning-systems-under-cloudedge-collaboration">
+<h3><a class="reference internal" href="chapters/Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html"><span class="std std-doc">Chapter 19: Distributed reasoning systems under cloud–edge collaboration</span></a><a class="headerlink" href="#chapter-19-distributed-reasoning-systems-under-cloudedge-collaboration" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>19.1 Division of roles between edge and cloud reasoning</p></li>
+<li><p>19.2 Distributed orchestration of rule checking, GNN inference, and LLM inference</p></li>
+<li><p>19.3 Streaming data ingestion and event-driven scheduling</p></li>
+<li><p>19.4 Knowledge sync, model sync, and state consistency</p></li>
+<li><p>19.5 Real-time alerting chains and closed-loop response</p></li>
+<li><p>19.6 From single-node feasibility to multi-node scale-out</p></li>
+</ul>
+</section>
+<section id="chapter-20-spatiotemporal-graph-partitioning-and-high-concurrency-reasoning-engines">
+<h3><a class="reference internal" href="chapters/Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html"><span class="std std-doc">Chapter 20: Spatiotemporal graph partitioning and high-concurrency reasoning engines</span></a><a class="headerlink" href="#chapter-20-spatiotemporal-graph-partitioning-and-high-concurrency-reasoning-engines" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>20.1 Spatiotemporal graph partitioning</p></li>
+<li><p>20.2 Subgraph cuts, boundary coordination, and cross-region conflict propagation</p></li>
+<li><p>20.3 Parallelism mechanisms in graph reasoning engines</p></li>
+<li><p>20.4 Load balancing for large-scale conflict detection</p></li>
+<li><p>20.5 Throughput and fault tolerance for city-scale thousand-UAV scenarios</p></li>
+<li><p>20.6 SkyGrid: from research prototype to engineering base</p></li>
+</ul>
+</section>
+<section id="chapter-21-platform-realizationfrom-stacking-models-to-governance-closed-loops">
+<h3><a class="reference internal" href="chapters/Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html"><span class="std std-doc">Chapter 21: Platform realization—from stacking models to governance closed loops</span></a><a class="headerlink" href="#chapter-21-platform-realizationfrom-stacking-models-to-governance-closed-loops" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>21.1 Integrating knowledge base—reasoning models—certification—deployment architecture</p></li>
+<li><p>21.2 Modular design for platforms</p></li>
+<li><p>21.3 Unifying data flow, control flow, and evidence flow</p></li>
+<li><p>21.4 Multi-role interfaces for regulators, operators, and executors</p></li>
+<li><p>21.5 From research systems to industry application platforms</p></li>
+<li><p>21.6 Open-source ecosystems and reproducible experiments</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-vii-frontierslarge-models-agents-and-ai-for-science">
+<h1>Part VII: Frontiers—large models, agents, and AI for Science<a class="headerlink" href="#part-vii-frontierslarge-models-agents-and-ai-for-science" title="Link to this heading">#</a></h1>
+<section id="id7">
+<h2>Core objectives<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>Keep the textbook forward-looking without leaving the main line—extensions beyond the core thread.</p>
+<section id="chapter-22-neuro-symbolic-ai-in-the-large-language-model-era">
+<h3><a class="reference internal" href="chapters/Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html"><span class="std std-doc">Chapter 22: Neuro-symbolic AI in the large language model era</span></a><a class="headerlink" href="#chapter-22-neuro-symbolic-ai-in-the-large-language-model-era" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>22.1 LLMs as System 1: strengths, hallucination, structural limitations</p></li>
+<li><p>22.2 Coupling language models with symbolic rules</p></li>
+<li><p>22.3 GraphRAG and knowledge-augmented reasoning</p></li>
+<li><p>22.4 LLMs calling external solvers and toolchains</p></li>
+<li><p>22.5 Neuro-symbolic agents: perceive—retrieve—reason—act</p></li>
+<li><p>22.6 Agent coordination for complex governance systems</p></li>
+</ul>
+</section>
+<section id="chapter-23-safety-critical-industry-applications">
+<h3><a class="reference internal" href="chapters/Chapter_23_Applications_in_Safety_Critical_Industries.html"><span class="std std-doc">Chapter 23: Safety-critical industry applications</span></a><a class="headerlink" href="#chapter-23-safety-critical-industry-applications" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>23.1 Intelligent transportation and autonomous driving: scene-graph understanding</p></li>
+<li><p>23.2 Urban low-altitude traffic: risk assessment and dynamic coordination</p></li>
+<li><p>23.3 Interpretable reasoning stacks in medical diagnosis</p></li>
+<li><p>23.4 Industrial control and fault diagnosis in complex systems</p></li>
+<li><p>23.5 From “usable” to “deployable with confidence”: key differences</p></li>
+</ul>
+</section>
+<section id="chapter-24-neuro-symbolic-reasoning-in-ai-for-science">
+<h3><a class="reference internal" href="chapters/Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html"><span class="std std-doc">Chapter 24: Neuro-symbolic reasoning in AI for Science</span></a><a class="headerlink" href="#chapter-24-neuro-symbolic-reasoning-in-ai-for-science" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>24.1 Molecular graphs, scientific knowledge, and interpretable discovery</p></li>
+<li><p>24.2 Physical constraints and scientific mechanism learning</p></li>
+<li><p>24.3 Knowledge-augmented simulation in complex systems</p></li>
+<li><p>24.4 Prospects for neuro-symbolic methods in cross-disciplinary science</p></li>
+<li><p>24.5 Feedback from industry applications to foundational theory</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="closing-summary-and-future-research-roadmap">
+<h1>Closing: Summary and future research roadmap<a class="headerlink" href="#closing-summary-and-future-research-roadmap" title="Link to this heading">#</a></h1>
+<section id="chapter-25-the-future-of-neuro-symbolic-reasoningfrom-interpretability-toward-certification-governance-and-deployment">
+<h2><a class="reference internal" href="chapters/Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html"><span class="std std-doc">Chapter 25: The future of neuro-symbolic reasoning—from interpretability toward certification, governance, and deployment</span></a><a class="headerlink" href="#chapter-25-the-future-of-neuro-symbolic-reasoningfrom-interpretability-toward-certification-governance-and-deployment" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>25.1 Summary of the main line: knowledge base, reasoning, certification, systems</p></li>
+<li><p>25.2 Current bottlenecks: data, standards, benchmarks, certification, compute</p></li>
+<li><p>25.3 Future direction I: unified world models and neuro-symbolic agents</p></li>
+<li><p>25.4 Future direction II: certification-grade trustworthy AI</p></li>
+<li><p>25.5 Future direction III: real-time governance of city-scale complex systems</p></li>
+<li><p>25.6 Future direction IV: from UAM to broader safety-critical systems</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="appendices-and-labs">
+<h1>Appendices and labs<a class="headerlink" href="#appendices-and-labs" title="Link to this heading">#</a></h1>
+<section id="appendix-a-mathematical-logical-and-graph-learning-notation">
+<h2><a class="reference internal" href="appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html"><span class="std std-doc">Appendix A: Mathematical, logical, and graph-learning notation</span></a><a class="headerlink" href="#appendix-a-mathematical-logical-and-graph-learning-notation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A.1 Logical symbols and common rule templates</p></li>
+<li><p>A.2 Notation for graph neural networks and temporal graph models</p></li>
+<li><p>A.3 Conformal prediction and statistical calibration notation</p></li>
+<li><p>A.4 System architecture and complexity-analysis notation</p></li>
+</ul>
+</section>
+<section id="appendix-b-common-open-source-libraries-and-engineering-tools">
+<h2><a class="reference internal" href="appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html"><span class="std std-doc">Appendix B: Common open-source libraries and engineering tools</span></a><a class="headerlink" href="#appendix-b-common-open-source-libraries-and-engineering-tools" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>B.1 PyKEEN</p></li>
+<li><p>B.2 DeepProbLog</p></li>
+<li><p>B.3 Logic Tensor Networks (LTN)</p></li>
+<li><p>B.4 PyTorch Geometric (PyG)</p></li>
+<li><p>B.5 RDFLib / OWLReady2 / Neo4j / GraphDB</p></li>
+<li><p>B.6 LLM + KG integration toolchains</p></li>
+<li><p>B.7 Streaming inference and edge deployment frameworks</p></li>
+</ul>
+</section>
+<section id="appendix-c-course-labs-and-practice-projects">
+<h2><a class="reference internal" href="appendices/Appendix_C_Course_Labs_and_Practice_Projects.html"><span class="std std-doc">Appendix C: Course labs and practice projects</span></a><a class="headerlink" href="#appendix-c-course-labs-and-practice-projects" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Lab 1: Small low-altitude-traffic ontology construction and rule encoding</p></li>
+<li><p>Lab 2: Static risk reasoning with KG + SPARQL + LLM</p></li>
+<li><p>Lab 3: Conflict detection models on temporal knowledge graphs</p></li>
+<li><p>Lab 4: Conformal prediction for risk outputs with confidence intervals</p></li>
+<li><p>Lab 5: Prototype cloud–edge collaborative reasoning system</p></li>
+<li><p>Lab 6: Joint agent development with large models + knowledge graph + solvers</p></li>
+</ul>
+<hr class="docutils" />
+<p><em>For the English introduction and reading guide, see <a class="reference internal" href="INTRODUCTION_EN.html"><span class="std std-doc">INTRODUCTION_EN.md</span></a>.</em></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><span class="xref myst"><em>Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems</em></span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-graphdriven-neuro-symbolic-reasoning-and-trustworthy-governance-in-low-altitude-traffic-theory-and-practice">— Knowledge graph–driven neuro-symbolic reasoning and trustworthy governance in low-altitude traffic: theory and practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-of-the-book">Scope of the book</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-from-the-two-peaks-dilemma-in-ai-to-the-third-path-of-neuro-symbolic-ai"><span class="xref myst">Introduction: From the two-peaks dilemma in AI to the third path of neuro-symbolic AI</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-objectives">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-1-the-evolution-fracture-and-reconstruction-of-ai"><span class="xref myst">Chapter 1: The evolution, fracture, and reconstruction of AI</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-foundationslogic-representation-and-learning"><span class="xref myst">Part I: Foundations—logic, representation, and learning</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-2-symbolic-logic-rule-systems-and-automated-reasoning"><span class="xref myst">Chapter 2: Symbolic logic, rule systems, and automated reasoning</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-3-knowledge-graphs-and-domain-knowledge-representation"><span class="xref myst">Chapter 3: Knowledge graphs and domain knowledge representation</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-4-deep-learning-graph-learning-and-neural-representation"><span class="xref myst">Chapter 4: Deep learning, graph learning, and neural representation</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-a-unified-knowledge-basedomain-modeling-for-low-altitude-traffic"><span class="xref myst">Part II: A unified knowledge base—domain modeling for low-altitude traffic</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-5-domain-knowledge-modeling-for-trustworthy-governance-in-low-altitude-traffic"><span class="xref myst">Chapter 5: Domain knowledge modeling for trustworthy governance in low-altitude traffic</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-6-low-altitude-traffic-knowledge-graph-construction-and-unified-representation"><span class="xref myst">Chapter 6: Low-altitude traffic knowledge graph construction and unified representation</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-7-taxonomy-and-technology-roadmap-for-neuro-symbolic-systems"><span class="xref myst">Chapter 7: Taxonomy and technology roadmap for neuro-symbolic systems</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-iii-static-cognitionknowledge-graphdriven-interpretable-risk-reasoning">Part III: Static cognition—knowledge graph–driven interpretable risk reasoning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-8-basic-paradigms-of-knowledge-injection-and-constrained-learning"><span class="xref myst">Chapter 8: Basic paradigms of knowledge injection and constrained learning</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-9-hybrid-neuro-symbolic-reasoning-driven-by-knowledge-graphs"><span class="xref myst">Chapter 9: Hybrid neuro-symbolic reasoning driven by knowledge graphs</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-10-designing-interpretable-risk-reasoning-frameworksfrom-skykg-to-a-general-methodology"><span class="xref myst">Chapter 10: Designing interpretable risk reasoning frameworks—from SkyKG to a general methodology</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-iv-dynamic-coordinationtemporal-knowledge-graphs-and-multi-agent-real-time-reasoning">Part IV: Dynamic coordination—temporal knowledge graphs and multi-agent real-time reasoning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-11-temporal-knowledge-graphs-and-dynamic-relational-reasoning"><span class="xref myst">Chapter 11: Temporal knowledge graphs and dynamic relational reasoning</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-12-graph-driven-multi-agent-conflict-detection-models"><span class="xref myst">Chapter 12: Graph-driven multi-agent conflict detection models</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-13-coordinated-de-confliction-and-decision-making-on-temporal-relational-graphs"><span class="xref myst">Chapter 13: Coordinated de-confliction and decision-making on temporal relational graphs</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-v-trustworthy-certificationcalibratable-provable-auditable-neuro-symbolic-reasoning">Part V: Trustworthy certification—calibratable, provable, auditable neuro-symbolic reasoning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-14-trustworthiness-issues-in-neuro-symbolic-systems"><span class="xref myst">Chapter 14: Trustworthiness issues in neuro-symbolic systems</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-15-conformal-prediction-and-uncertainty-calibration"><span class="xref myst">Chapter 15: Conformal prediction and uncertainty calibration</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-16-online-monitoring-distribution-shift-and-statistical-certification"><span class="xref myst">Chapter 16: Online monitoring, distribution shift, and statistical certification</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-17-interpretability-evaluation-audit-chains-and-regulatory-interfaces"><span class="xref myst">Chapter 17: Interpretability evaluation, audit chains, and regulatory interfaces</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-vi-system-foundationscity-scale-cloudedge-neuro-symbolic-reasoning-architecture">Part VI: System foundations—city-scale cloud–edge neuro-symbolic reasoning architecture</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-18-complexity-of-neuro-symbolic-reasoning-and-the-compute-gap"><span class="xref myst">Chapter 18: Complexity of neuro-symbolic reasoning and the compute gap</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-19-distributed-reasoning-systems-under-cloudedge-collaboration"><span class="xref myst">Chapter 19: Distributed reasoning systems under cloud–edge collaboration</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-20-spatiotemporal-graph-partitioning-and-high-concurrency-reasoning-engines"><span class="xref myst">Chapter 20: Spatiotemporal graph partitioning and high-concurrency reasoning engines</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-21-platform-realizationfrom-stacking-models-to-governance-closed-loops"><span class="xref myst">Chapter 21: Platform realization—from stacking models to governance closed loops</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-vii-frontierslarge-models-agents-and-ai-for-science">Part VII: Frontiers—large models, agents, and AI for Science</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Core objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-22-neuro-symbolic-ai-in-the-large-language-model-era"><span class="xref myst">Chapter 22: Neuro-symbolic AI in the large language model era</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-23-safety-critical-industry-applications"><span class="xref myst">Chapter 23: Safety-critical industry applications</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-24-neuro-symbolic-reasoning-in-ai-for-science"><span class="xref myst">Chapter 24: Neuro-symbolic reasoning in AI for Science</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-summary-and-future-research-roadmap">Closing: Summary and future research roadmap</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-25-the-future-of-neuro-symbolic-reasoningfrom-interpretability-toward-certification-governance-and-deployment"><span class="xref myst">Chapter 25: The future of neuro-symbolic reasoning—from interpretability toward certification, governance, and deployment</span></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendices-and-labs">Appendices and labs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-a-mathematical-logical-and-graph-learning-notation"><span class="xref myst">Appendix A: Mathematical, logical, and graph-learning notation</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-b-common-open-source-libraries-and-engineering-tools"><span class="xref myst">Appendix B: Common open-source libraries and engineering tools</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-c-course-labs-and-practice-projects"><span class="xref myst">Appendix C: Course labs and practice projects</span></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

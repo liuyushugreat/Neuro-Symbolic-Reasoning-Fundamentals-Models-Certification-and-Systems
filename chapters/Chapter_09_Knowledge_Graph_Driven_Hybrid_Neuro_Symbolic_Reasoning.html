@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9.1 SPARQL queries and deterministic evidence extraction &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.1 Defining static risk reasoning" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html" />
+    <link rel="prev" title="8.1 Logic rules as loss functions" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>9.1 SPARQL queries and deterministic evidence extraction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-semantic-completion-and-chained-explanation-generation">9.2 LLM semantic completion and chained explanation generation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rag-in-rule-dense-settings-fit-and-limits">9.3 RAG in rule-dense settings: fit and limits</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphrag-from-document-retrieval-to-graph-retrieval">9.4 GraphRAG: from document retrieval to graph retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#external-solvers-and-language-model-collaboration">9.5 External solvers and language-model collaboration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-can-answer-to-answers-with-grounds">9.6 From “can answer” to “answers with grounds”</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#study-questions">Study questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>After knowledge injection, constrained learning, and co-training, this chapter turns to one of the most deployable neuro-symbolic paths: <strong>knowledge-graph-driven hybrid neuro-symbolic reasoning</strong>. “Hybrid” here is not mere module chaining; a single workflow orchestrates structured knowledge, deterministic queries, language-model generation, and external solvers so the system can run verifiable rule reasoning while leveraging LLMs for natural language, semantic completion, and explanation—balancing accuracy, explainability, and engineering viability.</p>
+<p>The pattern matters acutely in safety-critical domains. Pure rule systems are controllable but weak on open-text understanding, semantic glue, context integration, and natural explanation; pure LLMs are fluent but prone to hallucination, rule drift, missing citations, and unclear accountability. KG-driven hybrid reasoning bridges them: the KG supplies facts, relation networks, and rule anchors; SPARQL (and kin) yields deterministic evidence retrieval; LLMs organize semantics and explanations under constraints; retrieval augmentation and external solvers keep answers knowledge-bound, traceable, and auditable.</p>
+<p>We proceed as follows: SPARQL as deterministic evidence extraction; LLMs for constrained semantic completion and chained explanations; RAG’s fit and limits in rule-heavy settings; GraphRAG’s shift from documents to graphs and semantic subgraphs; synergy between external solvers and LLMs; and the capability step from “answering” to <strong>answering with explicit grounds</strong>. Structurally, this chapter is the hub of the static-cognition part—not generic “knowledge-augmented QA,” but rule-dense, knowledge-rich, highly explainable settings where KG, query languages, LLMs, solvers, and explanation mechanisms form a controllable static neuro-symbolic stack—theory for SkyKG-style methods and essential background on neuro-symbolic RAG, GraphRAG, and safety-critical explanatory systems.</p>
+<section id="sparql-queries-and-deterministic-evidence-extraction">
+<h1>9.1 SPARQL queries and deterministic evidence extraction<a class="headerlink" href="#sparql-queries-and-deterministic-evidence-extraction" title="Link to this heading">#</a></h1>
+<p>KGs matter in neuro-symbolic AI partly because they store entities, relations, attributes, and events, and partly because standard query languages provide <strong>deterministic evidence extraction</strong>. SPARQL is central: beyond “fetching graph data,” it offers formal, verifiable, repeatable knowledge access—pulling structured evidence <strong>before</strong> language generation, with clear semantic boundaries and provenance.</p>
+<p>SPARQL is graph-pattern matching over RDF triples. Compared with relational SQL it foregrounds semantic paths and structural motifs; compared with NL retrieval it foregrounds exact constraints and formal semantics—ideal for a <strong>deterministic evidence extractor</strong> role.</p>
+<p>In low-altitude traffic, judgments such as entering restricted airspace, high-priority mission status, or path intersection with no-fly zones should not rest first on fuzzy LLM inference; they should be grounded in graph queries returning explicit facts—aircraft state, mission, airspace relations, rule objects.</p>
+<p>Hybrid value one: <strong>evidence determinism.</strong> LLM outputs are stochastic and generative; SPARQL returns entities, relations, and values satisfying patterns and filters—linking conclusions to concrete graph facts, paths, and match conditions.</p>
+<p>Value two: <strong>conditional, compositional retrieval.</strong> Risk often depends on conjunctions of aircraft type, mission priority, airspace limits, weather, and time windows. SPARQL binds variables under multi-pattern joins—ideal preprocessing before higher-level reasoning or explanation.</p>
+<p>Value three: <strong>auditability and reproducibility.</strong> Same graph state, same query, same (intended) results—queries are inspectable artifacts unlike implicit parametric “memory” in LLMs.</p>
+<p>Limits: SPARQL excels at explicitly modeled structure, not ellipsis, paraphrase, implicit commonsense, or rich NL context. Extraction quality tracks KG coverage, encoding of rules, and freshness. Best role: <strong>not</strong> “answer everything alone,” but <strong>supply high-trust structural skeleton evidence</strong> for later semantic integration.</p>
+<p>Design pattern: SPARQL early—lock entities, relations, rules, and state—then pass evidence packs to LLMs or other modules so answers are anchored, not free-form generation alone. SPARQL is thus <strong>deterministic evidence anchoring</strong> before generation—without it, “knowledge-driven” reasoning risks becoming “knowledge garnish”; with it, the KG enters the reasoning core.</p>
+</section>
+<section id="llm-semantic-completion-and-chained-explanation-generation">
+<h1>9.2 LLM semantic completion and chained explanation generation<a class="headerlink" href="#llm-semantic-completion-and-chained-explanation-generation" title="Link to this heading">#</a></h1>
+<p>If SPARQL extracts deterministic evidence, LLMs <strong>organize</strong> it: semantic completion, contextual stitching, and natural-language chained explanations. KGs and queries handle explicit relations and constraints; they rarely deliver operator-grade prose or unstated but routine connective tissue. LLMs bridge structured facts and human-readable narrative <strong>under explicit evidence constraints</strong>.</p>
+<p><strong>Semantic completion</strong> here is not free hallucination but, under evidence:</p>
+<ol class="arabic simple">
+<li><p><strong>Surface completion:</strong> Turn triples, attribute hits, and rule firings into readable sentences (e.g., from <code class="docutils literal notranslate"><span class="pre">UAV-17</span> <span class="pre">locatedIn</span> <span class="pre">Corridor-A</span></code>, <code class="docutils literal notranslate"><span class="pre">Corridor-A</span> <span class="pre">hasRestriction</span> <span class="pre">TemporaryControl</span></code>, <code class="docutils literal notranslate"><span class="pre">Mission-3</span> <span class="pre">hasPriority</span> <span class="pre">High</span></code> to a single operational summary).</p></li>
+<li><p><strong>Discourse glue:</strong> Order evidence causally or by inference depth—not a flat list.</p></li>
+<li><p><strong>Bounded padding:</strong> Add connective wording and context without contradicting evidence.</p></li>
+</ol>
+<p>Static risk settings often require not only labels or scores but <strong>why</strong>—which rules fired, which facts support the judgment. The LLM is not doing standalone proof but <strong>translating</strong> structured outcomes into human chains.</p>
+<p><strong>Chained explanation</strong> means presenting intermediate evidence, rule matches, and conclusion progression—e.g., state facts, matched constraints, then risk label—so users see <strong>how</strong> the result arose, not only <strong>what</strong> it is.</p>
+<p>Benefits: usability (dense logic → fluent text) and interactivity (follow-up whys and what-ifs) when evidence-backed.</p>
+<p>Risks: fluency bias can invent links when evidence is thin—turning “how to say it clearly” into “inventing logic the system never had.” In rule-heavy settings, spurious commonsense can masquerade as official grounds.</p>
+<p><strong>Best role:</strong> not independent reasoning core but <strong>evidence-constrained semantic organizer and explainer</strong>—prompt templates, slot filling, structured inputs, rule tags, citation-style formats so generation <strong>orbits</strong> retrieved facts and does not replace the rule engine on critical judgments.</p>
+<p>Engineering pattern: structured evidence packets (nodes, paths, attributes, rule hits, metadata) → LLM instructed to explain <strong>only</strong> from supplied items, optionally citing item IDs—controlled, anchored NL rather than black-box storytelling.</p>
+<p>LLMs thus augment human communication around explicit knowledge; they do not replace structured knowledge. Under that contract they strengthen neuro-symbolic stacks instead of eroding trust.</p>
+</section>
+<section id="rag-in-rule-dense-settings-fit-and-limits">
+<h1>9.3 RAG in rule-dense settings: fit and limits<a class="headerlink" href="#rag-in-rule-dense-settings-fit-and-limits" title="Link to this heading">#</a></h1>
+<p>Retrieval-augmented generation (RAG) retrieves external content before generation so answers lean on corpora rather than parametric memory alone—strong for factuality, freshness, and scale in many NLP tasks. In <strong>rule-dense, safety-sensitive, structure-led</strong> settings, vanilla document RAG needs careful scoping.</p>
+<p>Strengths: pulls current regulations, manuals, and bulletins into context; reduces pure parametric guessing; fits sources that start as NL documents before full KG formalization—useful when knowledge engineering is incomplete.</p>
+<p>Limits for <strong>decisive rule evidence:</strong></p>
+<ol class="arabic simple">
+<li><p>Retrieval optimizes <strong>similarity</strong>, not <strong>sufficiency for rule verdicts</strong>. Relevant-looking chunks may lack governing clauses; decisive constraints may be lexically distant.</p></li>
+<li><p>Retrieved <strong>text</strong> is not explicit <strong>logical state</strong>—premises, exceptions, and conflicts are not machine-checkable without further structure.</p></li>
+<li><p><strong>Evidence boundaries</strong> blur: what is binding rule vs. background vs. model paraphrase? Whole-context stuffing helps richness but hurts audit clarity.</p></li>
+<li><p><strong>Granularity mismatch:</strong> long passages vs. single decisive conditions or exceptions.</p></li>
+</ol>
+<p>Appropriate RAG roles: transitional coverage when structure is partial; <strong>supplemental</strong> narrative and cases alongside KG/rule cores. Using vanilla doc RAG as the <strong>sole</strong> rule engine risks structural imprecision, weak faithfulness, and unclear accountability—motivating GraphRAG: retrieve <strong>graphs and semantic subgraphs</strong>, not only similar text.</p>
+</section>
+<section id="graphrag-from-document-retrieval-to-graph-retrieval">
+<h1>9.4 GraphRAG: from document retrieval to graph retrieval<a class="headerlink" href="#graphrag-from-document-retrieval-to-graph-retrieval" title="Link to this heading">#</a></h1>
+<p>When doc RAG shows structural weakness, opaque boundaries, and unstable faithfulness, a natural evolution retrieves <strong>KGs and semantic subgraphs</strong>. GraphRAG redefines <strong>what</strong> to retrieve, <strong>how</strong>, and <strong>in what form</strong> knowledge enters the model—not a mere rebranding of RAG.</p>
+<p>Motivation: decisive knowledge often lives in <strong>networks</strong> of objects and relations, not isolated sentences. Low-altitude risk may depend jointly on identity, mission, airspace class, environment, and rules—connectivity that documents may scatter but graphs express natively.</p>
+<p>Core lift: targets shift from “similar chunks” to <strong>question-relevant semantic subgraphs</strong>—entity linking, path expansion, and local subgraph packaging before (optional) doc supplements.</p>
+<p>Benefits:</p>
+<ul class="simple">
+<li><p><strong>Multi-hop structure</strong> for explanations—e.g., aircraft → mission → emergency class → priority—made explicit in retrieved paths, not left to implicit stitching in context.</p></li>
+<li><p><strong>Controllable, auditable retrieval:</strong> show which nodes, edges, rule objects, and values support an answer.</p></li>
+</ul>
+<p>Mature designs often <strong>combine</strong> graph and document retrieval: graph-first anchoring, documents for nuance and narrative.</p>
+<p>Typical pipeline: intent parsing (entities, relations, rule cues) → graph match and path expansion → subgraph compression/ranking → optional doc fetch → joint prompting with structure + text.</p>
+<p>In UAM, core knowledge is inherently graph-shaped—aircraft, missions, airspaces, rules, risks, mitigations—so GraphRAG aligns with governance logic better than chunk-only RAG.</p>
+<p>GraphRAG upgrades hybrid neuro-symbolic retrieval from “find material for the model” to <strong>“find structural evidence for the reasoner,”</strong> easing orchestration among solvers, rules, and LLMs over shared subgraphs rather than fuzzy text alone.</p>
+</section>
+<section id="external-solvers-and-language-model-collaboration">
+<h1>9.5 External solvers and language-model collaboration<a class="headerlink" href="#external-solvers-and-language-model-collaboration" title="Link to this heading">#</a></h1>
+<p>Even with KGs, SPARQL, and GraphRAG, tasks needing explicit rule checking, consistency, constraint satisfaction, or combinatorial search still require <strong>external solvers</strong>—rule engines, DL reasoners, constraint/SAT/SMT solvers, planners, graph searchers, domain modules. LLMs excel at NL understanding, context weaving, and explanation; solvers excel at <strong>verifiable</strong> feasibility and violation checks.</p>
+<p>Synergy is <strong>division of labor:</strong> LLMs parse intents into structured tasks; solvers execute formal checks; LLMs narrate outcomes with citations and caveats.</p>
+<p>Example: “May this mission continue?”—LLM decomposes constraints; KG + solver evaluate no-fly, weather, permits; LLM explains <strong>allow/deny</strong> with enumerated grounds—<strong>verdict from solvers</strong>, <strong>rhetoric from LLMs</strong>.</p>
+<p>Challenges: stable NL→formal mapping; <strong>version alignment</strong> among parametric priors, graph facts, and executable rules; <strong>control-flow design</strong> for when to query, solve, or re-check.</p>
+<p>This pattern casts LLMs as <strong>semantic controllers</strong> orchestrating tools—analogous to fast System 1 framing plus slow System 2 execution—redefining hybrid control structure rather than “one model does all.”</p>
+</section>
+<section id="from-can-answer-to-answers-with-grounds">
+<h1>9.6 From “can answer” to “answers with grounds”<a class="headerlink" href="#from-can-answer-to-answers-with-grounds" title="Link to this heading">#</a></h1>
+<p>Strong general QA is not the goal for safety-critical neuro-symbolic stacks. The bar is <strong>grounded answers</strong>: checkable facts, cited rules, explicit inference chains, and stated limits/uncertainty.</p>
+<p><strong>Answering with grounds</strong> minimally requires:</p>
+<ol class="arabic simple">
+<li><p><strong>Factual grounds:</strong> States, entities, relations, attributes traceable to KG/DB/sources.</p></li>
+<li><p><strong>Rule grounds:</strong> For judgments, classifications, risk, compliance—point to constraints and clauses, not vague prose.</p></li>
+<li><p><strong>Inferential grounds:</strong> Show steps from facts to conclusions.</p></li>
+<li><p><strong>Boundary grounds:</strong> Where evidence is incomplete, scope is conditional, or conclusions are statistical supplements—not formal verdicts.</p></li>
+</ol>
+<p>Evaluation shifts from fluency alone to <strong>auditability</strong>: a correct-sounding answer without traceable evidence remains unacceptable in high-responsibility use.</p>
+<p>Structurally, SPARQL anchors facts; LLMs organize language under evidence; RAG/GraphRAG widen retrieval; solvers own formal tests—chained into a <strong>traceable</strong> pipeline.</p>
+<p>Mature outputs bundle <strong>conclusion, evidence summary, rule citations, reasoning sketch, and uncertainty/human-review flags</strong>—and systems must sometimes refuse or qualify when the KG or rules do not cover the case.</p>
+<p>This reframing sets up the next chapter: designing explainable static risk frameworks from SkyKG toward a general methodology—beyond chat, toward <strong>verifiable risk judgment</strong>.</p>
+</section>
+<section id="chapter-summary">
+<h1>Chapter summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>We examined KG-driven hybrid neuro-symbolic reasoning: SPARQL for deterministic evidence; LLMs for constrained completion and chained explanation; limits of doc RAG in rule-heavy settings; GraphRAG’s structural retrieval; solver–LLM collaboration; and the target of <strong>grounded</strong> answers (fact, rule, inference, boundary). The chapter positions hybrid stacks as constrained by explicit knowledge, queries, solving, and explanation—not mere tool assembly—and prepares static explainable risk framework design.</p>
+</section>
+<section id="key-concepts">
+<h1>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Deterministic evidence extraction: Formal queries that anchor facts before generation.</p></li>
+<li><p>Semantic completion: NL packaging of structured facts under evidence constraints.</p></li>
+<li><p>RAG: Retrieval before generation for freshness and fact leverage.</p></li>
+<li><p>GraphRAG: Retrieval upgraded to entities, relations, and subgraphs.</p></li>
+<li><p>Answering with grounds: Demanding factual, rule, inferential, and boundary support.</p></li>
+</ul>
+</section>
+<section id="study-questions">
+<h1>Study questions<a class="headerlink" href="#study-questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why is vanilla document RAG often insufficient as a <strong>formal</strong> reasoning core in rule-dense settings?</p></li>
+<li><p>What roles suit LLMs in hybrid neuro-symbolic systems, and which roles should they avoid?</p></li>
+<li><p>Is GraphRAG’s main gain “better recall” or “stronger structural evidence”?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p>“May this route cross temporary restricted airspace?”—SPARQL for aircraft attributes, mission level, airspace state, and applicable rules; LLM explains under evidence; contrast evidence boundaries between doc RAG and GraphRAG.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 9-1: Hybrid flow—SPARQL, GraphRAG, LLM generation.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure9-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 9-2: Retrieval targets: vanilla RAG vs. GraphRAG.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure9-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 9-3: Solvers, graph queries, and LLM coordination.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure9-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>This chapter is retrieval/query/explanation architecture; no unified derivation formula.</p></li>
+<li><p>Index workflow objects: <code class="docutils literal notranslate"><span class="pre">SPARQL</span> <span class="pre">query</span></code>, <code class="docutils literal notranslate"><span class="pre">evidence</span> <span class="pre">packet</span></code>, <code class="docutils literal notranslate"><span class="pre">GraphRAG</span> <span class="pre">subgraph</span></code>, <code class="docutils literal notranslate"><span class="pre">external</span> <span class="pre">solver</span> <span class="pre">outputs</span></code>.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Lewis, P., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. <em>Advances in Neural Information Processing Systems</em> (NeurIPS).</p></li>
+<li><p>Guu, K., Lee, K., Tung, Z., Pasupat, P., &amp; Chang, M. (2020). Retrieval Augmented Language Model Pre-Training. <em>Proceedings of the 37th International Conference on Machine Learning</em> (ICML).</p></li>
+<li><p>Petroni, F., et al. (2019). Language Models as Knowledge Bases? <em>Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing</em> (EMNLP).</p></li>
+<li><p>Hogan, A., et al. (2021). Knowledge Graphs. <em>ACM Computing Surveys</em>, 54(4), Article 71.</p></li>
+<li><p>Brown, T., et al. (2020). Language Models are Few-Shot Learners. <em>Advances in Neural Information Processing Systems</em> (NeurIPS).</p></li>
+<li><p>Karpukhin, V., et al. (2020). Dense Passage Retrieval for Open-Domain Question Answering. <em>Proceedings of EMNLP</em>.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">8.1 Logic rules as loss functions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">10.1 Defining static risk reasoning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-semantic-completion-and-chained-explanation-generation">9.2 LLM semantic completion and chained explanation generation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rag-in-rule-dense-settings-fit-and-limits">9.3 RAG in rule-dense settings: fit and limits</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#graphrag-from-document-retrieval-to-graph-retrieval">9.4 GraphRAG: from document retrieval to graph retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#external-solvers-and-language-model-collaboration">9.5 External solvers and language-model collaboration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-can-answer-to-answers-with-grounds">9.6 From “can answer” to “answers with grounds”</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#study-questions">Study questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

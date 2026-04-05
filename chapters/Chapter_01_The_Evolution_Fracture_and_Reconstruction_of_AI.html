@@ -1,0 +1,1085 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.1 Propositional logic and first-order predicate logic" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html" />
+    <link rel="prev" title="Introduction" href="../INTRODUCTION_EN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rise-of-connectionism-deep-learnings-success-and-the-black-box-crisis">1.2 The rise of connectionism: deep learning’s success and the black-box crisis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-peaks-dilemma-the-long-standing-split-between-strong-perception-and-weak-reasoning">1.3 The two-peaks dilemma: the long-standing split between strong perception and weak reasoning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lessons-from-cognitive-science-complementary-mechanisms-of-system-1-and-system-2">1.4 Lessons from cognitive science: complementary mechanisms of System 1 and System 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-proposal-of-neuro-symbolic-ai-why-unify-perception-knowledge-reasoning-and-decision-making">1.5 The proposal of neuro-symbolic AI: why unify perception, knowledge, reasoning, and decision-making</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#special-requirements-in-safety-critical-settings-explanation-certification-robustness-real-time">1.6 Special requirements in safety-critical settings: explanation, certification, robustness, real time</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#low-altitude-traffic-uam-a-representative-challenge-for-neuro-symbolic-ai">1.7 Low-altitude traffic / UAM: a representative challenge for neuro-symbolic AI</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#main-line-and-technical-closed-loop-of-this-book-knowledge-basereasoning-modelstrustworthy-certificationsystem-deployment">1.8 Main line and technical closed loop of this book: knowledge base—reasoning models—trustworthy certification—system deployment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">Discussion questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>This chapter addresses a question that runs through the entire book: why, after deep learning’s enormous success, have researchers and industry again turned their attention to neuro-symbolic artificial intelligence? To answer it, we must return to the historical development of AI and re-examine the theoretical promises, technical achievements, and intrinsic limits of symbolic AI and connectionism. The former once sought to build “thinking machines” from logic, rules, and explicit knowledge; the latter reshaped “perceiving machines” through large-scale data, compute, and gradient-based learning. Each achieved partial victories and each exposed fundamental weaknesses when confronting more complex, open, and uncertain real worlds. In this landscape—two peaks standing side by side, yet both insufficient—neuro-symbolic AI has gradually been reconceived as a path that may connect perception, knowledge, reasoning, and decision-making.</p>
+<p>The chapter first reviews the rise, flourishing, and constraints of symbolic AI, analyzing its strengths in knowledge representation, logical reasoning, and interpretability, and its bottlenecks in knowledge acquisition, robustness, and generalization. It then discusses how connectionism, through deep learning, broke through in vision, speech, and natural language processing, while highlighting black-box behavior, fragility, and reasoning deficits. On this basis it introduces the long-standing “two-peaks dilemma” of AI—the structural split between “strong perception—weak reasoning” and “strong reasoning—weak perception.” Finally, drawing on the cognitive-science framing of System 1 and System 2, it argues that fast pattern recognition and slow rule-based reasoning are not substitutes but should cooperate within a unified system.</p>
+<section id="the-rise-and-fall-of-symbolic-ai-from-expert-systems-to-the-knowledge-engineering-bottleneck">
+<h1>1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck<a class="headerlink" href="#the-rise-and-fall-of-symbolic-ai-from-expert-systems-to-the-knowledge-engineering-bottleneck" title="Link to this heading">#</a></h1>
+<p>The earliest mainstream paradigm in artificial intelligence was symbolic AI, centered on symbolic representation and logical reasoning. Its basic assumption is that intelligence consists in manipulating symbols: if objects, relations, rules, and goals in the world can be encoded in a formal symbolic system and combined with appropriate inference mechanisms, machines can exhibit human-like thought. This view was deeply shaped by formal logic, mathematical proof, and early cognitive science, and it underpinned classical AI theory.</p>
+<p>Methodologically, symbolic AI emphasizes three core capabilities. The first is <strong>knowledge representation</strong>—how to structure and make explicit world knowledge using logical formulas, semantic networks, frames, production rules, ontologies, and similar formalisms. The second is <strong>logical reasoning</strong>—how, given facts and rules, to derive new conclusions through deduction, induction, analogy, and search. The third is <strong>problem solving</strong>—how to cast tasks as state-space search, constraint satisfaction, or rule matching and let the system complete them under preset strategies. In short, symbolic AI’s advantage lies less in “learning automatically from data” than in “writing knowledge down and letting the machine compute by rules.”</p>
+<p>This paradigm achieved striking successes in the mid-to-late twentieth century. In specialized domains such as medical diagnosis, fault detection, geological exploration, and financial decision-making, expert systems were once seen as emblematic of AI entering practice. An expert system typically comprises a knowledge base, an inference engine, and an explanation module: the knowledge base stores facts and rules curated by domain experts; the engine performs forward or backward chaining over rules; the explanation module answers why a conclusion was reached and which rules support it. Compared with many deep models today, expert systems stand out for being <strong>transparent, reviewable, and traceable</strong>—a natural fit for high-risk, high-accountability professional settings.</p>
+<p>Yet symbolic AI’s prosperity did not last. As applications scaled, bottlenecks sharpened and converged in the so-called <strong>knowledge-engineering bottleneck</strong>. Knowledge engineering is the end-to-end process of eliciting knowledge from domain experts, formalizing it, and building machine-processable rule systems. The difficulty is that real-world knowledge is far more complex, vague, contextual, and dynamic than early visions assumed. Much expert knowledge is not stored as crisp rules but as experience, intuition, implicit judgment, and context dependence—hard to translate fully into formal logic. Humans can <em>do</em> without always being able to <em>say clearly why</em>.</p>
+<p>Symbolic AI therefore faces at least four structural difficulties.</p>
+<p>First, <strong>knowledge acquisition is costly</strong>. High-quality rule bases require long interviews with experts, iterative revision, and continuous maintenance—expensive and slow. The more complex the knowledge, the higher the build cost.</p>
+<p>Second, <strong>rule coverage is limited</strong>. Expert systems suit tasks with clear boundaries, stable processes, and relatively closed knowledge. In open environments, long-tail anomalies, or tightly coupled multi-factor problems, rule bases are hard to exhaust and systems fail easily.</p>
+<p>Third, <strong>robustness is weak</strong>. Symbolic systems depend strongly on input format, semantic precision, and logical premises; they tolerate noise, ambiguity, perception error, and missing data poorly. Real information is often incomplete, inconsistent, or conflicting, and classical rule systems adapt only weakly.</p>
+<p>Fourth, <strong>perceptual learning is lacking</strong>. Symbolic AI excels at knowledge already abstracted into symbols but not at automatically extracting representations from raw images, speech, or text. It resembles a “reasoner in the brain” without eyes, ears, or a sensory front end.</p>
+<p>At a deeper level, symbolic AI’s problem is not only engineering difficulty but a default picture of the world as <strong>clearly decomposable, fully encodable, and exhaustible by rules</strong>. The real world abounds in fuzzy boundaries, dynamic change, and unknown disturbances. Pure symbolic AI thus slides from “elegant in theory” to “rigid in engineering.”</p>
+<p>Symbolic AI has not lost its value—quite the contrary. Its strengths in <strong>explicit knowledge modeling, logical consistency, causal structure, explanation generation, rule auditing, and accountability</strong> remain hard for modern AI to replace. Today’s renewed interest in neuro-symbolic AI is not a return to vintage expert systems but a reactivation, under new data, compute, and models, of symbolic AI’s most valuable elements.</p>
+</section>
+<section id="the-rise-of-connectionism-deep-learnings-success-and-the-black-box-crisis">
+<h1>1.2 The rise of connectionism: deep learning’s success and the black-box crisis<a class="headerlink" href="#the-rise-of-connectionism-deep-learnings-success-and-the-black-box-crisis" title="Link to this heading">#</a></h1>
+<p>Unlike symbolic AI, connectionism does not begin by explicitly describing knowledge. It seeks emergent intelligent behavior through connections and weight updates among many simple computational units. Its inspiration comes from neuroscience and parallel distributed processing: human intelligence may depend less on explicit rules than on complex dynamical patterns formed by many neurons under stimulation. Connectionism treats intelligence as <strong>the ability to learn mappings from examples</strong>, not as symbolic calculation from prewritten rules.</p>
+<p>Early neural approaches were limited by compute, data scale, and training algorithms and had a tortuous history. The turning point came in the twenty-first century, especially after big data, GPU acceleration, and mature backpropagation-based optimization. Deep learning’s success marked connectionism’s return to center stage. Convolutional networks broke through in image recognition; RNNs and variants advanced speech and sequence modeling; Transformers pushed deep learning toward general perception and language modeling. Machine translation, speech recognition, object detection, text generation, protein structure prediction, large language models, and more all rest on the connectionist line.</p>
+<p>Connectionism’s rise rests on solving a problem classical AI struggled with: <strong>representation learning</strong>. Older systems relied on hand-crafted features; deep learning learns hierarchical representations from low-level local patterns to high-level semantic abstractions across layers. That lets models process raw data directly and approach or surpass human performance on very hard tasks. Compared with symbolic systems, deep learning has at least four notable strengths.</p>
+<p>First, <strong>strong perception</strong>: deep models extract statistical regularities from massive raw data and perform well on high-dimensional vision, speech, and text.</p>
+<p>Second, <strong>end-to-end learning</strong>: models optimize an overall objective from input to output, reducing error propagation from hand-piped modules.</p>
+<p>Third, <strong>distributed generalization</strong>: relative to hand rules, deep models often tolerate input perturbations and local variation better, generalizing within a range from sample to sample.</p>
+<p>Fourth, <strong>scalability</strong>: as data, parameters, and compute grow, connectionist methods often improve steadily—a clear scale effect.</p>
+<p>Yet within this success, deep learning’s intrinsic limits have become clearer. It can classify patterns with high accuracy without necessarily “understanding” causal structure, logical constraints, or abstract rules behind them. In the large-model era this has not disappeared; if anything it is more salient. The core crisis is often called the <strong>black-box crisis</strong>.</p>
+<p>The black-box crisis is not merely “humans cannot read the parameters.” It means decision processes lack transparent intermediate semantic structure, which yields several issues.</p>
+<p>First, <strong>weak interpretability</strong>: deep models encode knowledge as high-dimensional continuous vectors; internal states are hard to map to human-understandable concepts, rules, or causal chains. Models give answers but often not <strong>why</strong> those answers.</p>
+<p>Second, <strong>fragility and adversarial sensitivity</strong>: many studies show tiny perturbations can cause severe misclassification; behavior often degrades sharply out of distribution. Strong performance often assumes a stable training distribution.</p>
+<p>Third, <strong>heavy data dependence</strong>: connectionist methods rely on large labeled or pretrained corpora; quality, coverage, and bias of data directly shape performance. In data-scarce, expensive-label, or prior-rich domains, purely data-driven routes are costly and inefficient.</p>
+<p>Fourth, <strong>weak logical consistency</strong>: deep models learn correlation, not by default logical, physical, or regulatory constraints. They may be locally accurate yet globally inconsistent along a reasoning chain.</p>
+<p>Fifth, <strong>difficult accountability</strong>: in medicine, traffic, aviation, justice, and other safety-critical domains, a system that only “answers” without “grounds” struggles to enter high-accountability workflows. When wrong, it is hard to explain failure modes, audit decisions, or assign institutionally acceptable responsibility.</p>
+<p>Connectionism thus answers how machines see, hear, and generate, but not fully how they understand, prove, constrain, and take responsibility. Deep learning’s success is not the end of AI but a higher-level exposure of structural gaps: the stronger the model, the larger the system, the more critical the application, the less acceptable a black box driven only by statistical correlation.</p>
+<p>That is the practical backdrop for revisiting neuro-symbolic methods. We do not deny deep learning; we ask, on top of its success, whether <strong>powerful perception and representation learning</strong> can be combined with <strong>explicit knowledge, logical rules, and auditable inference</strong>.</p>
+</section>
+<section id="the-two-peaks-dilemma-the-long-standing-split-between-strong-perception-and-weak-reasoning">
+<h1>1.3 The two-peaks dilemma: the long-standing split between strong perception and weak reasoning<a class="headerlink" href="#the-two-peaks-dilemma-the-long-standing-split-between-strong-perception-and-weak-reasoning" title="Link to this heading">#</a></h1>
+<p>Across AI’s history, a recurrent structural tension appears: different routes excel on one side yet struggle to unify perception, reasoning, generalization, and explanation. Symbolic AI is strong in logical reasoning, knowledge representation, and rule consistency but weak in perceptual learning, robust adaptation, and open worlds. Connectionism is strong in pattern recognition, continuous representation, and large-scale learning but weak in interpretable reasoning, logical consistency, and accountability. They occupy <strong>two peaks</strong> of intelligent systems yet remain split, without a unified general architecture.</p>
+<p>This is the <strong>two-peaks dilemma</strong>. “Two peaks” does not mean two schools merely coexist; it means <strong>asymmetric development</strong>: one peak is “strong reasoning—weak perception,” the other “strong perception—weak reasoning.” The former is logically crisp in formal systems but weak on sensing complex reality; the latter is accurate on high-dimensional data but weak on deep structured thought.</p>
+<p>The dilemma shows first in <strong>how knowledge is acquired</strong>. Symbolism relies on explicit prior knowledge—humans define concepts, relations, and rules, then machines reason on top. Connectionism relies on empirical data—models form internal representations from training samples. One is knowledge-strong and learning-weak; the other learning-strong and explicitly knowledge-weak. Real intelligence usually needs both learning from experience and priors for constraint and correction. Neither alone suffices in complex settings.</p>
+<p>Second, the dilemma appears as a <strong>rupture in representational form</strong>. Symbolic AI uses discrete, composable, interpretable structures—logical terms, rules, graphs, ontologies. Connectionism uses continuous, distributed, dense vectors. Discrete forms suit rules and hierarchies but handle noise and vagueness poorly; continuous forms suit statistical similarity but carry strict logic and institutional constraints awkwardly. This is not a mere encoding difference but a difference in cognitive mechanism: one leans toward “sayable,” the other toward “learnable.”</p>
+<p>Third, the dilemma concerns <strong>the nature of reasoning</strong>. Symbolic systems excel at deduction under explicit constraints and can yield structured proofs. Deep models approximate mappings from distributional patterns; their “reasoning” is often complex correlation fitting, not rule manipulation or causal inference in a strict sense. High scores on train/test sets can collapse under compositional generalization, counterfactuals, long constraint chains, or few-shot rule transfer.</p>
+<p>More importantly, the dilemma limits AI in <strong>high-accountability real-world settings</strong>. In autonomous driving, low-altitude traffic, smart healthcare, industrial control, systems must not only “see” but “say clearly,” “stay within bounds,” and “be accountable when wrong.” Perception without logical constraint risks uncontrolled risk; rules without environmental adaptation cannot track complex dynamics. These settings naturally demand architectures that unify <strong>perception, representation, reasoning, calibration, explanation, and control</strong>—what the two-peaks picture says single routes struggle to supply alone.</p>
+<p>Historically, many efforts have tried to bridge the gap: probabilistic and uncertain reasoning in expert systems; rule constraints and structural priors in machine learning; distributed representations combined with symbolic knowledge in NLP and KGs; tool use, retrieval augmentation, and external solvers in large models. Together they show AI need not choose between peaks forever but can move toward <strong>bridging and reconstructing the whole</strong>.</p>
+<p>The two-peaks dilemma is thus not about which school “wins,” but about AI’s long lack of a <strong>unified cognitive architecture</strong>. The real question is not “rules or data” but <strong>how rules and data, logic and statistics, structure and learning complement each other in one system</strong>—the theoretical starting point of neuro-symbolic AI’s revival.</p>
+</section>
+<section id="lessons-from-cognitive-science-complementary-mechanisms-of-system-1-and-system-2">
+<h1>1.4 Lessons from cognitive science: complementary mechanisms of System 1 and System 2<a class="headerlink" href="#lessons-from-cognitive-science-complementary-mechanisms-of-system-1-and-system-2" title="Link to this heading">#</a></h1>
+<p>If the symbolic–connectionist debate exposes a technical split inside AI, cognitive science on human thinking offers a more explanatory frame. Kahneman and others’ <strong>System 1—System 2</strong> account suggests human cognition is not monolithic but involves two interacting modes: one fast, intuitive, automatic, low-cost, good at pattern recognition and experiential judgment; another slow, deliberate, rule-driven, high-cost, good at logical analysis, planning, and complex reasoning. The split is a conceptual model in cognitive science, not a literal brain map, but it is highly suggestive for AI’s historical divergence and future integration.</p>
+<p><strong>System 1</strong> can be read as experience-, association-, and matching-based intuitive processing. It responds quickly to familiar patterns with little explicit calculation—recognizing faces, tone, danger, filling in ambiguous text. System 1 is efficient, flexible, low-latency, yet prone to bias, illusion, and heuristic failure. Mapped to AI, today’s deep learning and large language models largely embody System 1: they learn patterns from huge data and predict or generate quickly on complex inputs, without always offering verifiable inference.</p>
+<p><strong>System 2</strong> corresponds to explicit, slow, rule-oriented thought. It invokes symbols, operations, logic, and goal structure for stepwise solving, reflection, and control—proving theorems, designing flight procedures, checking regulations, comparing action plans. Its strengths are controllability, consistency, and reflection; its costs are speed and resource use, and it is ill-suited to massive raw perception. In AI, logical reasoning, KG query, constraint solving, planning, and formal verification align more with System 2.</p>
+<p>The key lesson: <strong>high-level intelligence is not System 1 or System 2 alone but their division of labor and cooperation</strong>. Pure System 1 yields fast judgments without checks, hallucinations, or bias; pure System 2 is rigorous but cannot handle high-dimensional perception, real-time feedback, and fuzzy open worlds. Humans act effectively in open worlds because intuitive recognition and rule-based reasoning interact: System 1 proposes candidates; System 2 reviews, corrects, and proves when needed.</p>
+<p>For AI, connectionism has long resembled building <strong>System 1</strong>; symbolism resembles building <strong>System 2</strong>. The issue is not which is “higher” but that both must sit in one architecture. Systems for complex reality need deep models to extract information quickly from vision, text, sensors, and trajectories, and symbolic reasoners to check constraints, preserve consistency, build audit chains, and support accountable judgments in high-risk settings.</p>
+<p>In safety-critical systems this complementarity matters more. In low-altitude governance, state sensing, path prediction, and environment recognition need System-1-like fast pattern recognition; rule checking, conflict accountability, risk evidence, and regulatory interfaces need System-2-like explicit inference. A system that only “judges fast” may be efficient but unauditable under concurrency; one that only “reasons slowly by rules” may miss real airspace dynamics. Neuro-symbolic AI is not mechanical gluing of two technologies but an engineering reconstruction of <strong>System 1—System 2 coordination</strong>.</p>
+<p>Moreover, the relation is <strong>dynamically scheduled</strong>: System 1 often suffices for routine tasks; System 2 is invoked for anomalies, conflicts, high-risk decisions, or when explanation and proof are required. Future neuro-symbolic systems must not only possess both modes but <strong>invoke different inference mechanisms by task complexity, risk level, and uncertainty</strong>—knowing when to be fast vs. slow, approximate vs. strict.</p>
+<p>The value of System 1—System 2 is not labeling AI with cognitive analogies but showing that intelligence may be <strong>multi-mechanism synergy</strong>. Perception, experience, rules, review, planning, calibration, and explanation should not be mutually exclusive modules but layered capacities in one agent. Neuro-symbolic AI’s role is to implement that structure in engineering.</p>
+</section>
+<section id="the-proposal-of-neuro-symbolic-ai-why-unify-perception-knowledge-reasoning-and-decision-making">
+<h1>1.5 The proposal of neuro-symbolic AI: why unify perception, knowledge, reasoning, and decision-making<a class="headerlink" href="#the-proposal-of-neuro-symbolic-ai-why-unify-perception-knowledge-reasoning-and-decision-making" title="Link to this heading">#</a></h1>
+<p>After long coexistence and alternating dominance of symbolic and connectionist AI, a growing consensus holds that neither pure rule-driven nor pure data-driven approaches alone supports high-level intelligence in complex open worlds. The former resembles systems with “clear rules but no senses”; the latter resembles systems with “strong senses but weak structured understanding.” As applications move from closed labs to open environments, from single tasks to complex systems, and from fault-tolerant entertainment to high-risk decisions, the cost of this split grows. In that setting, neuro-symbolic AI (Neuro-Symbolic AI) is less often seen as a fringe hybrid and more as a direction that may <strong>reconstruct the overall architecture</strong> of intelligent systems.</p>
+<p>Neuro-symbolic AI is not simply “stitching” neural nets and symbolic rules. It seeks, in one framework, to coordinate four capabilities long treated separately: <strong>perception, knowledge, reasoning, and decision-making</strong>. Perception extracts meaningful information from images, text, speech, trajectories, sensor streams. Knowledge organizes domain concepts, relations, constraints, and experience in explicit, shareable, maintainable form. Reasoning links knowledge and facts into logical structure, producing interpretable, checkable intermediate conclusions. Decision-making selects among candidate actions under goals, risk, and constraints and triggers execution. Traditional systems often split these across modules or paradigms, each optimized in isolation; neuro-symbolic AI aims to <strong>unify the pipeline</strong> into an intelligent process that is learnable, constrainable, auditable, and deployable.</p>
+<p>The need for a <strong>perception—knowledge—reasoning—decision</strong> unity comes first from the <strong>layered nature</strong> of real tasks. Problems are rarely abstract, clean, and fully structured; they are often multi-source, noisy, context-incomplete, rule-heavy, and asymmetric in risk. A perception model’s most likely output alone is often insufficient for trustworthy action. Recognizing an aircraft’s position and speed does not imply understanding airspace rules, risk level, operational priority, or conflict consequences; conversely, a full rule base without accurate real-time state cannot judge effectively. Perception without knowledge is “seeing without understanding”; knowledge without perception is “knowing rules but not grounding reality”; reasoning without decision is “analyzing without acting”; decision without an explainable chain is “acting without accountability.”</p>
+<p>Second, unified structure reflects an <strong>upgrade</strong> as AI enters complex open systems. Early tasks split into single goals—classify an image, translate a sentence, predict a label. Modern systems are often <strong>chains</strong>: understand the environment, identify objects and constraints, form interpretable judgments from knowledge, then trade off resources, risk, and goals. Real tasks are less single-function maps than <strong>multi-stage reasoning-control processes from perceptual input to normative output</strong>. That strains the “one model, one task” design and favors a systems view neuro-symbolic AI provides.</p>
+<p>Third, unity addresses the growing gap between <strong>high performance and high trust</strong>. Deep models can be very strong perceptually, yet outputs misaligned with explicit knowledge and rules struggle to enter high-accountability use; symbolic systems are interpretable but disconnected from ground truth cannot control effectively. Neuro-symbolic methods care not only about “better metrics” but about <strong>joint optimization of performance, explanation, constraint, and control</strong>—making knowledge participate in judgment as structural resource, not background reading; making reasoning constraint and verification in decision formation, not post-hoc packaging; routing perception through knowledge alignment and rule screening into more controllable decisions.</p>
+<p>Implementation paths vary: <strong>neural front + symbolic back</strong> pipelines; rules embedded in losses as soft constraints; deeper unification compiling graph structure, logic, and continuous representations into shared tensor frameworks so structure is inherited during learning. Different paths share the goal of <strong>reducing breaks</strong> between perception, knowledge, reasoning, and decision—learning from data while respecting knowledge, responding fast while supplying explicit grounds and audit trails when it matters.</p>
+<p>Neuro-symbolic AI also reflects a shift in research goals. Past work asked whether tasks were solved; many settings now require <strong>why success occurs, when failure is likely, how to detect errors, how to fix them, and whether repair is compliant</strong>—questions that perception alone cannot answer; they need representation, logical checking, confidence assessment, and institutional constraint together. Neuro-symbolic AI is not a compromise between old and new AI but a <strong>more complete systems logic</strong> for complex reality.</p>
+<p>In the rest of this book, the unity appears as: KGs and ontologies as a <strong>shared domain knowledge base</strong>; static and dynamic neuro-symbolic models combining knowledge and data for risk, conflict, and explanation; calibration, conformal prediction, and certification for <strong>trust boundaries</strong>; cloud–edge and platform deployment organizing these into <strong>running closed loops</strong>. Neuro-symbolic AI matters not only at the algorithm level but as a <strong>new overall framework</strong> from input to action.</p>
+<p>Thus neuro-symbolic AI arises not because one paradigm failed utterly but because <strong>no single paradigm meets whole-system demands in the real world</strong>. It pursues not only “smarter models” but <strong>more complete intelligent systems</strong>: perceiving complex reality, invoking explicit knowledge, reasoning under rules and uncertainty, and producing actions that are acceptable, explainable, and constrainable.</p>
+</section>
+<section id="special-requirements-in-safety-critical-settings-explanation-certification-robustness-real-time">
+<h1>1.6 Special requirements in safety-critical settings: explanation, certification, robustness, real time<a class="headerlink" href="#special-requirements-in-safety-critical-settings-explanation-certification-robustness-real-time" title="Link to this heading">#</a></h1>
+<p>Not all AI applications impose equally strict demands. In low-risk settings occasional errors may mean slightly worse UX or modest economic loss. In others, errors can cause injury, major property loss, cascading system failure, or loss of public trust. These are <strong>safety-critical scenarios</strong>. Examples include autonomous driving, aerospace, industrial control, smart healthcare, energy dispatch, rail transit, and complex robotics. In such domains AI cannot be deemed acceptable on <strong>average accuracy alone</strong>, because each judgment may enter a real control loop affecting the physical world.</p>
+<p>Safety-critical settings impose a cluster of requirements distinct from generic tasks. Four stand out: <strong>explanation, certification, robustness, and real time</strong>. They are not independent KPIs but joint conditions for deployability.</p>
+<p><strong>Explanation</strong> means outputs need not only results but <strong>grounds</strong>. Three layers matter: operations need explanation so operators, regulators, and maintainers know why a judgment was made and whether to adopt, intervene, or adjust; accountability needs explanation so failures can be traced to information used, rules applied, and steps where deviation occurred; institutional acceptance needs explanation because high-accountability industries resist opaque cores that cannot be audited or embedded in regulatory workflow. Here explanation is not optional visualization but a <strong>prerequisite for deployment</strong>.</p>
+<p><strong>Certification</strong>: explanation aids understanding; understanding is not trust; trust is not certification. Safety-critical systems must meet explicit formal standards, operating procedures, and verification flows. A model strong in the lab may be unusable without bounded behavior, error upper bounds, failure conditions, or anomaly monitoring. “Certification” spans classical verification and compliance and statistical notions—confidence guarantees, coverage guarantees, out-of-distribution risk signaling. The system must say not only <strong>why</strong> it acted but <strong>when it may be unreliable</strong> and <strong>how that unreliability is surfaced early</strong>—a stiff challenge for purely empirical models.</p>
+<p><strong>Robustness</strong>: systems run in complex open worlds where inputs may be noisy, missing, delayed, drifting, conflicting, or adversarial. They face not ideal lab distributions but changing reality, local distortion, and long-tail anomalies. They must perform well in nominal conditions and <strong>stay stable under stress</strong>, avoiding catastrophic failure from small perturbations. Robustness includes tolerance to sensor noise and error, adaptation to shift and transfer, and <strong>safe conservative behavior</strong> when modules fail or information conflicts. In safety-critical use, robustness means <strong>prioritizing safety envelopes under uncertainty</strong>, not merely “graceful degradation of accuracy.”</p>
+<p><strong>Real time</strong>: many tasks unfold in continuous dynamics with tight decision windows—conflict alerting, autonomous avoidance, process control, emergency monitoring. A slower but slightly more accurate model may be dominated by a modestly less accurate but timely stable one. Real time is a <strong>design starting point</strong>, jointly served by model structure, inference chains, deployment topology, communication, and scheduling.</p>
+<p>These four requirements <strong>tension</strong> with one another: richer reasoning and stricter certification add latency; explanation modules cost compute; conservative robustness can hurt average performance. Safety-critical AI seeks <strong>system-level balance</strong> under multi-objective constraints—not single-metric maximization. Pure deep learning or pure rule systems alone rarely satisfy all four: the former may win on perception speed and accuracy but lose on explanation and certification; the latter may win on auditable rules but struggle to track dynamic inputs in real time.</p>
+<p>Hence safety-critical settings <strong>push AI toward neuro-symbolic design</strong>: fuse fast data-driven perception with knowledge-driven interpretable inference so explanation, certification, robustness, and real time can co-exist. Neural components extract state from complex inputs; KGs and rules maintain explicit constraints and auditable chains; calibration and certification add <strong>trust envelopes</strong>; cloud–edge architectures support real-time operation. Neuro-symbolic AI is not fusion for its own sake but a <strong>structural response</strong> to these demands.</p>
+<p>For <strong>low-altitude traffic and UAM</strong> in this book, all four requirements bite hard: airspace rules, dynamic conflicts, links, environmental disturbance, multi-agent coordination—and errors can dwarf those of ordinary software. Building systems around explanation, certification, robustness, and real time is theoretical, deployable, governance, and accountability work. That thread runs through the later parts of the book: how models reason, why outputs are trustworthy, how they are certified, and how they run at city scale in real time.</p>
+</section>
+<section id="low-altitude-traffic-uam-a-representative-challenge-for-neuro-symbolic-ai">
+<h1>1.7 Low-altitude traffic / UAM: a representative challenge for neuro-symbolic AI<a class="headerlink" href="#low-altitude-traffic-uam-a-representative-challenge-for-neuro-symbolic-ai" title="Link to this heading">#</a></h1>
+<p>Among safety-critical applications, <strong>low-altitude traffic and urban air mobility (UAM)</strong> is a highly representative composite challenge. It differs both from traditional aviation—highly centralized, low density, strong human control—and from ground traffic with mature infrastructure and long data histories. Low-altitude traffic faces a <strong>multi-agent, highly dynamic, rule-dense, disturbance-prone, governance-complex</strong> emerging system: logistics UAS, emergency response, inspection, low-altitude sensing, urban air taxis sharing airspace with buildings, networks, weather, population, ground infrastructure, and regulation. The setting naturally demands perception, knowledge representation, dynamic reasoning, risk calibration, and deployment—making it an ideal <strong>showcase</strong> for neuro-symbolic AI.</p>
+<p>First, the domain shows <strong>heterogeneous objects and complex rules</strong>. Multiple aircraft types, airspace classes, mission goals, priority actors, and institutional constraints coexist. Logistics UAS, emergency aircraft, inspection platforms, and passenger eVTOL differ in altitude bands, route rights, risk tolerance, and dispatch priority; airspace is shaped by no-fly zones, restricted areas, temporary control, time windows, weather, and infrastructure capacity. The task is not a pure trajectory prediction problem but <strong>multi-object—multi-relation—multi-rule coupling</strong>. Without explicit knowledge and ontology, unified understanding is hard.</p>
+<p>Second, there is strong <strong>dynamics and spatiotemporal coupling</strong>. Position, speed, heading, battery, mission state, link quality, and surroundings change continuously; risk evolves over time and through interaction. Two aircraft may not conflict now but may in tens of seconds after speed or path changes; a corridor safe in normal weather may become risky under sudden wind or rain or local comms loss. Systems must represent not only static knowledge but <strong>dynamic relations, event streams, and state transitions</strong> for real-time prediction and coordination. Static rule bases or single-frame perception are insufficient.</p>
+<p>Third, the system is <strong>multi-agent and coordinative</strong>. Risk often arises from <strong>joint behavior</strong> in shared space, not a single vehicle. Local optimal moves need not be globally safe. Systems must understand networks among aircraft, airspace, and mission constraints. Graph structure, relational representation, and multi-agent reasoning are natural modeling languages—aligned with KGs, GNNs, and neuro-symbolic frameworks.</p>
+<p>More deeply, low-altitude traffic is <strong>governance-oriented</strong>. The core question is not only “how to predict better” but <strong>how to make airspace safer, more orderly, more regulatable, more accountable</strong>. That forces questions beyond prediction: Are risk judgments grounded? Do outputs align with law, standards, and procedures? Can conservative strategies be given under anomalies? When system advice conflicts with human dispatch, who has final authority? How do regulators get evidence chains and audit interfaces? AI here is not an isolated algorithm but <strong>part of governance</strong>—pure black-box performance is a poor fit.</p>
+<p>Technically, low-altitude traffic concentrates nearly every key neuro-symbolic issue: <strong>KGs and ontologies</strong> for unified semantics of aircraft, airspace, missions, rules, events, and risk; <strong>static neuro-symbolic reasoning</strong> for interpretable risk under dense rules; <strong>temporal graphs and dynamic reasoning</strong> for dense multi-agent conflict and coordination; <strong>uncertainty calibration and certification</strong> for acceptable outputs in high-risk use; <strong>cloud–edge and distributed architecture</strong> for city-scale real-time concurrency. It is less an edge case than a <strong>comprehensive exam</strong> of full-stack neuro-symbolic capability.</p>
+<p>The domain is also <strong>forward-looking</strong>: with low-altitude economy, UAS, and UAM, airspace management moves from low-frequency human approval toward <strong>high-frequency real-time coordination</strong>, from single-activity oversight to multi-platform, multi-mission, multi-stakeholder intelligent governance. Future city airspace cannot rely only on human experience and static rules, nor fully on uninterpretable black-box automation. It needs structure that <strong>understands complex airspace semantics</strong>, handles dynamic conflict and uncertainty, and accepts regulatory and social responsibility constraints. In that sense low-altitude traffic / UAM is not only background but the <strong>through-line scenario</strong> for theory, models, and systems in this book.</p>
+<p>Treating it as the representative challenge is not convenience of exposition but because it <strong>compresses</strong> key tensions: data vs. rules, real time vs. interpretability, prediction vs. accountability, local autonomy vs. global governance. Building runnable, interpretable, certifiable, scalable neuro-symbolic systems here is a path toward <strong>broader safety-critical complex systems</strong>.</p>
+</section>
+<section id="main-line-and-technical-closed-loop-of-this-book-knowledge-basereasoning-modelstrustworthy-certificationsystem-deployment">
+<h1>1.8 Main line and technical closed loop of this book: knowledge base—reasoning models—trustworthy certification—system deployment<a class="headerlink" href="#main-line-and-technical-closed-loop-of-this-book-knowledge-basereasoning-modelstrustworthy-certificationsystem-deployment" title="Link to this heading">#</a></h1>
+<p>Having clarified neuro-symbolic AI’s background, safety-critical requirements, and UAM as a flagship setting, the book must answer a master question: facing such a long chain, how to organize a <strong>complete rather than fragmented</strong> technical path? The answer is a progressive <strong>closed loop</strong> around <strong>knowledge base—reasoning models—trustworthy certification—system deployment</strong>. It is not mere chapter ordering but <strong>overall design logic</strong> for complex intelligent systems: what knowledge the world is understood with; how reasoning proceeds on knowledge and data; why the system deserves trust; how it runs in the real environment. The four layers build on each other and form the book’s spine.</p>
+<p><strong>Knowledge base</strong>: no complex real-world intelligent system can rest only on perception vectors and task labels. In rule-dense, heterogeneous, high-accountability settings, an explicit, unified, maintainable knowledge foundation is needed for concepts, relation patterns, constraints, risk semantics, and scene templates. The knowledge base here is not a static database or a handful of rules but a <strong>unified representational framework</strong> for domain cognition: ontology, entity-relations, rule-constraint layer, event-state layer, plus methods for graph construction, updating, query, and consistency. Its job is to turn tacit knowledge scattered across documents, processes, regulations, experience, and data into <strong>explicit structure</strong> machines can call, models can align with, and regulators can audit. Without it, later reasoning risks becoming isolated algorithms without a shared, reusable, extensible capability stack.</p>
+<p><strong>Reasoning models</strong>: given a knowledge base, systems must make knowledge <strong>participate in judgment</strong>, not sit in storage. Reasoning models in this book are not one fixed form but cover <strong>static and dynamic</strong> regimes. In rule-strong, relatively static, explanation-heavy tasks, hybrid neuro-symbolic frames with KG, SPARQL, retrieval augmentation, and LLMs can produce risk judgments with evidence chains and rule support. In dense, multi-agent, strongly time-varying settings, temporal KGs, GNNs, and relational attention support <strong>real-time conflict detection</strong>, risk propagation, and coordinated de-confliction. The goal is not raw accuracy alone but <strong>effective coupling</strong> of knowledge and data, rules and learning, explanation and control across scenarios.</p>
+<p><strong>Trustworthy certification</strong>: even with a knowledge base and reasoning models, the system is not automatically <strong>trustworthy</strong>. Strong inference ≠ trustworthy output; interpretable conclusions need not carry formal guarantees. In safety-critical use, systems must further answer: Are risk scores calibrated? Do explanation chains align with real rules? Under drift and anomalies, can the system recognize its own uncertainty and warn? That points to a <strong>certification layer</strong>—the bridge from “looks trustworthy” to “can be shown more trustworthy.” It draws on uncertainty modeling, conformal prediction, online drift monitoring, statistical coverage, faithfulness of explanation, and audit-chain design. Certification adds <strong>testable, quantifiable, regulatable trust boundaries</strong> so systems output not only results but <strong>confidence ranges, applicability, and failure risk</strong>.</p>
+<p><strong>System deployment</strong>: knowledge, reasoning, and certification in offline experiments do not yet yield usable real intelligent systems. The challenge is organizing these into engineering that sustains <strong>city-scale concurrency</strong>, continuous real-time data, multi-layer inference, and timely response. The deployment layer cares about <strong>whole-stack behavior</strong> in the field: which tasks belong at the edge vs. cloud; how to orchestrate rule checking, graph reasoning, LLM inference, and certification monitoring; how KGs sync; how spatiotemporal graphs partition across nodes with load balance; how regulators, operators, and executors connect via platform APIs. Deployment is the <strong>engineering exit</strong> from theory and models to real governance. Without it, neuro-symbolic AI remains an algorithm collection, not a <strong>complete approach to complex system governance</strong>.</p>
+<p>Structurally, the closed loop maps to a clear path: early chapters build shared language in symbolic logic, KGs, deep learning, and graph learning; then low-altitude domain modeling and unified representation build the <strong>knowledge base</strong>; static risk reasoning and dynamic coordination show neuro-symbolic methods at different task layers; certification addresses moving from “explained” to “guaranteed”; system foundations and platformization show <strong>city-scale deployment</strong>. The book is not “basics—algorithm list—case studies” but follows one question chain: <strong>how the world is represented, how risk is understood, why outputs are trustworthy, how systems land.</strong></p>
+<p>The closed loop also means neuro-symbolic AI here is not a lone model family but a <strong>systems methodology</strong>. Emphasis falls less on whether any single algorithm is state of the art than on whether the <strong>whole chain</strong> closes from knowledge to reasoning, reasoning to certification, certification to deployment. For complex governance like UAM, that closure matters because the scenario simultaneously demands answers to <strong>cognition, judgment, trust, and operations</strong>. Without a knowledge base, understanding fragments; without reasoning models, knowledge cannot become action; without certification, high-accountability workflows close; without deployment architecture, capability stays on paper.</p>
+<p>Thus <strong>knowledge base—reasoning models—trustworthy certification—system deployment</strong> is a <strong>full technical map</strong> for neuro-symbolic AI in complex reality. It responds to the historical arc from symbolism through connectionism to neuro-symbolic reconstruction; to safety-critical demands for explanation, certification, robustness, and real time; and to UAM’s need for unified cognition and a systems closed loop. The following chapters unfold along this line, showing how neuro-symbolic AI moves from an academic concept toward <strong>interpretable, certifiable, deployable</strong> intelligent systems for complex domains.</p>
+</section>
+<section id="chapter-summary">
+<h1>Chapter summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>The latter part of this chapter further explains why neuro-symbolic AI has again become central and why it fits safety-critical complex systems such as low-altitude traffic. First, neuro-symbolic AI is not naive stitching of two technologies but an attempt to unify <strong>perception, knowledge, reasoning, and decision-making</strong>—moving intelligent systems from “single-task solvers” toward <strong>complete perception-to-action systems</strong> for the real world. Second, safety-critical settings impose far stricter demands than typical tasks: performance must coexist with <strong>interpretability, certifiability, robustness, and real-time behavior</strong>, pushing architectures from pure black boxes toward <strong>knowledge constraints and trustworthy control</strong>. Third, low-altitude traffic / UAM is the book’s core scenario because it concentrates <strong>heterogeneous objects, dense rules, dynamic coupling, multi-agent coordination, and complex governance accountability</strong>. Finally, the book organizes a full technical closed loop around <strong>knowledge base—reasoning models—trustworthy certification—system deployment</strong>, offering a systems map from theory to engineering and from cognition to governance.</p>
+<p>Chapter 1 completes the book’s opening question: why AI moves from symbolic–connectionist opposition toward neuro-symbolic reconstruction; why complex high-risk reality needs systems combining learning, explicit knowledge, logical reasoning, and trustworthy control; and how the book will proceed. The next chapter turns to <strong>symbolic logic, rule systems, and automated reasoning</strong>—why explicit knowledge representation remains an unavoidable theoretical starting point for neuro-symbolic AI.</p>
+</section>
+<section id="key-concepts">
+<h1>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>Symbolic AI</strong>: paradigm emphasizing logic, rules, and explicit knowledge for deductive reasoning.</p></li>
+<li><p><strong>Connectionism</strong>: paradigm emphasizing data, parameters, and gradient learning for high-dimensional mappings.</p></li>
+<li><p><strong>Two-peaks dilemma</strong>: structural problem of long-standing split between “strong reasoning—weak perception” and “strong perception—weak reasoning.”</p></li>
+<li><p><strong>System 1 and System 2</strong>: fast intuitive pattern recognition vs. slow deliberate rule-based reasoning.</p></li>
+<li><p><strong>Neuro-symbolic AI</strong>: hybrid line aiming to unify perception, knowledge, reasoning, and decision-making.</p></li>
+</ul>
+</section>
+<section id="discussion-questions">
+<h1>Discussion questions<a class="headerlink" href="#discussion-questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why has deep learning’s success not ended the need for symbolic logic and explicit knowledge?</p></li>
+<li><p>In safety-critical settings like low-altitude traffic, why is “high accuracy” still insufficient for real deployment?</p></li>
+<li><p>If System 1 and System 2 are mapped onto modern AI design, which modules better suit neural methods and which suit symbolic methods?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p>Use <strong>pre-flight route approval</strong> as a guiding case: pure rule systems can strictly check no-fly zones and approval conditions but struggle with complex weather text and multi-source state; pure deep models can fuse multimodal inputs but lack reviewable grounds; neuro-symbolic systems can unify perception, knowledge, rules, and explanation in one workflow—a suitable entry point for the book’s main question.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 1-1: Timeline of AI from expert systems through deep learning to neuro-symbolic AI.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure1-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 1-2: Two-peaks dilemma contrasting “strong reasoning—weak perception” and “strong perception—weak reasoning.”</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure1-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 1-3: Main line of the book—closed loop of “knowledge base—reasoning models—trustworthy certification—system deployment.”</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure1-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>This chapter is historical and problem-oriented; no core derivations.</p></li>
+<li><p>In layout, keep chains such as “System 1 / System 2” and “perception—knowledge—reasoning—decision-making” as symbolic threads for later chapters.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Newell, A., &amp; Simon, H. A. (1976). Computer Science as Empirical Inquiry: Symbols and Search. <em>Communications of the ACM</em>, 19(3), 113–126.</p></li>
+<li><p>Kahneman, D. (2011). <em>Thinking, Fast and Slow</em>. Farrar, Straus and Giroux.</p></li>
+<li><p>LeCun, Y., Bengio, Y., &amp; Hinton, G. (2015). Deep Learning. <em>Nature</em>, 521(7553), 436–444.</p></li>
+<li><p>Russell, S., &amp; Norvig, P. (2021). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson.</p></li>
+<li><p>Marcus, G. (2020). The Next Decade in AI: Four Steps Towards Robust Artificial Intelligence. <em>arXiv preprint arXiv:2002.06177</em>.</p></li>
+<li><p>Garcez, A. d., Broda, K. B., &amp; Gabbay, D. M. (2002). <em>Neural-Symbolic Learning Systems: Foundations and Applications</em>. Springer.</p></li>
+<li><p>Haugeland, J. (1985). <em>Artificial Intelligence: The Very Idea</em>. MIT Press.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../INTRODUCTION_EN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.1 Propositional logic and first-order predicate logic</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rise-of-connectionism-deep-learnings-success-and-the-black-box-crisis">1.2 The rise of connectionism: deep learning’s success and the black-box crisis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-peaks-dilemma-the-long-standing-split-between-strong-perception-and-weak-reasoning">1.3 The two-peaks dilemma: the long-standing split between strong perception and weak reasoning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lessons-from-cognitive-science-complementary-mechanisms-of-system-1-and-system-2">1.4 Lessons from cognitive science: complementary mechanisms of System 1 and System 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-proposal-of-neuro-symbolic-ai-why-unify-perception-knowledge-reasoning-and-decision-making">1.5 The proposal of neuro-symbolic AI: why unify perception, knowledge, reasoning, and decision-making</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#special-requirements-in-safety-critical-settings-explanation-certification-robustness-real-time">1.6 Special requirements in safety-critical settings: explanation, certification, robustness, real time</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#low-altitude-traffic-uam-a-representative-challenge-for-neuro-symbolic-ai">1.7 Low-altitude traffic / UAM: a representative challenge for neuro-symbolic AI</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#main-line-and-technical-closed-loop-of-this-book-knowledge-basereasoning-modelstrustworthy-certificationsystem-deployment">1.8 Main line and technical closed loop of this book: knowledge base—reasoning models—trustworthy certification—system deployment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">Discussion questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

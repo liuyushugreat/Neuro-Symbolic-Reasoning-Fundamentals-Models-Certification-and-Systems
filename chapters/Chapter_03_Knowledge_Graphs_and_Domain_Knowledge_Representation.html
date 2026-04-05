@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.1 Basic ideas of deep representation learning" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html" />
+    <link rel="prev" title="2.1 Propositional logic and first-order predicate logic" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rdf-owl-sparql-and-graph-query-languages">3.2 RDF, OWL, SPARQL, and graph query languages</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ontology-construction-concept-layer-relation-layer-constraint-layer">3.3 Ontology construction: concept layer, relation layer, constraint layer</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#event-graphs-scene-graphs-and-temporal-knowledge-graphs">3.4 Event graphs, scene graphs, and temporal knowledge graphs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-multi-source-heterogeneous-data-to-unified-knowledge-representation">3.5 From multi-source heterogeneous data to unified knowledge representation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-graph-updating-alignment-and-consistency-maintenance">3.6 Knowledge graph updating, alignment, and consistency maintenance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-general-kgs-to-domain-specific-kgs">3.7 From general KGs to domain-specific KGs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplement-knowledge-graph-embeddings-and-graph-completion">3.8 Supplement: knowledge graph embeddings and graph completion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-graph-embeddings">3.8.1 Knowledge graph embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-completion-and-link-prediction">3.8.2 Graph completion and link prediction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#property-graph-model">3.8.3 Property graph model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-neuro-symbolic-reasoning">3.8.4 Connection to neuro-symbolic reasoning</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">Discussion questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Having established formal logic and rule systems in Chapter 2, this chapter addresses <strong>knowledge graphs</strong> as the structured representation layer needed before complex reasoning can scale. Facing domains such as low-altitude traffic or autonomous driving, pure logical inference alone hits a “no fuel” problem: we first need a <strong>machine-understandable, structured, extensible</strong> way to represent massive domain entities and their interactions. <strong>Knowledge graphs (KGs)</strong> exist to solve that <strong>knowledge representation</strong> problem. This chapter introduces KG foundations and shows how to abstract messy reality into a normative symbolic network, laying data and knowledge groundwork for later neuro-symbolic reasoning.</p>
+<section id="basic-concepts-of-knowledge-graphs-entities-relations-attributes-events">
+<h1>3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events<a class="headerlink" href="#basic-concepts-of-knowledge-graphs-entities-relations-attributes-events" title="Link to this heading">#</a></h1>
+<p>A knowledge graph is, in essence, a large-scale <strong>semantic network</strong> in graph form. Formally, a KG is often a directed multigraph <span class="math notranslate nohighlight">\(G = (E, R, F)\)</span> where <span class="math notranslate nohighlight">\(E\)</span> is a set of <strong>entities</strong>, <span class="math notranslate nohighlight">\(R\)</span> a set of <strong>relations</strong>, and <span class="math notranslate nohighlight">\(F\)</span> a set of <strong>facts</strong> (triples).</p>
+<p>For physical systems such as low-altitude traffic, core elements divide into four types:</p>
+<ul class="simple">
+<li><p><strong>Entity:</strong> A concrete thing or abstract concept that can stand on its own in the world; appears as a <strong>node</strong> in the graph—e.g. UAS <code class="docutils literal notranslate"><span class="pre">UAV-A102</span></code>, airspace grid <code class="docutils literal notranslate"><span class="pre">Grid-3A</span></code>, vertiport <code class="docutils literal notranslate"><span class="pre">Vertiport-X</span></code>.</p></li>
+<li><p><strong>Relation:</strong> A semantic link between entities—a <strong>directed edge</strong>—e.g. <code class="docutils literal notranslate"><span class="pre">located_in</span></code> between a UAS and airspace, <code class="docutils literal notranslate"><span class="pre">spatially_adjacent_to</span></code> between two UAS.</p></li>
+<li><p><strong>Attribute:</strong> Key–value metadata describing intrinsic properties of entities or relations, linking entities to literals (numbers, strings)—e.g. UAS <code class="docutils literal notranslate"><span class="pre">current_speed</span> <span class="pre">=</span> <span class="pre">15</span> <span class="pre">m/s</span></code>, airspace <code class="docutils literal notranslate"><span class="pre">altitude_ceiling</span> <span class="pre">=</span> <span class="pre">120</span> <span class="pre">m</span></code>.</p></li>
+<li><p><strong>Event:</strong> A dynamic process with time, place, and participants—often modeled as a <strong>composite entity</strong>, e.g. a <code class="docutils literal notranslate"><span class="pre">Takeoff_Event</span></code> with participating UAS, site, and timestamp.</p></li>
+</ul>
+</section>
+<section id="rdf-owl-sparql-and-graph-query-languages">
+<h1>3.2 RDF, OWL, SPARQL, and graph query languages<a class="headerlink" href="#rdf-owl-sparql-and-graph-query-languages" title="Link to this heading">#</a></h1>
+<p>For <strong>standard exchange</strong> and <strong>machine reasoning</strong>, the W3C defines Semantic Web standards. Fluency in them underpins trustworthy domain representation.</p>
+<ul class="simple">
+<li><p><strong>RDF (Resource Description Framework):</strong> The bottom layer. RDF abstracts all statements as <strong>(subject, predicate, object)</strong> triples—e.g. <code class="docutils literal notranslate"><span class="pre">(UAV-01,</span> <span class="pre">belongs_to,</span> <span class="pre">Logistics_Company_A)</span></code>. This minimal structure enables <strong>heterogeneous data fusion</strong>.</p></li>
+<li><p><strong>OWL (Web Ontology Language):</strong> Built on RDF, OWL adds <strong>richer logical</strong> expressiveness: complex class relationships (intersection, union, disjointness), property characteristics (transitivity, symmetry, functionality). In low-altitude traffic, OWL can state that fixed-wing and rotary-wing UAS are <strong>disjoint</strong>, or that <strong>physical collision</strong> is symmetric. OWL is key syntax for <strong>static logical validation</strong> and trust-oriented certification.</p></li>
+<li><p><strong>SPARQL:</strong> The standard <strong>query language</strong> for RDF data—analogous to SQL for relational stores. SPARQL uses <strong>graph pattern matching</strong> to extract subgraphs or entity sets—e.g. retrieve “all logistics UAS currently within 500 m of a no-fly zone boundary.”</p></li>
+</ul>
+</section>
+<section id="ontology-construction-concept-layer-relation-layer-constraint-layer">
+<h1>3.3 Ontology construction: concept layer, relation layer, constraint layer<a class="headerlink" href="#ontology-construction-concept-layer-relation-layer-constraint-layer" title="Link to this heading">#</a></h1>
+<p>An <strong>ontology</strong> is a strict, formal specification of knowledge in a domain—like a <strong>schema</strong> or <strong>meta-model</strong> for the KG. High-quality domain ontologies usually span three layers:</p>
+<ol class="arabic simple">
+<li><p><strong>Concept layer (TBox):</strong> Vocabulary and <strong>class hierarchy</strong>—answers “what kinds of objects exist in this domain?” Often built top-down or bottom-up as a taxonomy—e.g. <code class="docutils literal notranslate"><span class="pre">Aircraft</span></code> parent of <code class="docutils literal notranslate"><span class="pre">UAV</span></code> and <code class="docutils literal notranslate"><span class="pre">Manned_Aircraft</span></code>.</p></li>
+<li><p><strong>Relation layer:</strong> Legitimate links between concepts—<strong>object properties</strong> (entity–entity) and <strong>data properties</strong> (entity–literal). Each relation needs clear <strong>domain</strong> and <strong>range</strong>—e.g. <code class="docutils literal notranslate"><span class="pre">has_pilot</span></code> domain <code class="docutils literal notranslate"><span class="pre">Manned_Aircraft</span></code>, range <code class="docutils literal notranslate"><span class="pre">Person</span></code>.</p></li>
+<li><p><strong>Constraint layer:</strong> Business rules and physical limits—the <strong>soul</strong> of safety-critical graphs. Axioms and <strong>cardinality constraints</strong> ensure facts respect reality and regulation—e.g. “a UAS has at most one current waypoint at a time.”</p></li>
+</ol>
+</section>
+<section id="event-graphs-scene-graphs-and-temporal-knowledge-graphs">
+<h1>3.4 Event graphs, scene graphs, and temporal knowledge graphs<a class="headerlink" href="#event-graphs-scene-graphs-and-temporal-knowledge-graphs" title="Link to this heading">#</a></h1>
+<p>General KGs are often <strong>static</strong>; governance in low-altitude traffic or driving is <strong>highly dynamic and spatiotemporally intertwined</strong>. Advanced graph variants include:</p>
+<ul class="simple">
+<li><p><strong>Event graph:</strong> Emphasizes <strong>event evolution</strong>, causality, and temporal order. Nodes include events—e.g. “weather shock” causes “route replanning,” which causes “UAS delay.”</p></li>
+<li><p><strong>Scene graph:</strong> From computer vision—a <strong>snapshot</strong> of spatial topology at a time. In UAM, captures static obstacles, moving aircraft, and relative relations (“above,” “near”) in a region at an instant.</p></li>
+<li><p><strong>Temporal knowledge graph (TKG):</strong> Extends triples with <strong>time</strong>, often as quadruples <span class="math notranslate nohighlight">\((h, r, t, \tau)\)</span> where <span class="math notranslate nohighlight">\(\tau\)</span> is a time or interval when the fact holds—e.g. <code class="docutils literal notranslate"><span class="pre">(UAV-A,</span> <span class="pre">occupy,</span> <span class="pre">Grid-5,</span> <span class="pre">[10:05–10:15])</span></code>. TKGs are the <strong>core data structure</strong> for later dynamic conflict prediction and evolutionary reasoning in this book.</p></li>
+</ul>
+</section>
+<section id="from-multi-source-heterogeneous-data-to-unified-knowledge-representation">
+<h1>3.5 From multi-source heterogeneous data to unified knowledge representation<a class="headerlink" href="#from-multi-source-heterogeneous-data-to-unified-knowledge-representation" title="Link to this heading">#</a></h1>
+<p>City-scale low-altitude governance ingests <strong>fragmented</strong> sources: ADS-B trajectories, radar point clouds, structured flight plans, semi-structured METAR-style messages, unstructured policy text. Unification requires <strong>information extraction</strong> and <strong>knowledge fusion</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Entity recognition and alignment:</strong> Identify business entities per source—e.g. align radar track <code class="docutils literal notranslate"><span class="pre">Track_ID_992</span></code> with registered <code class="docutils literal notranslate"><span class="pre">UAV-SF-001</span></code> via <strong>entity resolution</strong> as one aircraft.</p></li>
+<li><p><strong>Relation extraction:</strong> Compute relations from logs or spatial data—e.g. Euclidean distance below threshold yields <code class="docutils literal notranslate"><span class="pre">(UAV-1,</span> <span class="pre">risk_of_collision,</span> <span class="pre">UAV-2)</span></code>.</p></li>
+<li><p><strong>Knowledge mapping:</strong> Scripts (e.g. <strong>R2RML</strong>) or deep models map relational/time-series stores into RDF triples or <strong>property graphs</strong> conforming to the ontology.</p></li>
+</ol>
+</section>
+<section id="knowledge-graph-updating-alignment-and-consistency-maintenance">
+<h1>3.6 Knowledge graph updating, alignment, and consistency maintenance<a class="headerlink" href="#knowledge-graph-updating-alignment-and-consistency-maintenance" title="Link to this heading">#</a></h1>
+<p>Trust depends on <strong>consistent</strong> base knowledge. Under high-frequency change, maintenance is critical:</p>
+<ul class="simple">
+<li><p><strong>Streaming updates:</strong> Batch writes for position/velocity fail real-time needs; <strong>streaming graph engines</strong> incrementally update temporal edges and attributes at <strong>millisecond</strong> scale for monitoring.</p></li>
+<li><p><strong>Knowledge alignment:</strong> Integrating external KGs (e.g. city-wide building BIM) needs <strong>ontology mapping</strong> and <strong>instance matching</strong> to resolve naming and semantic clashes.</p></li>
+<li><p><strong>Consistency checking:</strong> After updates, run <strong>ontology constraints</strong> or rule sets (e.g. <strong>SWRL</strong>). If perception wrongly asserts one UAS in two distant cells simultaneously, the reasoner should <strong>alert</strong> and mark <strong>untrusted</strong> knowledge.</p></li>
+</ul>
+</section>
+<section id="from-general-kgs-to-domain-specific-kgs">
+<h1>3.7 From general KGs to domain-specific KGs<a class="headerlink" href="#from-general-kgs-to-domain-specific-kgs" title="Link to this heading">#</a></h1>
+<p>KG evolution moves from <strong>general</strong> to <strong>domain-specific</strong> use—important for scoping neuro-symbolic design in this book.</p>
+<ul class="simple">
+<li><p><strong>General KGs</strong> (e.g. Wikidata, DBpedia, Freebase): broad human <strong>commonsense</strong>; very wide, relatively shallow, <strong>tolerant</strong> of occasional errors—cost is often degraded search or QA experience.</p></li>
+<li><p><strong>Domain-specific KGs</strong> (e.g. low-altitude <strong>SkyKG</strong>, medical, industrial control KGs): <strong>clear boundaries, tight logic, very high precision</strong>. In safety-critical settings graphs must be not mere concept piles but <strong>digital constraint sets</strong> obeying physics and procedures.</p></li>
+</ul>
+<p>The shift from general to domain KGs marks AI applications moving from <strong>weakly constrained commonsense QA</strong> toward <strong>strongly constrained trustworthy governance</strong>. With structured knowledge in place, later parts discuss how deep learning and graph learning <strong>grow</strong> on this base and how neuro-symbolic fusion unfolds.</p>
+</section>
+<section id="supplement-knowledge-graph-embeddings-and-graph-completion">
+<h1>3.8 Supplement: knowledge graph embeddings and graph completion<a class="headerlink" href="#supplement-knowledge-graph-embeddings-and-graph-completion" title="Link to this heading">#</a></h1>
+<p>Earlier sections treat KGs as <strong>discrete</strong> symbol structures—semantically clear and interpretable but awkward as direct input to neural training. <strong>Knowledge graph embedding (KGE)</strong> maps entities and relations into <strong>low-dimensional continuous space</strong> so graph knowledge joins gradient-based, end-to-end learning.</p>
+<section id="knowledge-graph-embeddings">
+<h2>3.8.1 Knowledge graph embeddings<a class="headerlink" href="#knowledge-graph-embeddings" title="Link to this heading">#</a></h2>
+<p>The core idea: learn a vector <span class="math notranslate nohighlight">\(\mathbf{e} \in \mathbb{R}^d\)</span> (or <span class="math notranslate nohighlight">\(\mathbb{C}^d\)</span>) for each entity <span class="math notranslate nohighlight">\(e \in E\)</span>, a vector or matrix for each relation <span class="math notranslate nohighlight">\(r \in R\)</span>, and a scoring function <span class="math notranslate nohighlight">\(f(h,r,t)\)</span> that <strong>scores up</strong> true triples and <strong>scores down</strong> false ones. Methods differ mainly in <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<ul class="simple">
+<li><p><strong>TransE:</strong> Relations as <strong>translations</strong> in embedding space: <span class="math notranslate nohighlight">\(f(h,r,t) = -\|\mathbf{h} + \mathbf{r} - \mathbf{t}\|\)</span>. Intuition: if <span class="math notranslate nohighlight">\((h,r,t)\)</span> holds, <span class="math notranslate nohighlight">\(\mathbf{h} + \mathbf{r} \approx \mathbf{t}\)</span>. Simple and efficient but weak on one-to-many and many-to-many patterns.</p></li>
+<li><p><strong>DistMult:</strong> Bilinear score <span class="math notranslate nohighlight">\(f(h,r,t) = \mathbf{h}^\top \mathrm{diag}(\mathbf{r})\, \mathbf{t}\)</span> with diagonal relation matrices. Richer interaction but <strong>symmetric</strong> in head/tail: <span class="math notranslate nohighlight">\(f(h,r,t) = f(t,r,h)\)</span>, ill-suited to directed relations.</p></li>
+<li><p><strong>ComplEx:</strong> Embeddings in <strong>complex</strong> space <span class="math notranslate nohighlight">\(\mathbb{C}^d\)</span>: <span class="math notranslate nohighlight">\(f(h,r,t) = \mathrm{Re}(\mathbf{h}^\top \mathrm{diag}(\mathbf{r})\, \bar{\mathbf{t}})\)</span> with <span class="math notranslate nohighlight">\(\bar{\mathbf{t}}\)</span> the conjugate of <span class="math notranslate nohighlight">\(\mathbf{t}\)</span>. Asymmetry enables directed relations (e.g. “jurisdiction,” “belongs to”) while still expressing symmetric relations.</p></li>
+<li><p><strong>RotatE:</strong> Relations as <strong>rotations</strong> in complex space: <span class="math notranslate nohighlight">\(\mathbf{t} = \mathbf{h} \circ \mathbf{r}\)</span> with element-wise product and <span class="math notranslate nohighlight">\(|r_i| = 1\)</span>. Captures symmetric, antisymmetric, transitive, and <strong>compositional</strong> patterns (<span class="math notranslate nohighlight">\(r_1 \circ r_2 \approx r_3\)</span>), with strong benchmark performance.</p></li>
+</ul>
+</section>
+<section id="graph-completion-and-link-prediction">
+<h2>3.8.2 Graph completion and link prediction<a class="headerlink" href="#graph-completion-and-link-prediction" title="Link to this heading">#</a></h2>
+<p>A direct use of KGE is <strong>link prediction</strong>: given incomplete <span class="math notranslate nohighlight">\((h,r,?)\)</span> or <span class="math notranslate nohighlight">\((?,r,t)\)</span>, rank candidate entities by score to <strong>impute missing facts</strong>. Domain KGs built from experts and structured extraction are often <strong>incomplete</strong>—e.g. missing some “UAS model → applicable airspace type” links. Link prediction can suggest missing associations. Evaluation uses Mean Rank, <strong>MRR</strong>, and <strong>Hits&#64;K</strong>.</p>
+</section>
+<section id="property-graph-model">
+<h2>3.8.3 Property graph model<a class="headerlink" href="#property-graph-model" title="Link to this heading">#</a></h2>
+<p>Section 3.2’s <strong>RDF</strong> model centers triples and pairs naturally with OWL and SPARQL—cornerstones of the Semantic Web. In engineering, many databases (Neo4j, Amazon Neptune) use <strong>property graphs</strong>: nodes and edges carry arbitrary key–value properties without reifying every attribute as extra triples. <strong>Cypher</strong>-style queries read closer to natural patterns (e.g. <code class="docutils literal notranslate"><span class="pre">MATCH</span> <span class="pre">(u:UAV)-[:LOCATED_IN]-&gt;(g:Grid)</span> <span class="pre">RETURN</span> <span class="pre">u</span></code>). Property graphs are often chosen for <strong>flexibility and query efficiency</strong>; for <strong>cross-system interoperability</strong> and <strong>formal reasoning</strong>, RDF/OWL remains hard to replace. Design should trade off interoperability, reasoning, and engineering efficiency.</p>
+</section>
+<section id="connection-to-neuro-symbolic-reasoning">
+<h2>3.8.4 Connection to neuro-symbolic reasoning<a class="headerlink" href="#connection-to-neuro-symbolic-reasoning" title="Link to this heading">#</a></h2>
+<p>KGE <strong>bridges</strong> symbol and neural views: embeddings turn discrete knowledge into continuous geometry usable as <strong>features</strong> or <strong>regularizers</strong>; geometric structure (translation, rotation, bilinear maps) <strong>encodes</strong> relational semantics traceable to symbolic logic. Later chapters combine embeddings with GNNs, rule learning, and logical constraints for frameworks that <strong>generalize</strong> yet stay <strong>logically structured</strong>—“symbols supply structure, embeddings supply generalization” is a <strong>central pillar</strong> of the technical line in this book.</p>
+</section>
+</section>
+<section id="chapter-summary">
+<h1>Chapter summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>This chapter developed <strong>knowledge graphs and domain knowledge representation</strong>: entities, relations, attributes, and events as basic units; RDF, OWL, and SPARQL as standards; ontology layers for structure; event, scene, and temporal graphs for dynamics; multi-source fusion, alignment, update, and consistency for real deployment; the move from general to <strong>domain-specific</strong> high-stakes KGs; and KGE/link prediction as a systematic path from symbols to vectors for neuro-symbolic fusion.</p>
+</section>
+<section id="key-concepts">
+<h1>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>Knowledge graph:</strong> Semantic network of entities, relations, attributes, and facts.</p></li>
+<li><p><strong>RDF / OWL / SPARQL:</strong> Representation, semantic constraints, and standard querying.</p></li>
+<li><p><strong>Ontology:</strong> Formal meta-framework for domain concepts, relations, and constraints.</p></li>
+<li><p><strong>Temporal knowledge graph:</strong> KG with explicit time for dynamic facts.</p></li>
+<li><p><strong>Domain-specific KG:</strong> High-precision, high-consistency base for constrained scenarios.</p></li>
+<li><p><strong>Knowledge graph embedding:</strong> Learning continuous representations of entities and relations.</p></li>
+<li><p><strong>Link prediction:</strong> Graph completion by ranking candidate relations or entities.</p></li>
+<li><p><strong>Property graph:</strong> Graph model with rich properties on nodes and edges for engineering use.</p></li>
+</ul>
+</section>
+<section id="discussion-questions">
+<h1>Discussion questions<a class="headerlink" href="#discussion-questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why are domain-specific KGs more valuable than general KGs in safety-critical settings?</p></li>
+<li><p>What roles do concept, relation, and constraint layers play in an ontology?</p></li>
+<li><p>If a low-altitude KG ingests high-frequency telemetry and regulatory text, what is the hardest data-fusion challenge?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p><strong>Urban low-altitude corridor risk query:</strong> represent aircraft, corridors, no-fly zones, weather disturbance, and mission priority as nodes and relations; use <strong>SPARQL</strong> to retrieve a time-bounded subgraph relevant to a target mission, showing how scattered data becomes <strong>structured evidence</strong>.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 3-1: The four basic building blocks—entities, relations, attributes, events.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure3-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 3-2: Three ontology layers—concept, relation, constraint.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure3-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 3-3: Pipeline from multi-source heterogeneous data to unified knowledge.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure3-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Basic graph: <span class="math notranslate nohighlight">\(G = (E, R, F)\)</span></p></li>
+<li><p>TKG quadruple: <span class="math notranslate nohighlight">\((h, r, t, \tau)\)</span></p></li>
+<li><p>TransE: <span class="math notranslate nohighlight">\(f(h,r,t) = -\|\mathbf{h} + \mathbf{r} - \mathbf{t}\|\)</span></p></li>
+<li><p>DistMult: <span class="math notranslate nohighlight">\(f(h,r,t) = \mathbf{h}^\top \mathrm{diag}(\mathbf{r})\, \mathbf{t}\)</span></p></li>
+<li><p>ComplEx: <span class="math notranslate nohighlight">\(f(h,r,t) = \mathrm{Re}(\mathbf{h}^\top \mathrm{diag}(\mathbf{r})\, \bar{\mathbf{t}})\)</span></p></li>
+<li><p>RotatE: <span class="math notranslate nohighlight">\(\mathbf{t} = \mathbf{h} \circ \mathbf{r}\)</span>, <span class="math notranslate nohighlight">\(|r_i| = 1\)</span></p></li>
+<li><p>Note: emphasis is on graph objects and semantic layers and core scoring forms, not heavy derivation.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Hogan, A., et al. (2021). Knowledge Graphs. <em>ACM Computing Surveys</em>, 54(4), Article 71.</p></li>
+<li><p>Bordes, A., Usunier, N., Garcia-Duran, A., Weston, J., &amp; Yakhnenko, O. (2013). Translating Embeddings for Modeling Multi-relational Data. <em>Advances in Neural Information Processing Systems</em> (NeurIPS).</p></li>
+<li><p>Berners-Lee, T., Hendler, J., &amp; Lassila, O. (2001). The Semantic Web. <em>Scientific American</em>, 284(5), 34–43.</p></li>
+<li><p>Suchanek, F. M., Kasneci, G., &amp; Weikum, G. (2007). YAGO: A Core of Semantic Knowledge. <em>Proceedings of the 16th International Conference on World Wide Web</em> (WWW).</p></li>
+<li><p>Vrandečić, D., &amp; Krötzsch, M. (2014). Wikidata: A Free Collaborative Knowledgebase. <em>Communications of the ACM</em>, 57(10), 78–85.</p></li>
+<li><p>Ji, S., Pan, S., Cambria, E., Marttinen, P., &amp; Yu, P. S. (2022). A Survey on Knowledge Graphs: Representation, Acquisition, and Applications. <em>IEEE Transactions on Neural Networks and Learning Systems</em>, 33(2), 494–514.</p></li>
+<li><p>Bollacker, K., Evans, C., Paritosh, P., Sturge, T., &amp; Taylor, J. (2008). Freebase: A Collaboratively Created Graph Database for Structuring Human Knowledge. <em>Proceedings of ACM SIGMOD</em>.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.1 Propositional logic and first-order predicate logic</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">4.1 Basic ideas of deep representation learning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rdf-owl-sparql-and-graph-query-languages">3.2 RDF, OWL, SPARQL, and graph query languages</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ontology-construction-concept-layer-relation-layer-constraint-layer">3.3 Ontology construction: concept layer, relation layer, constraint layer</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#event-graphs-scene-graphs-and-temporal-knowledge-graphs">3.4 Event graphs, scene graphs, and temporal knowledge graphs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-multi-source-heterogeneous-data-to-unified-knowledge-representation">3.5 From multi-source heterogeneous data to unified knowledge representation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-graph-updating-alignment-and-consistency-maintenance">3.6 Knowledge graph updating, alignment, and consistency maintenance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-general-kgs-to-domain-specific-kgs">3.7 From general KGs to domain-specific KGs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supplement-knowledge-graph-embeddings-and-graph-completion">3.8 Supplement: knowledge graph embeddings and graph completion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-graph-embeddings">3.8.1 Knowledge graph embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-completion-and-link-prediction">3.8.2 Graph completion and link prediction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#property-graph-model">3.8.3 Property graph model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-neuro-symbolic-reasoning">3.8.4 Connection to neuro-symbolic reasoning</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">Discussion questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

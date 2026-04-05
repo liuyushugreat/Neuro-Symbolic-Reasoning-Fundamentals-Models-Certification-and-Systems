@@ -1,0 +1,1051 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>13.1 Conflict detection vs. conflict resolution &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html" />
+    <link rel="prev" title="12.1 Formalizing multi-UAV dynamic coordination" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../appendices/Appendix_C_Course_Labs_and_Practice_Projects.html">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fchapters/Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>13.1 Conflict detection vs. conflict resolution</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">13.1 Conflict detection vs. conflict resolution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#path-and-graph-structured-maneuver-generation">13.2 Path- and graph-structured maneuver generation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning-on-graph-path-reasoning">13.3 Reinforcement learning on graph-path reasoning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#constraint-grounded-cooperative-deconfliction">13.4 Constraint-grounded cooperative deconfliction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#local-optimality-vs-global-safety-envelopes">13.5 Local optimality vs. global safety envelopes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-skyflow-toward-a-general-dynamic-reasoning-framework">13.6 From SkyFlow toward a general dynamic reasoning framework</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#study-questions">Study questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>The preceding chapters established TKG modeling and graph-driven multi-agent <strong>conflict detection</strong>. For real UAM governance, <strong>detecting</strong> conflicts is incomplete. Systems must decide, after detection, <strong>how</strong> to produce executable cooperative deconfliction under graph structure, temporal relations, and operational constraints; <strong>how</strong> to avoid local fixes that cascade new risks; and <strong>how</strong> to balance real-time performance, explainability, and safety margins. Detection is the first half of dynamic risk reasoning; <strong>cooperative deconfliction and decision-making</strong> turn risk awareness into governance action.</p>
+<p>This chapter argues temporal relational graphs support not only risk identification but <strong>joint strategy generation</strong> for multi-agent deconfliction. <strong>Deconfliction</strong> here is not single-vehicle dodge around one hazard; it is coordinated selection among candidate actions for multiple agents sharing airspace—around conflict events, priorities, spatiotemporal constraints, and interaction structure—preserving safety while sustaining throughput and mission continuity. The problem is therefore <strong>neuro-symbolic decision-making on temporal relational graphs</strong>, not only path planning or control optimization alone.</p>
+<p>Methodologically we cover six layers: the relationship between detection and resolution; path- and graph-based maneuver generation; reinforcement learning (RL) on graph paths; constraint-grounded cooperative deconfliction; tension between local optimality and <strong>global safety envelopes</strong>; and extending <strong>SkyFlow</strong>-style models toward a general dynamic reasoning framework.</p>
+<section id="conflict-detection-vs-conflict-resolution">
+<h1>13.1 Conflict detection vs. conflict resolution<a class="headerlink" href="#conflict-detection-vs-conflict-resolution" title="Link to this heading">#</a></h1>
+<p>Detection and resolution are co-discussed but differ in function, objective, and decision role. <strong>Detection</strong> answers whether latent conflict exists, with what probability, and in which spatiotemporal window—<strong>situation assessment</strong>. <strong>Resolution</strong> answers what actions to take, who yields, reroutes, holds, or replans, and whether maneuvers satisfy rules and bounds—<strong>decision-making</strong>.</p>
+<p>They are tightly coupled: resolution without reliable detection rests on wrong or stale risk; detection outputs must be <strong>decision-ready</strong>—not only binary alarms but structured descriptors (agents involved, conflict type, time/space windows, relative priority, confidence).</p>
+<p>Resolution <strong>shapes</strong> detector design: cooperative systems need <strong>structurally pointed</strong> risk signals—critical edges, paths, temporal intensity, priority clashes—not only scalar scores.</p>
+<p>Conceptually, detection approximates <strong>prediction</strong> of future states; resolution <strong>controls</strong> future evolution via maneuvers—cognitive vs. interventional. Mature governance <strong>closes the loop</strong>: detect trends, act, re-detect effects, iterate.</p>
+<p>In multi-agent settings, one resolution move <strong>rewrites</strong> the graph, changing later detections—e.g., rerouting removes one conflict but may create another; slowing reshapes corridor schedules. Detection and resolution <strong>alternate</strong>, not run once linearly.</p>
+<p>On temporal relational graphs they are <strong>adjacent layers</strong> of one dynamic reasoner: <strong>where</strong> risk lies vs. <strong>who</strong> should do <strong>what</strong>—together spanning cognition to control.</p>
+</section>
+<section id="path-and-graph-structured-maneuver-generation">
+<h1>13.2 Path- and graph-structured maneuver generation<a class="headerlink" href="#path-and-graph-structured-maneuver-generation" title="Link to this heading">#</a></h1>
+<p>First resolution task: from detected risk, generate <strong>executable maneuver candidates</strong>. Unlike single-vehicle shortest-path on a static map, this searches a <strong>dynamic temporal relational graph</strong> around conflict events, interacting agents, temporal windows, and rules—<strong>constrained path search and relation reconfiguration</strong>.</p>
+<p>Treat conflicts as <strong>local high-risk subgraphs</strong>, not isolated geometry—crossing paths, overlapping windows, priority clashes jointly. Maneuvers rewire relations: shift corridor entry times, swap nodes, reorder precedence, reassign segments—not only lateral offset.</p>
+<p><strong>Candidate path sets:</strong> identify key nodes, edges, and windows; for each affected agent propose alternatives—reroute, delay entry, slow, change altitude layer, switch backup corridor, local hover. As <strong>graph path substitutions, time shifts, and edge updates</strong>, maneuvers stay interpretable.</p>
+<p><strong>Feasibility</strong> is not pure geometry: capacity, altitude eligibility, higher-priority traffic, and temporal windows live in the graph—maneuver search must <strong>unify path connectivity with rule filtering</strong>.</p>
+<p><strong>Local–global coupling:</strong> local fixes can propagate—one reroute may congest downstream nodes. Candidate generation should assess <strong>multi-hop ripple</strong> via local expansion and neighborhood risk refresh.</p>
+<p>Computationally: (1) <strong>heuristic graph search</strong> with risk weights, distance, rule penalties, priorities—interpretable and rule-friendly; (2) <strong>learned graph policies</strong> proposing actions or distributions—suited to volatile settings but needing constraint shields. Hybrids often <strong>search feasible sets, learn to rank</strong> within them.</p>
+<p>Human–machine and regulatory interfaces: “optimal on paper” maneuvers may need approval. Systems should emit <strong>candidate sets with structural rationale and rule tags</strong>, not only a single opaque optimum—graph formulations ease audit of each option’s scope and basis.</p>
+<p>Path- and graph-based maneuver generation elevates conflict from geometry to <strong>relation reconfiguration</strong>, actions from continuous knobs to <strong>graph edits</strong>, feasibility from distance alone to <strong>multi-constraint spatiotemporal feasibility</strong>—the substrate for RL and constrained solvers.</p>
+</section>
+<section id="reinforcement-learning-on-graph-path-reasoning">
+<h1>13.3 Reinforcement learning on graph-path reasoning<a class="headerlink" href="#reinforcement-learning-on-graph-path-reasoning" title="Link to this heading">#</a></h1>
+<p>Under high dynamics, multi-step coupling, and delayed consequences, static search or one-shot optimization may fail: a good-looking step can seed later conflicts; costly detours may reduce systemic risk. <strong>RL</strong> fits <strong>sequential</strong> deconfliction on graphs.</p>
+<p>RL matches <strong>state–action–reward</strong> structure: graph state as environment, maneuver primitives as actions, rewards from conflict reduction, efficiency, rule satisfaction, congestion relief—learning long-horizon policies without closed-form per-step optima.</p>
+<p><strong>Structured state:</strong> temporal relational graphs expose nodes, edges, types, timestamps, attributes—semantic state instead of raw vectors. <strong>Structured actions:</strong> next-hop choices, edge swaps, window shifts, priority reorderings—<strong>path reasoning in relation space</strong>, not only continuous control.</p>
+<p>Typical RL roles: (1) <strong>candidate selector</strong> among rule-feasible actions; (2) <strong>multi-step planner</strong> with credit assignment across horizons; (3) <strong>path explorer</strong> in large local subgraphs without exhaustive enumeration.</p>
+<p><strong>Multi-objective trade-offs:</strong> safety, energy, punctuality, fairness, priority compliance—composite rewards encode governance preferences, though reward design is delicate.</p>
+<p><strong>Risks:</strong> unconstrained RL can exploit simulators—e.g., chronic delay of low-priority agents or chaotic corridor hopping—unacceptable in production.</p>
+<p>Ideal placement: <strong>not</strong> replacing rules but <strong>optimizing inside</strong> KG structure, legal action spaces, and hard safety shells—learning adaptation without breaching institutional or physical envelopes.</p>
+<p><strong>Explainability:</strong> graph-path policies map to discrete relational choices—easier to justify than black-box continuous controllers—supporting oversight and certification narratives.</p>
+<p>RL on graph paths is <strong>long-horizon cooperative optimization under graph structure and rules</strong>—a step from static planning toward dynamic governance.</p>
+</section>
+<section id="constraint-grounded-cooperative-deconfliction">
+<h1>13.4 Constraint-grounded cooperative deconfliction<a class="headerlink" href="#constraint-grounded-cooperative-deconfliction" title="Link to this heading">#</a></h1>
+<p>Safety-critical resolution cannot ship on average reward alone. Deconfliction <strong>acts in the physical world</strong>; violating regulatory, physical, or operational envelopes can escalate risk even if local conflict metrics improve. <strong>Constraint-grounded cooperative deconfliction</strong> encodes statutes, procedures, resource limits, spatiotemporal bounds, and priorities as <strong>hard or soft shells</strong> screening and scoring maneuvers.</p>
+<p>Constraint sources in low-altitude coordination:</p>
+<ol class="arabic simple">
+<li><p><strong>Spatial:</strong> no-fly volumes, corridor capacities, altitude eligibility by aircraft class.</p></li>
+<li><p><strong>Temporal:</strong> airspace windows, mission deadlines, earliest/latest node entry.</p></li>
+<li><p><strong>Priority:</strong> emergency over routine; protected missions not unduly delayed by local yielding.</p></li>
+<li><p><strong>Physical / platform:</strong> battery, maneuver limits, min turn radius, comms health.</p></li>
+<li><p><strong>Governance:</strong> maneuvers requiring approval, mandatory logging, human escalation.</p></li>
+</ol>
+<p>Many constraints are <strong>non-negotiable boundaries</strong>, not soft preferences—layer them as <strong>hard vs. soft vs. priority-ordering</strong> for auditability.</p>
+<p>Pipeline: (1) <strong>model</strong> rules and resources formally—logic, graph attributes, (non)linear inequalities, relation templates; (2) <strong>check</strong> candidates, discard hard violations, penalize soft ones; (3) <strong>optimize</strong> within feasible sets for system objectives—<strong>boundaries first, optimization inside</strong>.</p>
+<p>Graphs align naturally: no-fly regions as forbidden relations, priorities as ordered edges, capacities as node attributes—<strong>constraint checking as graph reasoning</strong>, not a bolt-on.</p>
+<p>For human-in-the-loop, explicit “excluded because constraint X” and “recommended because rules Y,Z hold” builds trust; opaque optima do not.</p>
+<p><strong>Complexity:</strong> coupled multi-agent constraints explode combinatorially—use <strong>generate candidates → filter constraints → local coordination → global repair</strong> rather than monolithic global solve for real-time viability.</p>
+<p>Constraint grounding is the <strong>safety skeleton</strong> of dynamic governance—seeking legal, executable, auditable joint maneuvers, not merely “locally optimal but illegal” plans—the neuro-symbolic contrast to unconstrained black-box control.</p>
+</section>
+<section id="local-optimality-vs-global-safety-envelopes">
+<h1>13.5 Local optimality vs. global safety envelopes<a class="headerlink" href="#local-optimality-vs-global-safety-envelopes" title="Link to this heading">#</a></h1>
+<p>Hardest multi-agent issue: <strong>local rationality ≠ global safety.</strong> Each vehicle’s shortest dodge may be individually sound yet, jointly, induce bottlenecks, cascades, or instability—cooperative deconfliction cannot reduce to independent avoidance.</p>
+<p><strong>Local optimum:</strong> best immediate move under local information and self-interest—minimal delay detour, nearest backup corridor, smallest energy cost.</p>
+<p><strong>Global safety envelope:</strong> system-level viability over a horizon—density balance, critical corridor load, conflict propagation chains, priority order, risk <strong>headroom</strong>.</p>
+<p>Coupling arises because maneuvers <strong>restructure</strong> shared graphs—two “nearest backup” choices may overload one corridor; persistent priority favoritism erodes buffers for low-priority traffic, breeding systemic fragility.</p>
+<p>Temporal graphs make this explicit: local actions alter node states, edge weights, and temporal dependencies; global envelopes correspond to <strong>graph-level invariants</strong>—overload hotspots, risk-cluster accumulation, multi-subgraph propagation, eroded priority guarantees.</p>
+<p>Mitigations: (1) <strong>wider situational awareness</strong> beyond ego neighborhoods—capacity heatmaps, flows, priority networks; (2) <strong>system-level costs</strong>—global congestion, propagation, fairness, headroom compression; (3) <strong>coordination mechanisms</strong>—centralized, hierarchical, or protocol-based joint adjustment.</p>
+<p><strong>Global</strong> need not mean one city solver: <strong>graph partitions</strong>, regional coordinators, edge negotiation, and upper rule buses can bound local autonomy—flexible locally, forbidden to breach global caps on key corridors, rigid priority invariants, cascade thresholds.</p>
+<p>Neuro-symbolically: learners propose locals; graph reasoners score neighborhoods; rules enforce envelopes; monitors watch <strong>global graph health</strong>—escalate to higher coordination or conservative modes when locals erode margins.</p>
+<p>The core difficulty is optimizing <strong>future trajectory of the dynamic relation graph</strong>, not myopic ego paths—distinguishing transient relief from erosion of system-wide safety margin—where temporal graphs plus neuro-symbolic monitoring add unique value.</p>
+</section>
+<section id="from-skyflow-toward-a-general-dynamic-reasoning-framework">
+<h1>13.6 From SkyFlow toward a general dynamic reasoning framework<a class="headerlink" href="#from-skyflow-toward-a-general-dynamic-reasoning-framework" title="Link to this heading">#</a></h1>
+<p>Prior sections already exceed a single detector: toward <strong>general graph-driven dynamic reasoning and decision-making</strong>. <strong>SkyFlow</strong>-like approaches begin by representing aircraft, missions, corridors, and interaction events as temporal relational graphs, learning dynamic risk with relation-aware attention and temporal encodings—originally <strong>detection</strong>. Abstractly they contain four reusable pieces: <strong>dynamic graph state modeling</strong>; <strong>risk representation learning</strong>; <strong>structured outputs</strong> (critical edges/nodes/subgraphs); <strong>interfaces to external rules and planners</strong>. Those four enable generalization.</p>
+<p><strong>Extension 1 — Multi-event dynamics:</strong> Beyond conflict, model comms loss, delay, overload, sudden restrictions, resource mismatch, congestion chains—shared TKG, diverse event nodes and prediction heads—<strong>unified dynamic event cognition</strong> instead of one-off conflict nets.</p>
+<p><strong>Extension 2 — Cognition–decision closure:</strong> Risk scores alone are thin; feeding structured outputs into maneuver generation, constrained solving, and RL closes <strong>sense → act</strong> loops—the graph model becomes <strong>state encoder and structured interface</strong> for decision modules.</p>
+<p><strong>Extension 3 — Layered distributed reasoning:</strong> City scale forbids one omniscient model—<strong>graph cuts</strong>, edge perception, local cooperation, cloud global coordination: edges for fast near-field detection, regions for cross-partition deconfliction, cloud for envelope monitoring, model refresh, long-horizon analytics.</p>
+<p><strong>Extension 4 — Certification orientation:</strong> High accuracy is insufficient—<strong>uncertainty calibration</strong>, conformal prediction, drift monitoring, rule faithfulness—so outputs move from “works in sim” toward <strong>statistically and procedurally defensible</strong> behavior, linking forward to SkyCert-style themes.</p>
+<p>SkyFlow’s lesson is methodological: <strong>temporal relational graph as unified state</strong>, <strong>GNN as dynamic pattern extractor</strong>, <strong>rules/constraints as decision boundaries</strong>, <strong>multi-module cooperation as action closure</strong>—portable beyond low altitude to vehicular coordination, port automation, grid contingencies, emergency logistics, etc. Treat it as a <strong>prototype</strong> toward general dynamic neuro-symbolic stacks, not an isolated paper architecture.</p>
+<p>Mature dynamic neuro-symbolic graphs should jointly provide dynamic representation, structural risk reasoning, cooperative maneuver synthesis, constraint control, global envelope maintenance, and trustworthy extensions—SkyFlow as a starting point; later parts on certification and systems architecture complete the picture.</p>
+</section>
+<section id="chapter-summary">
+<h1>Chapter summary<a class="headerlink" href="#chapter-summary" title="Link to this heading">#</a></h1>
+<p>We connected cooperative deconfliction to temporal relational graphs: detection vs. resolution as coupled predictive and control layers; maneuver generation as graph path and schedule reconfiguration; RL as long-horizon optimization inside rules; constraint grounding as the safety backbone; local optimality vs. global envelopes as the core multi-agent tension; SkyFlow-style models extensible toward general dynamic neuro-symbolic frameworks. The chapter positions TKGs and GNNs as <strong>dynamic governance infrastructure</strong>, closing Part IV from temporal representation through detection to cooperative decision-making. Next, certification asks why strong dynamic reasoning is not automatically <strong>trustworthy</strong>, and how calibration, conformal methods, and statistical assurance move systems from <strong>working</strong> toward <strong>demonstrably more reliable</strong>.</p>
+</section>
+<section id="key-concepts">
+<h1>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Cooperative deconfliction: Jointly choosing safe, executable maneuvers in shared airspace.</p></li>
+<li><p>Graph-structured maneuvers: Maneuvers as path substitution, window rescheduling, or relation rewiring.</p></li>
+<li><p>Graph-path reinforcement learning: Sequential policy learning within graph structure and rule bounds.</p></li>
+<li><p>Constrained cooperative optimization: Boundaries first, then objective improvement inside feasible sets.</p></li>
+<li><p>Global safety envelope: System-level order, headroom, and stability beyond local ego optimality.</p></li>
+</ul>
+</section>
+<section id="study-questions">
+<h1>Study questions<a class="headerlink" href="#study-questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Why can a locally effective maneuver still worsen system-level risk?</p></li>
+<li><p>Why must RL for deconfliction sit inside explicit rules and constraints?</p></li>
+<li><p>What is the key capability gain when moving from SkyFlow toward a general dynamic framework?</p></li>
+</ol>
+</section>
+<section id="case-study">
+<h1>Case study<a class="headerlink" href="#case-study" title="Link to this heading">#</a></h1>
+<p>Congestion at a boundary corridor: ego-optimal reroutes shift pressure to neighbors; constrained cooperative solving jointly respects priorities, windows, and global envelopes—contrast open-loop detection–resolution loops with isolated avoidance.</p>
+</section>
+<section id="figure-suggestions">
+<h1>Figure suggestions<a class="headerlink" href="#figure-suggestions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Figure 13-1: Closed loop from conflict detection to resolution.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure13-1.png" /></p>
+<ul class="simple">
+<li><p>Figure 13-2: Candidate avoidance paths from graph structure.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure13-2.png" /></p>
+<ul class="simple">
+<li><p>Figure 13-3: Tension between local optimality and global safety envelopes.</p></li>
+</ul>
+<p><img alt="" src="../_images/Figure13-3.png" /></p>
+</section>
+<section id="formula-index">
+<h1>Formula index<a class="headerlink" href="#formula-index" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>This chapter emphasizes decision flow, constraints, and cooperation—no single derived equation.</p></li>
+<li><p>Suggested quasi-formal index frames: <strong>state–action–reward</strong>; <strong>local candidates → constraint filter → global repair</strong>.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Sutton, R. S., &amp; Barto, A. G. (2018). <em>Reinforcement Learning: An Introduction</em> (2nd ed.). MIT Press.</p></li>
+<li><p>Lowe, R., Wu, Y., Tamar, A., Harb, J., Abbeel, P., &amp; Mordatch, I. (2017). Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments. <em>Advances in Neural Information Processing Systems</em> (NeurIPS).</p></li>
+<li><p>Silver, D., et al. (2016). Mastering the Game of Go with Deep Neural Networks and Tree Search. <em>Nature</em>, 529(7587), 484–489.</p></li>
+<li><p>Foerster, J., Assael, I. A., de Freitas, N., &amp; Whiteson, S. (2016). Learning to Communicate with Deep Multi-Agent Reinforcement Learning. <em>Advances in Neural Information Processing Systems</em> (NeurIPS).</p></li>
+<li><p>Rashid, T., Samvelyan, M., de Witt, C. S., Farquhar, G., Foerster, J., &amp; Whiteson, S. (2018). QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning. <em>Proceedings of the 35th International Conference on Machine Learning</em> (ICML).</p></li>
+<li><p>Hart, P. E., Nilsson, N. J., &amp; Raphael, B. (1968). A Formal Basis for the Heuristic Determination of Minimum Cost Paths. <em>IEEE Transactions on Systems Science and Cybernetics</em>, 4(2), 100–107.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">12.1 Formalizing multi-UAV dynamic coordination</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">13.1 Conflict detection vs. conflict resolution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#path-and-graph-structured-maneuver-generation">13.2 Path- and graph-structured maneuver generation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning-on-graph-path-reasoning">13.3 Reinforcement learning on graph-path reasoning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#constraint-grounded-cooperative-deconfliction">13.4 Constraint-grounded cooperative deconfliction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#local-optimality-vs-global-safety-envelopes">13.5 Local optimality vs. global safety envelopes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#from-skyflow-toward-a-general-dynamic-reasoning-framework">13.6 From SkyFlow toward a general dynamic reasoning framework</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-summary">Chapter summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key concepts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#study-questions">Study questions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">Case study</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-suggestions">Figure suggestions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-index">Formula index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

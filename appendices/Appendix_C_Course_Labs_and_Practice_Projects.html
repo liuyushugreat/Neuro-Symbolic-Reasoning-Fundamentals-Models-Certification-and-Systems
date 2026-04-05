@@ -1,0 +1,1730 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lab 1: Small low-altitude ontology and rule encoding &#8212; Neuro-Symbolic Reasoning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'appendices/Appendix_C_Course_Labs_and_Practice_Projects';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendix C — Experiment Code" href="../experiments/README.html" />
+    <link rel="prev" title="B.1 PyKEEN" href="Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="Neuro-Symbolic Reasoning - Home"/>
+    <img src="../_static/cover.png" class="logo__image only-dark pst-js-only" alt="Neuro-Symbolic Reasoning - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neuro-Symbolic Reasoning: Fundamentals, Models, Certification, and Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../INTRODUCTION_EN.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I · Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_01_The_Evolution_Fracture_and_Reconstruction_of_AI.html">1.1 The rise and fall of symbolic AI: from expert systems to the knowledge-engineering bottleneck</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_02_Symbolic_Logic_Rule_Systems_and_Automated_Reasoning.html">2.1 Propositional logic and first-order predicate logic</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_03_Knowledge_Graphs_and_Domain_Knowledge_Representation.html">3.1 Basic concepts of knowledge graphs: entities, relations, attributes, events</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_04_Deep_Learning_Graph_Learning_and_Neural_Representation.html">4.1 Basic ideas of deep representation learning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II · Domain Knowledge Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_05_Domain_Knowledge_Modeling_for_Trustworthy_Governance_in_Low_Altitude_Traffic.html">5.1 Object system for low-altitude traffic / UAM: aircraft, airspace, missions, infrastructure, stakeholders</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_06_Low_Altitude_Traffic_Knowledge_Graph_Construction_and_Unified_Representation.html">6.1 Ontology layering: concept layer, instance layer, rule layer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III · Hybrid Reasoning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_07_A_Taxonomy_and_Technical_Roadmap_of_Neuro_Symbolic_Systems.html">7.1 Classical taxonomies: Henry Kautz’s neuro-symbolic spectrum</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_08_Basic_Paradigms_of_Knowledge_Injection_and_Constrained_Learning.html">8.1 Logic rules as loss functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_09_Knowledge_Graph_Driven_Hybrid_Neuro_Symbolic_Reasoning.html">9.1 SPARQL queries and deterministic evidence extraction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_10_Design_of_an_Explainable_Risk_Reasoning_Framework_From_SkyKG_to_a_General_Methodology.html">10.1 Defining static risk reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_11_Temporal_Knowledge_Graphs_and_Dynamic_Relational_Reasoning.html">11.1 From static KG to temporal KG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_12_Graph_Driven_Multi_Agent_Conflict_Detection_Models.html">12.1 Formalizing multi-UAV dynamic coordination</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_13_Cooperative_Deconfliction_and_Decision_Making_Based_on_Temporal_Relational_Graphs.html">13.1 Conflict detection vs. conflict resolution</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV · Trustworthy Certification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_14_Trustworthiness_Issues_in_Neuro_Symbolic_Systems.html">14.1 Why Neuro-Symbolic Systems Are Still Not Inherently Trustworthy</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_15_Conformal_Prediction_and_Uncertainty_Calibration.html">15.1 Types of Uncertainty: Epistemic vs. Aleatoric</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_16_Online_Monitoring_Distribution_Drift_and_Statistical_Certification.html">16.1 Failure Modes in Online Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_17_Explainability_Evaluation_Audit_Trails_and_Regulatory_Interfaces.html">17.1 Layers of Explainability: Local, Rule-Based, Causal</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V · System Deployment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_18_The_Complexity_of_Neuro_Symbolic_Reasoning_and_the_Computing_Gap.html">18.1 Complexity in Symbolic, Graph, and LLM Reasoning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_19_Distributed_Reasoning_Systems_under_Cloud_Edge_Collaboration.html">19.1 Roles of Edge vs. Cloud Inference</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_20_Spatiotemporal_Graph_Partitioning_and_High_Concurrency_Reasoning_Engines.html">20.1 Spatiotemporal-Aware Graph Partitioning</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_21_Platformization_From_Model_Stacking_to_Governance_Closed_Loop.html">21.1 Integrating Knowledge Substrate, Reasoning Models, Certification, and Deployment</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part VI · Frontier</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_22_Neuro_Symbolic_AI_in_the_Era_of_Large_Language_Models.html">22.1 The LLM as System 1: Strengths, Hallucinations, and Structural Limitations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_23_Applications_in_Safety_Critical_Industries.html">23.1 Intelligent Transportation and Scene-Graph Understanding for Autonomous Driving</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_24_Neuro_Symbolic_Reasoning_for_AI_for_Science.html">24.1 Molecular Graphs, Scientific Knowledge, and Interpretable Discovery</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../chapters/Chapter_25_The_Future_of_Neuro_Symbolic_Reasoning_From_Explainability_to_Certifiability_Governability_and_Deployability.html">25.1 Book Arc: Knowledge Substrate, Reasoning, Certification, Systems</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Appendix_A_Mathematical_Logical_and_Graph_Learning_Notation.html">A.1 Logical Symbols and Common Rule Templates</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html">B.1 PyKEEN</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Experiments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../experiments/README.html">Appendix C — Experiment Code</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/liuyushugreat/Neuro-Symbolic-Reasoning-Fundamentals-Models-Certification-and-Systems/issues/new?title=Issue%20on%20page%20%2Fappendices/Appendix_C_Course_Labs_and_Practice_Projects.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/appendices/Appendix_C_Course_Labs_and_Practice_Projects.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 1: Small low-altitude ontology and rule encoding</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-2-static-risk-reasoning-with-kg-sparql-style-queries-llm-ready-explanations">Lab 2: Static risk reasoning with KG + SPARQL-style queries + LLM-ready explanations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-3-conflict-detection-on-temporal-knowledge-graph-snapshots">Lab 3: Conflict detection on temporal knowledge-graph snapshots</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-4-conformal-prediction-for-risk-outputs-with-confidence-sets">Lab 4: Conformal prediction for risk outputs with confidence sets</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-5-cloudedge-collaborative-reasoning-prototype">Lab 5: Cloud–edge collaborative reasoning prototype</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-6-joint-agent-with-llm-style-orchestration-kg-and-solvers">Lab 6: Joint agent with LLM-style orchestration, KG, and solvers</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>The following labs pair with chapters in the main text and can be extended with the open repository <a class="reference external" href="https://github.com/liuyushugreat/SkyNetUamPlatform">SkyNetUamPlatform</a>.</p>
+<section id="lab-1-small-low-altitude-ontology-and-rule-encoding">
+<h1>Lab 1: Small low-altitude ontology and rule encoding<a class="headerlink" href="#lab-1-small-low-altitude-ontology-and-rule-encoding" title="Link to this heading">#</a></h1>
+<p>Work with Chapters 5–6 to model domain objects and the SkyKG concept and rule layers.</p>
+<p><strong>Code entry:</strong> <code class="docutils literal notranslate"><span class="pre">experiments/lab1_ontology_rules.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lab 1 — code overview</span>
+<span class="sd">====================</span>
+<span class="sd">Goals:</span>
+<span class="sd">1. Show a minimal runnable “domain knowledge modeling + rule encoding” pipeline.</span>
+<span class="sd">2. Help readers turn Chapter 5 domain objects and Chapter 6 three-layer ontology / rule-layer ideas</span>
+<span class="sd">   into executable Python data structures.</span>
+
+<span class="sd">Structure:</span>
+<span class="sd">1. EntityType / RelationType — concept-layer entity and relation types.</span>
+<span class="sd">2. Rule / MinSeparationRule / NoFlyZoneRule — executable rules in the rule layer.</span>
+<span class="sd">3. LowAltitudeOntology — unified entity types, relation types, facts, and rules.</span>
+<span class="sd">4. build_demo_ontology() — construct a small low-altitude example.</span>
+<span class="sd">5. print_summary() — print ontology, facts, and rule firings.</span>
+
+<span class="sd">Core techniques:</span>
+<span class="sd">1. Dataclasses for a lightweight ontology.</span>
+<span class="sd">2. Store KG facts as relation → list of tuples.</span>
+<span class="sd">3. Rules implement evaluate() for “match facts → raise alerts.”</span>
+<span class="sd">4. Two representative rules: minimum separation; restricted / no-fly zone.</span>
+
+<span class="sd">Concepts:</span>
+<span class="sd">1. Domain taxonomy: Aircraft, Airspace, Mission, Facility, Operator</span>
+<span class="sd">2. Relations: in_zone, distance_between, assigned_to, operated_by</span>
+<span class="sd">3. Rule objects: separation constraints, restricted airspace</span>
+<span class="sd">4. Knowledge substrate: concept, instance, and rule layers</span>
+<span class="sd">5. Symbolic reasoning: explicit rule matching and alerting</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">EntityType</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">attributes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RelationType</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">subject_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">object_type</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Rule</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">facts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MinSeparationRule</span><span class="p">(</span><span class="n">Rule</span><span class="p">):</span>
+    <span class="n">min_distance</span><span class="p">:</span> <span class="nb">float</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">facts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">alerts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">uav_a</span><span class="p">,</span> <span class="n">uav_b</span><span class="p">,</span> <span class="n">distance</span> <span class="ow">in</span> <span class="n">facts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;distance_between&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+                <span class="n">alerts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">] Separation between </span><span class="si">{</span><span class="n">uav_a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">uav_b</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m, &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;below minimum safe distance </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m&quot;</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">alerts</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NoFlyZoneRule</span><span class="p">(</span><span class="n">Rule</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">facts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">alerts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">zones</span> <span class="o">=</span> <span class="p">{</span><span class="n">uav</span><span class="p">:</span> <span class="n">zone</span> <span class="k">for</span> <span class="n">uav</span><span class="p">,</span> <span class="n">zone</span> <span class="ow">in</span> <span class="n">facts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;in_zone&quot;</span><span class="p">,</span> <span class="p">[])}</span>
+        <span class="n">restricted</span> <span class="o">=</span> <span class="p">{</span><span class="n">zone</span> <span class="k">for</span> <span class="n">zone</span><span class="p">,</span> <span class="n">zone_type</span> <span class="ow">in</span> <span class="n">facts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;zone_type&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">zone_type</span> <span class="o">==</span> <span class="s2">&quot;restricted&quot;</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">uav</span><span class="p">,</span> <span class="n">zone</span> <span class="ow">in</span> <span class="n">zones</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">zone</span> <span class="ow">in</span> <span class="n">restricted</span><span class="p">:</span>
+                <span class="n">alerts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">uav</span><span class="si">}</span><span class="s2"> entered restricted airspace </span><span class="si">{</span><span class="n">zone</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">alerts</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LowAltitudeOntology</span><span class="p">:</span>
+    <span class="n">entity_types</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">EntityType</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="n">relation_types</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">RelationType</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="n">facts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="n">rules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Rule</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_entity_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attributes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entity_types</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">EntityType</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_relation_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">subject_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">object_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relation_types</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">RelationType</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">subject_type</span><span class="o">=</span><span class="n">subject_type</span><span class="p">,</span> <span class="n">object_type</span><span class="o">=</span><span class="n">object_type</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_fact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">relation</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fact</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">facts</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">relation</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fact</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">facts</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">messages</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_demo_ontology</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">LowAltitudeOntology</span><span class="p">:</span>
+    <span class="n">ontology</span> <span class="o">=</span> <span class="n">LowAltitudeOntology</span><span class="p">()</span>
+
+    <span class="c1"># Five domain object types (Chapter 5-style)</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_entity_type</span><span class="p">(</span><span class="s2">&quot;Aircraft&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;altitude&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">])</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_entity_type</span><span class="p">(</span><span class="s2">&quot;Airspace&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;zone_id&quot;</span><span class="p">,</span> <span class="s2">&quot;zone_type&quot;</span><span class="p">])</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_entity_type</span><span class="p">(</span><span class="s2">&quot;Mission&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;mission_id&quot;</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="p">])</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_entity_type</span><span class="p">(</span><span class="s2">&quot;Facility&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;facility_id&quot;</span><span class="p">,</span> <span class="s2">&quot;kind&quot;</span><span class="p">])</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_entity_type</span><span class="p">(</span><span class="s2">&quot;Operator&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;operator_id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">])</span>
+
+    <span class="c1"># Relation types</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_relation_type</span><span class="p">(</span><span class="s2">&quot;in_zone&quot;</span><span class="p">,</span> <span class="s2">&quot;Aircraft&quot;</span><span class="p">,</span> <span class="s2">&quot;Airspace&quot;</span><span class="p">)</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_relation_type</span><span class="p">(</span><span class="s2">&quot;distance_between&quot;</span><span class="p">,</span> <span class="s2">&quot;Aircraft&quot;</span><span class="p">,</span> <span class="s2">&quot;Aircraft&quot;</span><span class="p">)</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_relation_type</span><span class="p">(</span><span class="s2">&quot;assigned_to&quot;</span><span class="p">,</span> <span class="s2">&quot;Aircraft&quot;</span><span class="p">,</span> <span class="s2">&quot;Mission&quot;</span><span class="p">)</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_relation_type</span><span class="p">(</span><span class="s2">&quot;operated_by&quot;</span><span class="p">,</span> <span class="s2">&quot;Aircraft&quot;</span><span class="p">,</span> <span class="s2">&quot;Operator&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Facts</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_fact</span><span class="p">(</span><span class="s2">&quot;in_zone&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;UAV-01&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE-R1&quot;</span><span class="p">))</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_fact</span><span class="p">(</span><span class="s2">&quot;in_zone&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;UAV-02&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE-N1&quot;</span><span class="p">))</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_fact</span><span class="p">(</span><span class="s2">&quot;zone_type&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ZONE-R1&quot;</span><span class="p">,</span> <span class="s2">&quot;restricted&quot;</span><span class="p">))</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_fact</span><span class="p">(</span><span class="s2">&quot;zone_type&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ZONE-N1&quot;</span><span class="p">,</span> <span class="s2">&quot;normal&quot;</span><span class="p">))</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_fact</span><span class="p">(</span><span class="s2">&quot;distance_between&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;UAV-01&quot;</span><span class="p">,</span> <span class="s2">&quot;UAV-02&quot;</span><span class="p">,</span> <span class="mf">78.0</span><span class="p">))</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_fact</span><span class="p">(</span><span class="s2">&quot;assigned_to&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;UAV-01&quot;</span><span class="p">,</span> <span class="s2">&quot;MISSION-EMERGENCY&quot;</span><span class="p">))</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">add_fact</span><span class="p">(</span><span class="s2">&quot;operated_by&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;UAV-01&quot;</span><span class="p">,</span> <span class="s2">&quot;OP-ALPHA&quot;</span><span class="p">))</span>
+
+    <span class="c1"># Rules</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">MinSeparationRule</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Minimum separation rule&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Distance between any two aircraft must be at least 100 m&quot;</span><span class="p">,</span>
+            <span class="n">min_distance</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">ontology</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">NoFlyZoneRule</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;No-fly zone rule&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Aircraft must not enter restricted airspace&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ontology</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_summary</span><span class="p">(</span><span class="n">ontology</span><span class="p">:</span> <span class="n">LowAltitudeOntology</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Ontology summary ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entity types:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">ontology</span><span class="o">.</span><span class="n">entity_types</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">entity</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">entity</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Relation types:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">relation</span> <span class="ow">in</span> <span class="n">ontology</span><span class="o">.</span><span class="n">relation_types</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">relation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">relation</span><span class="o">.</span><span class="n">subject_type</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">relation</span><span class="o">.</span><span class="n">object_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Facts:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">relation</span><span class="p">,</span> <span class="n">relation_facts</span> <span class="ow">in</span> <span class="n">ontology</span><span class="o">.</span><span class="n">facts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">fact</span> <span class="ow">in</span> <span class="n">relation_facts</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">relation</span><span class="si">}{</span><span class="n">fact</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Rule firings:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">alert</span> <span class="ow">in</span> <span class="n">ontology</span><span class="o">.</span><span class="n">run_rules</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">alert</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">demo</span> <span class="o">=</span> <span class="n">build_demo_ontology</span><span class="p">()</span>
+    <span class="n">print_summary</span><span class="p">(</span><span class="n">demo</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="lab-2-static-risk-reasoning-with-kg-sparql-style-queries-llm-ready-explanations">
+<h1>Lab 2: Static risk reasoning with KG + SPARQL-style queries + LLM-ready explanations<a class="headerlink" href="#lab-2-static-risk-reasoning-with-kg-sparql-style-queries-llm-ready-explanations" title="Link to this heading">#</a></h1>
+<p>Work with Chapters 8–10 for SPARQL-style evidence extraction and constrained semantic generation.</p>
+<p><strong>Code entry:</strong> <code class="docutils literal notranslate"><span class="pre">experiments/lab2_static_risk_reasoning.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lab 2 — code overview</span>
+<span class="sd">====================</span>
+<span class="sd">Goals:</span>
+<span class="sd">1. Demonstrate “KG + SPARQL-style evidence extraction + rule checks + constrained explanation generation”</span>
+<span class="sd">   for static risk reasoning.</span>
+<span class="sd">2. Give a minimal engineering reading of the hybrid architecture in Chapters 8–10 and “grounded answers.”</span>
+
+<span class="sd">Structure:</span>
+<span class="sd">1. KnowledgeGraph — triple store for a minimal KG.</span>
+<span class="sd">2. query() — basic graph retrieval.</span>
+<span class="sd">3. mini_sparql_select() — toy SPARQL-like pattern matching.</span>
+<span class="sd">4. rule_check() — explicit rule checks.</span>
+<span class="sd">5. constrained_explanation() — build an “evidence + rules + conclusion” chain.</span>
+<span class="sd">6. build_demo_graph() — sample facts for static risk reasoning.</span>
+
+<span class="sd">Core techniques:</span>
+<span class="sd">1. Triple storage: (subject, predicate, object).</span>
+<span class="sd">2. Graph queries via exact pattern filters.</span>
+<span class="sd">3. Rule reasoning from airspace type, mission type, battery state.</span>
+<span class="sd">4. Explanations as structured “evidence → rule findings → final decision.”</span>
+
+<span class="sd">Concepts:</span>
+<span class="sd">1. Knowledge graphs and triples</span>
+<span class="sd">2. SPARQL-style queries and evidence extraction</span>
+<span class="sd">3. Rule objects and explicit constraints</span>
+<span class="sd">4. Static risk reasoning</span>
+<span class="sd">5. Explanation chains and traceable outputs</span>
+<span class="sd">6. Grounded answering</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+
+
+<span class="n">Triple</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">KnowledgeGraph</span><span class="p">:</span>
+    <span class="n">triples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Triple</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">subject</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">predicate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">obj</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Triple</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">triple</span>
+            <span class="k">for</span> <span class="n">triple</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">triples</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">subject</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">triple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">subject</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="n">predicate</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">triple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">predicate</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">triple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">obj</span><span class="p">)</span>
+        <span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mini_sparql_select</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">KnowledgeGraph</span><span class="p">,</span> <span class="n">patterns</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Triple</span><span class="p">]:</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Triple</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">subject</span><span class="p">,</span> <span class="n">predicate</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">predicate</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rule_check</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">KnowledgeGraph</span><span class="p">,</span> <span class="n">uav_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">findings</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">current_zone</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">uav_id</span><span class="p">,</span> <span class="s2">&quot;in_zone&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">current_zone</span><span class="p">:</span>
+        <span class="n">zone</span> <span class="o">=</span> <span class="n">current_zone</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">zone_type</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">zone</span><span class="p">,</span> <span class="s2">&quot;zone_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">zone_type</span> <span class="ow">and</span> <span class="n">zone_type</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;weather_alert&quot;</span><span class="p">:</span>
+            <span class="n">findings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uav_id</span><span class="si">}</span><span class="s2"> is currently in weather-risk airspace </span><span class="si">{</span><span class="n">zone</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">mission</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">uav_id</span><span class="p">,</span> <span class="s2">&quot;mission_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mission</span> <span class="ow">and</span> <span class="n">mission</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;medical&quot;</span><span class="p">:</span>
+        <span class="n">findings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uav_id</span><span class="si">}</span><span class="s2"> is on a medical mission; elevate priority&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">graph</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">uav_id</span><span class="p">,</span> <span class="s2">&quot;battery_status&quot;</span><span class="p">,</span> <span class="s2">&quot;low&quot;</span><span class="p">):</span>
+        <span class="n">findings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uav_id</span><span class="si">}</span><span class="s2"> has low battery; avoid entering high-risk corridors&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">findings</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">constrained_explanation</span><span class="p">(</span><span class="n">uav_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">evidence</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Triple</span><span class="p">],</span> <span class="n">findings</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">evidence_lines</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;- Evidence: </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> --</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">--&gt; </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">evidence</span><span class="p">]</span>
+    <span class="n">rule_lines</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;- Rule finding: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">findings</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">findings</span><span class="p">:</span>
+        <span class="n">decision</span> <span class="o">=</span> <span class="s2">&quot;No high-risk rules fired; mission may continue.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">decision</span> <span class="o">=</span> <span class="s2">&quot;Risk rules fired; recommend human review or route adjustment.&quot;</span>
+
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;Subject: </span><span class="si">{</span><span class="n">uav_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Explanation chain:&quot;</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">evidence_lines</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">rule_lines</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;- Final conclusion: </span><span class="si">{</span><span class="n">decision</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_demo_graph</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">KnowledgeGraph</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">KnowledgeGraph</span><span class="p">(</span>
+        <span class="n">triples</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;UAV-17&quot;</span><span class="p">,</span> <span class="s2">&quot;in_zone&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE-WEATHER-2&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;ZONE-WEATHER-2&quot;</span><span class="p">,</span> <span class="s2">&quot;zone_type&quot;</span><span class="p">,</span> <span class="s2">&quot;weather_alert&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;UAV-17&quot;</span><span class="p">,</span> <span class="s2">&quot;mission_type&quot;</span><span class="p">,</span> <span class="s2">&quot;medical&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;UAV-17&quot;</span><span class="p">,</span> <span class="s2">&quot;battery_status&quot;</span><span class="p">,</span> <span class="s2">&quot;low&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;UAV-17&quot;</span><span class="p">,</span> <span class="s2">&quot;assigned_corridor&quot;</span><span class="p">,</span> <span class="s2">&quot;CORRIDOR-A3&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;CORRIDOR-A3&quot;</span><span class="p">,</span> <span class="s2">&quot;capacity_status&quot;</span><span class="p">,</span> <span class="s2">&quot;busy&quot;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">build_demo_graph</span><span class="p">()</span>
+    <span class="n">target_uav</span> <span class="o">=</span> <span class="s2">&quot;UAV-17&quot;</span>
+
+    <span class="n">evidence</span> <span class="o">=</span> <span class="n">mini_sparql_select</span><span class="p">(</span>
+        <span class="n">graph</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="n">target_uav</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;zone_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;capacity_status&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">findings</span> <span class="o">=</span> <span class="n">rule_check</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">target_uav</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Static risk reasoning ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">constrained_explanation</span><span class="p">(</span><span class="n">target_uav</span><span class="p">,</span> <span class="n">evidence</span><span class="p">,</span> <span class="n">findings</span><span class="p">))</span>
+
+</pre></div>
+</div>
+</section>
+<section id="lab-3-conflict-detection-on-temporal-knowledge-graph-snapshots">
+<h1>Lab 3: Conflict detection on temporal knowledge-graph snapshots<a class="headerlink" href="#lab-3-conflict-detection-on-temporal-knowledge-graph-snapshots" title="Link to this heading">#</a></h1>
+<p>Work with Chapters 11–12 to train/evaluate a conflict-detection module on TKG snapshots.</p>
+<p><strong>Code entry:</strong> <code class="docutils literal notranslate"><span class="pre">experiments/lab3_tkg_conflict_detection.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lab 3 — code overview</span>
+<span class="sd">====================</span>
+<span class="sd">Goals:</span>
+<span class="sd">1. Without a deep-learning framework, show “temporal KG snapshot → feature extraction → conflict detection”</span>
+<span class="sd">   training and evaluation.</span>
+<span class="sd">2. Connect to Chapter 11–12 ideas: temporal graph reasoning, dynamic risk scoring, conflict models.</span>
+
+<span class="sd">Structure:</span>
+<span class="sd">1. PairSample — dynamic relation sample for a UAV pair at a time.</span>
+<span class="sd">2. generate_sample() — synthetic data generator.</span>
+<span class="sd">3. features() — distance, relative speed, altitude gap.</span>
+<span class="sd">4. train_logistic_regression() — toy logistic regression.</span>
+<span class="sd">5. evaluate() — accuracy, precision, recall.</span>
+<span class="sd">6. demo_tkg_snapshot() — online-style scoring on snapshots.</span>
+
+<span class="sd">Core techniques:</span>
+<span class="sd">1. Logistic regression as a stand-in for heavier GNN/TKG models (emphasizes statistical risk scoring).</span>
+<span class="sd">2. Map distance / speed / altitude gap to conflict probability.</span>
+<span class="sd">3. Gradient descent on binary cross-entropy–style loss.</span>
+<span class="sd">4. Test-set metrics and online inference on new snapshots.</span>
+
+<span class="sd">Concepts:</span>
+<span class="sd">1. Temporal KG snapshots</span>
+<span class="sd">2. Dynamic relational modeling</span>
+<span class="sd">3. Risk feature engineering</span>
+<span class="sd">4. Conflict detection models</span>
+<span class="sd">5. Logistic regression and gradient descent</span>
+<span class="sd">6. Dynamic risk scoring and online inference</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PairSample</span><span class="p">:</span>
+    <span class="n">distance_m</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">relative_speed</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">altitude_gap</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">z</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_sample</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">PairSample</span><span class="p">:</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+    <span class="n">relative_speed</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="n">altitude_gap</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+
+    <span class="n">risk_score</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="n">risk_score</span> <span class="o">+=</span> <span class="mf">0.06</span> <span class="o">*</span> <span class="p">(</span><span class="mi">120</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="mi">120</span><span class="p">))</span>
+    <span class="n">risk_score</span> <span class="o">+=</span> <span class="mf">0.08</span> <span class="o">*</span> <span class="n">relative_speed</span>
+    <span class="n">risk_score</span> <span class="o">+=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">(</span><span class="mi">40</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">altitude_gap</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+    <span class="n">probability</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">((</span><span class="n">risk_score</span> <span class="o">-</span> <span class="mf">4.5</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">probability</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">PairSample</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">relative_speed</span><span class="p">,</span> <span class="n">altitude_gap</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">features</span><span class="p">(</span><span class="n">sample</span><span class="p">:</span> <span class="n">PairSample</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">sample</span><span class="o">.</span><span class="n">distance_m</span> <span class="o">/</span> <span class="mf">500.0</span><span class="p">,</span>
+        <span class="n">sample</span><span class="o">.</span><span class="n">relative_speed</span> <span class="o">/</span> <span class="mf">50.0</span><span class="p">,</span>
+        <span class="n">sample</span><span class="o">.</span><span class="n">altitude_gap</span> <span class="o">/</span> <span class="mf">120.0</span><span class="p">,</span>
+    <span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">weights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">x</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">v</span> <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">train_logistic_regression</span><span class="p">(</span><span class="n">train_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PairSample</span><span class="p">],</span> <span class="n">epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">800</span><span class="p">,</span> <span class="n">lr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">grads</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">weights</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">features</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">-</span> <span class="n">sample</span><span class="o">.</span><span class="n">label</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)):</span>
+                <span class="n">grads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">err</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)):</span>
+            <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">weights</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">weights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">test_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PairSample</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="n">tp</span> <span class="o">=</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">tn</span> <span class="o">=</span> <span class="n">fn</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">test_data</span><span class="p">:</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">predict</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">features</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">pred</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">sample</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">tp</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">pred</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">sample</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">fp</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">pred</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sample</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">tn</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fn</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">))</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">demo_tkg_snapshot</span><span class="p">(</span><span class="n">weights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">snapshots</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">PairSample</span><span class="p">(</span><span class="n">distance_m</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">relative_speed</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">altitude_gap</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">PairSample</span><span class="p">(</span><span class="n">distance_m</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">relative_speed</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">altitude_gap</span><span class="o">=</span><span class="mi">55</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">PairSample</span><span class="p">(</span><span class="n">distance_m</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">relative_speed</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">altitude_gap</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== TKG snapshot risk scores ===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">snapshots</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">features</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;snapshot_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: distance=</span><span class="si">{</span><span class="n">sample</span><span class="o">.</span><span class="n">distance_m</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">m, &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;relative_speed=</span><span class="si">{</span><span class="n">sample</span><span class="o">.</span><span class="n">relative_speed</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, altitude_gap=</span><span class="si">{</span><span class="n">sample</span><span class="o">.</span><span class="n">altitude_gap</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">m, &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;conflict_prob=</span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_sample</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">260</span><span class="p">)]</span>
+    <span class="n">train_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span>
+    <span class="n">test_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">200</span><span class="p">:]</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">train_logistic_regression</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+    <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Simplified conflict detection (train / eval) ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model weights:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">model</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;accuracy=</span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;precision=</span><span class="si">{</span><span class="n">precision</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;recall=</span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">demo_tkg_snapshot</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="lab-4-conformal-prediction-for-risk-outputs-with-confidence-sets">
+<h1>Lab 4: Conformal prediction for risk outputs with confidence sets<a class="headerlink" href="#lab-4-conformal-prediction-for-risk-outputs-with-confidence-sets" title="Link to this heading">#</a></h1>
+<p>Work with Chapter 15 to build prediction sets/intervals and interpret coverage.</p>
+<p><strong>Code entry:</strong> <code class="docutils literal notranslate"><span class="pre">experiments/lab4_conformal_prediction.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lab 4 — code overview</span>
+<span class="sd">====================</span>
+<span class="sd">Goals:</span>
+<span class="sd">1. Show how to wrap risk-classifier outputs with a conformal prediction layer.</span>
+<span class="sd">2. Turn Chapter 15 concepts — nonconformity scores, prediction sets, coverage — into code.</span>
+
+<span class="sd">Structure:</span>
+<span class="sd">1. quantile() — calibration threshold qhat from nonconformity scores.</span>
+<span class="sd">2. build_prediction_set() — build a prediction set given qhat.</span>
+<span class="sd">3. empirical_coverage() — empirical coverage on a test stream.</span>
+<span class="sd">4. main — calibration set, test set, sets, and coverage printout.</span>
+
+<span class="sd">Core techniques:</span>
+<span class="sd">1. Nonconformity score = 1 − p(y|x) (probability of the true class in calibration).</span>
+<span class="sd">2. Calibrate on held-out scores; take (1 − α) quantile as threshold.</span>
+<span class="sd">3. For a new sample, keep all classes with (1 − p_c) ≤ qhat.</span>
+<span class="sd">4. Report empirical coverage on tests.</span>
+
+<span class="sd">Concepts:</span>
+<span class="sd">1. Uncertainty calibration</span>
+<span class="sd">2. Conformal prediction</span>
+<span class="sd">3. Nonconformity scores</span>
+<span class="sd">4. Prediction sets</span>
+<span class="sd">5. Coverage guarantees vs. empirical coverage</span>
+<span class="sd">6. Risk-level classification outputs</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">quantile</span><span class="p">(</span><span class="n">scores</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="n">ordered</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ordered</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ordered</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_prediction_set</span><span class="p">(</span><span class="n">probabilities</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="c1"># Nonconformity score = 1 - p(y|x) for the predicted-class probability used in calibration</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">cls</span> <span class="k">for</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">empirical_coverage</span><span class="p">(</span><span class="n">prediction_sets</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="n">covered</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">label</span> <span class="ow">in</span> <span class="n">prediction_set</span><span class="p">)</span> <span class="k">for</span> <span class="n">prediction_set</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">prediction_sets</span><span class="p">,</span> <span class="n">labels</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">covered</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="c1"># Calibration set: (true label, model probability assigned to that true label)</span>
+    <span class="n">calibration_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.76</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.63</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.70</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.87</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="n">calibration_scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">calibration_data</span><span class="p">]</span>
+    <span class="n">qhat</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">calibration_scores</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+
+    <span class="c1"># Test set: three-class risk levels 0=low, 1=medium, 2=high</span>
+    <span class="n">test_probabilities</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">],</span>
+    <span class="p">]</span>
+    <span class="n">test_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">prediction_sets</span> <span class="o">=</span> <span class="p">[</span><span class="n">build_prediction_set</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">qhat</span><span class="p">)</span> <span class="k">for</span> <span class="n">probs</span> <span class="ow">in</span> <span class="n">test_probabilities</span><span class="p">]</span>
+    <span class="n">coverage</span> <span class="o">=</span> <span class="n">empirical_coverage</span><span class="p">(</span><span class="n">prediction_sets</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Conformal prediction demo ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;alpha = </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qhat  = </span><span class="si">{</span><span class="n">qhat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">pred_set</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">test_probabilities</span><span class="p">,</span> <span class="n">prediction_sets</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;sample_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: probs=</span><span class="si">{</span><span class="n">probs</span><span class="si">}</span><span class="s2">, prediction_set=</span><span class="si">{</span><span class="n">pred_set</span><span class="si">}</span><span class="s2">, &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;label=</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">, covered=</span><span class="si">{</span><span class="n">label</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">pred_set</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Empirical coverage = </span><span class="si">{</span><span class="n">coverage</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="lab-5-cloudedge-collaborative-reasoning-prototype">
+<h1>Lab 5: Cloud–edge collaborative reasoning prototype<a class="headerlink" href="#lab-5-cloudedge-collaborative-reasoning-prototype" title="Link to this heading">#</a></h1>
+<p>Work with Chapters 18–20 to partition device–edge–cloud roles and event-driven flows.</p>
+<p><strong>Code entry:</strong> <code class="docutils literal notranslate"><span class="pre">experiments/lab5_edge_cloud_pipeline.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lab 5 — code overview</span>
+<span class="sd">====================</span>
+<span class="sd">Goals:</span>
+<span class="sd">1. Show a minimal “device–edge–cloud” layered reasoning prototype.</span>
+<span class="sd">2. Map Chapters 18–20 ideas — compute/latency gap, tiered deployment, cloud–edge collaboration,</span>
+<span class="sd">   event-driven flow — to an executable pipeline.</span>
+
+<span class="sd">Structure:</span>
+<span class="sd">1. Event — message object.</span>
+<span class="sd">2. EdgeNode — lightweight checks on telemetry.</span>
+<span class="sd">3. CloudNode — aggregate edge outputs and emit policies.</span>
+<span class="sd">4. main() — telemetry stream → edge → cloud.</span>
+
+<span class="sd">Core techniques:</span>
+<span class="sd">1. Edge: light logic (separation threshold, summaries).</span>
+<span class="sd">2. Cloud: higher-level policy (high-risk alerts, speed advisories).</span>
+<span class="sd">3. Event-driven flow: telemetry → edge_alert / edge_summary → cloud decision.</span>
+
+<span class="sd">Concepts:</span>
+<span class="sd">1. Compute gap and tiered deployment</span>
+<span class="sd">2. Cloud–edge collaboration</span>
+<span class="sd">3. Event-driven scheduling</span>
+<span class="sd">4. Closed-loop timely response</span>
+<span class="sd">5. Risk alerts and policy downlink</span>
+<span class="sd">6. Light rule reasoning vs. centralized decisions</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Event</span><span class="p">:</span>
+    <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">payload</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EdgeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span> <span class="o">=</span> <span class="n">node_id</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Event</span><span class="p">]:</span>
+        <span class="n">forwarded</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Event</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">!=</span> <span class="s2">&quot;telemetry&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">forwarded</span>
+
+        <span class="n">altitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;altitude&quot;</span><span class="p">])</span>
+        <span class="n">speed</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;speed&quot;</span><span class="p">])</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;nearest_distance&quot;</span><span class="p">])</span>
+        <span class="n">uav_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;uav_id&quot;</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">forwarded</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">Event</span><span class="p">(</span>
+                    <span class="s2">&quot;edge_alert&quot;</span><span class="p">,</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;uav_id&quot;</span><span class="p">:</span> <span class="n">uav_id</span><span class="p">,</span>
+                        <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;nearest_distance=</span><span class="si">{</span><span class="n">distance</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">forwarded</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Event</span><span class="p">(</span>
+                <span class="s2">&quot;edge_summary&quot;</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;uav_id&quot;</span><span class="p">:</span> <span class="n">uav_id</span><span class="p">,</span>
+                    <span class="s2">&quot;altitude&quot;</span><span class="p">:</span> <span class="n">altitude</span><span class="p">,</span>
+                    <span class="s2">&quot;speed&quot;</span><span class="p">:</span> <span class="n">speed</span><span class="p">,</span>
+                    <span class="s2">&quot;nearest_distance&quot;</span><span class="p">:</span> <span class="n">distance</span><span class="p">,</span>
+                    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">forwarded</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CloudNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">events</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Event</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">decisions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;edge_alert&quot;</span><span class="p">:</span>
+                <span class="n">decisions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;[Cloud policy] </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="s1">&#39;uav_id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: high-risk alert — execute conservative avoidance immediately&quot;</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;edge_summary&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;speed&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">22</span><span class="p">:</span>
+                    <span class="n">decisions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;[Cloud policy] </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="s1">&#39;uav_id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: speed high — reduce cruise speed and await new route assignment&quot;</span>
+                    <span class="p">)</span>
+        <span class="k">return</span> <span class="n">decisions</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">telemetry_stream</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Event</span><span class="p">(</span><span class="s2">&quot;telemetry&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;uav_id&quot;</span><span class="p">:</span> <span class="s2">&quot;UAV-01&quot;</span><span class="p">,</span> <span class="s2">&quot;altitude&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="s2">&quot;nearest_distance&quot;</span><span class="p">:</span> <span class="mi">82</span><span class="p">}),</span>
+        <span class="n">Event</span><span class="p">(</span><span class="s2">&quot;telemetry&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;uav_id&quot;</span><span class="p">:</span> <span class="s2">&quot;UAV-02&quot;</span><span class="p">,</span> <span class="s2">&quot;altitude&quot;</span><span class="p">:</span> <span class="mi">135</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s2">&quot;nearest_distance&quot;</span><span class="p">:</span> <span class="mi">210</span><span class="p">}),</span>
+    <span class="p">]</span>
+
+    <span class="n">edge</span> <span class="o">=</span> <span class="n">EdgeNode</span><span class="p">(</span><span class="s2">&quot;edge-node-beijing-01&quot;</span><span class="p">)</span>
+    <span class="n">cloud</span> <span class="o">=</span> <span class="n">CloudNode</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Cloud–edge reasoning prototype ===&quot;</span><span class="p">)</span>
+    <span class="n">forwarded_events</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Event</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">telemetry_stream</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[Edge ingest] </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="n">forwarded_events</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[Edge emit] </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">event_type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">payload</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Cloud aggregation ===&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">decision</span> <span class="ow">in</span> <span class="n">cloud</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">forwarded_events</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">decision</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+</pre></div>
+</div>
+</section>
+<section id="lab-6-joint-agent-with-llm-style-orchestration-kg-and-solvers">
+<h1>Lab 6: Joint agent with LLM-style orchestration, KG, and solvers<a class="headerlink" href="#lab-6-joint-agent-with-llm-style-orchestration-kg-and-solvers" title="Link to this heading">#</a></h1>
+<p>Work with Chapter 22 to practice GraphRAG patterns, tool calls, and rule-bounded agent loops.</p>
+<p><strong>Code entry:</strong> <code class="docutils literal notranslate"><span class="pre">experiments/lab6_ns_agent.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lab 6 — code overview</span>
+<span class="sd">====================</span>
+<span class="sd">Goals:</span>
+<span class="sd">1. Minimal prototype of “LLM-style agent + KG + rule checks + action planning” in one loop.</span>
+<span class="sd">2. Illustrate Chapter 22: GraphRAG-like retrieval, tool calls, and agent operation inside rule bounds.</span>
+
+<span class="sd">Structure:</span>
+<span class="sd">1. MiniKG — tiny KG with keyword search.</span>
+<span class="sd">2. tool_query_kg() — retrieval tool.</span>
+<span class="sd">3. tool_rule_check() — rule tool.</span>
+<span class="sd">4. tool_plan_action() — planning tool.</span>
+<span class="sd">5. agent_loop() — chain retrieve → rules → plan.</span>
+
+<span class="sd">Core techniques:</span>
+<span class="sd">1. Retrieve structured context from the KG.</span>
+<span class="sd">2. Run symbolic checks for prohibitions / alerts.</span>
+<span class="sd">3. Produce action recommendations from context + rule outcomes.</span>
+<span class="sd">4. Print an explicit three-step chain for traceable “grounded” answers.</span>
+
+<span class="sd">Concepts:</span>
+<span class="sd">1. Neuro-symbolic agents</span>
+<span class="sd">2. Knowledge-graph retrieval</span>
+<span class="sd">3. Tool calling</span>
+<span class="sd">4. Rule-bounded behavior</span>
+<span class="sd">5. Action planning</span>
+<span class="sd">6. Simplified GraphRAG / retrieval-augmented reasoning</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+
+<span class="n">Triple</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ToolResult</span><span class="p">:</span>
+    <span class="n">tool_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MiniKG</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">triples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Triple</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">triples</span> <span class="o">=</span> <span class="n">triples</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Triple</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">triple</span> <span class="k">for</span> <span class="n">triple</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">triples</span> <span class="k">if</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">triple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">triple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">triple</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tool_query_kg</span><span class="p">(</span><span class="n">kg</span><span class="p">:</span> <span class="n">MiniKG</span><span class="p">,</span> <span class="n">keyword</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolResult</span><span class="p">:</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">kg</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> --</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">--&gt; </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ToolResult</span><span class="p">(</span><span class="s2">&quot;query_kg&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="k">if</span> <span class="n">lines</span> <span class="k">else</span> <span class="s2">&quot;No matching knowledge found.&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tool_rule_check</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolResult</span><span class="p">:</span>
+    <span class="n">violations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="s2">&quot;weather_alert&quot;</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+        <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Rule fired: weather-alert airspace — reduce autonomous decision authority&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;restricted&quot;</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+        <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Rule fired: routine inspection missions prohibited in restricted airspace&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">violations</span><span class="p">:</span>
+        <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;No high-priority prohibition rules fired; suggestions may proceed&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ToolResult</span><span class="p">(</span><span class="s2">&quot;rule_check&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">violations</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tool_plan_action</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolResult</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;weather_alert&quot;</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+        <span class="n">plan</span> <span class="o">=</span> <span class="s2">&quot;Suggested action: replan route to avoid the weather-alert zone and request human confirmation.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plan</span> <span class="o">=</span> <span class="s2">&quot;Suggested action: hold current route and continue monitoring risk.&quot;</span>
+    <span class="k">return</span> <span class="n">ToolResult</span><span class="p">(</span><span class="s2">&quot;plan_action&quot;</span><span class="p">,</span> <span class="n">plan</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">agent_loop</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">kg</span><span class="p">:</span> <span class="n">MiniKG</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="n">keyword</span> <span class="o">=</span> <span class="s2">&quot;UAV-42&quot;</span> <span class="k">if</span> <span class="s2">&quot;UAV-42&quot;</span> <span class="ow">in</span> <span class="n">question</span> <span class="k">else</span> <span class="s2">&quot;ZONE&quot;</span>
+    <span class="n">kg_result</span> <span class="o">=</span> <span class="n">tool_query_kg</span><span class="p">(</span><span class="n">kg</span><span class="p">,</span> <span class="n">keyword</span><span class="p">)</span>
+    <span class="n">rule_result</span> <span class="o">=</span> <span class="n">tool_rule_check</span><span class="p">(</span><span class="n">kg_result</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">plan_result</span> <span class="o">=</span> <span class="n">tool_plan_action</span><span class="p">(</span><span class="n">kg_result</span><span class="o">.</span><span class="n">content</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">rule_result</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="n">final_answer</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Agent reasoning chain:&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;[1] Retrieval tool:</span><span class="se">\n</span><span class="si">{</span><span class="n">kg_result</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;[2] Rule check:</span><span class="se">\n</span><span class="si">{</span><span class="n">rule_result</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;[3] Action planning:</span><span class="se">\n</span><span class="si">{</span><span class="n">plan_result</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">,</span>
+        <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="n">final_answer</span><span class="p">,</span>
+    <span class="p">}</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">kg</span> <span class="o">=</span> <span class="n">MiniKG</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;UAV-42&quot;</span><span class="p">,</span> <span class="s2">&quot;in_zone&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONE-WX-9&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;ZONE-WX-9&quot;</span><span class="p">,</span> <span class="s2">&quot;zone_type&quot;</span><span class="p">,</span> <span class="s2">&quot;weather_alert&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;UAV-42&quot;</span><span class="p">,</span> <span class="s2">&quot;mission_type&quot;</span><span class="p">,</span> <span class="s2">&quot;inspection&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;UAV-42&quot;</span><span class="p">,</span> <span class="s2">&quot;battery_status&quot;</span><span class="p">,</span> <span class="s2">&quot;normal&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;ZONE-R2&quot;</span><span class="p">,</span> <span class="s2">&quot;zone_type&quot;</span><span class="p">,</span> <span class="s2">&quot;restricted&quot;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">agent_loop</span><span class="p">(</span>
+        <span class="s2">&quot;Assess whether UAV-42 should continue its inspection mission now and provide recommendations.&quot;</span><span class="p">,</span>
+        <span class="n">kg</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Neuro-symbolic agent prototype ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">])</span>
+
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./appendices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Appendix_B_Open_Source_Libraries_and_Engineering_Tools.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">B.1 PyKEEN</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../experiments/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Appendix C — Experiment Code</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab 1: Small low-altitude ontology and rule encoding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-2-static-risk-reasoning-with-kg-sparql-style-queries-llm-ready-explanations">Lab 2: Static risk reasoning with KG + SPARQL-style queries + LLM-ready explanations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-3-conflict-detection-on-temporal-knowledge-graph-snapshots">Lab 3: Conflict detection on temporal knowledge-graph snapshots</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-4-conformal-prediction-for-risk-outputs-with-confidence-sets">Lab 4: Conformal prediction for risk outputs with confidence sets</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-5-cloudedge-collaborative-reasoning-prototype">Lab 5: Cloud–edge collaborative reasoning prototype</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-6-joint-agent-with-llm-style-orchestration-kg-and-solvers">Lab 6: Joint agent with LLM-style orchestration, KG, and solvers</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yushu Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  <b>Yushu Liu</b> · <a href="mailto:yushuliu@outlook.com">yushuliu@outlook.com</a> ·
+  <a href="https://github.com/liuyushugreat">GitHub</a><br>
+  Text licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+  Code licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
